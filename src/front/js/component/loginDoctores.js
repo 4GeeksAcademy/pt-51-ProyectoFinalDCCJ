@@ -1,6 +1,6 @@
 import React from "react";
 
-const loginDoctores = () => {
+const LoginDoctores = () => {
     return(
         <div>
         <div className="form-floating mb-3">
@@ -14,4 +14,4 @@ const loginDoctores = () => {
         </div>
     );
 };
-export default loginDoctores;
+export default LoginDoctores;
