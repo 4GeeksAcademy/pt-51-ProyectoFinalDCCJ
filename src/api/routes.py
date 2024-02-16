@@ -40,4 +40,21 @@ def login_usuario():
     access_token = create_access_token(identity=email)
     return jsonify(access_token=access_token)
 
+@api.route("/login/doctor", methods=["POST"])
+def login_doctor():
+    #body = request.json
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+
+    user_query = User.query.filter_by(email=email).first()
+
+    #print(user_query.email)
+
+
+
+    if email != user_query.email or password != user_query.password:
+        return jsonify({"msg": "Bad username or password"}), 401
+
+    access_token = create_access_token(identity=email)
+    return jsonify(access_token=access_token)
 
