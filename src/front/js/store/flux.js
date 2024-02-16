@@ -46,7 +46,38 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
-			}
+			},
+			login_user: async (email, password) => {
+
+				try {
+					let response = await fetch(BACKEND_URL + "/api/login/user", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify({
+							"email": email,
+							"password": password
+						})
+					});
+			
+					if (response.ok) {
+						let data = await response.json();
+						// Do something with the profile data if needed
+						localStorage.setItem("token", data.access_token);
+						console.log(data);
+						return true;
+					} else {
+						// Handle non-OK response status
+						console.log(`Error: ${response.status}`);
+						return false;
+					}
+			
+				} catch (error) {
+					console.log(error);
+					return false;
+				}
+			},
 		}
 	};
 };
