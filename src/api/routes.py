@@ -20,3 +20,25 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+@api.route('/usuario', methods=['GET'])
+def get_usuarios():
+    usuario_query = Usuarios.query.all() #estamos haciendo una consulta a la User para que traiga todos
+    usuario_query = list(map(lambda item: item.serialize(), usuario_query))
+    response_body = {
+        "message": "Usuarios encontrados",
+        "Usuario":usuario_query
+    }
+
+    return jsonify(response_body), 200
+
+@api.route('/usuario', methods=['POST'])
+def crear_usuarios():
+    
+    response_body = {
+        "message": "Usuarios creado",
+    }
+
+    return jsonify(response_body), 200
+
+

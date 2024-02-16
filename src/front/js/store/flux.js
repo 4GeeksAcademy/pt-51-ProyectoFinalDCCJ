@@ -14,6 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			]
+			
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -46,9 +47,89 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			crear_usuario: async (email, password, nombre, apellido, direccion, telefono, dni) => {
+
+				try {
+					let response = await fetch(BACKEND_URL + "/api/usuario", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify({
+							"email": email,
+							"password": password,
+							"nombre":nombre,
+							"apellido":apellido,
+							"direccion":direccion,
+							"telefono":telefono,
+							"dni":dni,
+
+						})
+					});
+
+					if (response.ok) {
+						let data = await response.json();
+						
+						console.log("Usuario creado correctamente:", data);
+						return true;
+					} else {
+						console.error("Error al crear usuario:", data.error);
+						console.log(`Error: ${response.status}`);
+						return false;
+					}
+
+				} catch (error) {
+					console.error("Error de red:", error);
+					return false;
+				}
 			}
 		}
-	};
+	}
 };
 
 export default getState;
