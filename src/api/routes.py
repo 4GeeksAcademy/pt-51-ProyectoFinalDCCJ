@@ -22,6 +22,27 @@ def usuarios():
 
     return jsonify(response_body), 200
 
+@api.route('/usuario', methods=['GET'])
+def get_usuarios():
+    usuario_query = Usuarios.query.all() #estamos haciendo una consulta a la User para que traiga todos
+    usuario_query = list(map(lambda item: item.serialize(), usuario_query))
+    response_body = {
+        "message": "Usuarios encontrados",
+        "Usuario":usuario_query
+    }
+
+    return jsonify(response_body), 200
+
+@api.route('/usuario', methods=['POST'])
+def crear_usuarios():
+    
+    response_body = {
+        "message": "Usuarios creado",
+    }
+
+    return jsonify(response_body), 200
+
+
 @api.route("/login/user", methods=["POST"])
 def login_usuario():
     #body = request.json
@@ -57,4 +78,5 @@ def login_doctor():
 
     access_token = create_access_token(identity=email)
     return jsonify(access_token=access_token)
+
 

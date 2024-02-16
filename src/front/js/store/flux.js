@@ -14,6 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			]
+			
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -47,70 +48,99 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
-			login_user: async (email, password) => {
+      login_user: async (email, password) => {
+                try {
+                    let response = await fetch(BACKEND_URL + "/api/login/user", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            "email": email,
+                            "password": password
+                        })
+                    });
+                    if (response.ok) {
+                        let data = await response.json();
+                        // Do something with the profile data if needed
+                        localStorage.setItem("token", data.access_token);
+                        console.log(data);
+                        return true;
+                    } else {
+                        // Handle non-OK response status
+                        console.log(`Error: ${response.status}`);
+                        return false;
+                    }
+                } catch (error) {
+                    console.log(error);
+                    return false;
+                }
+            },
+            login_doctor: async (email, password) => {
+                try {
+                    let response = await fetch(BACKEND_URL + "/api/login/doctor", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            "email": email,
+                            "password": password
+                        })
+                    });
+                    if (response.ok) {
+                        let data = await response.json();
+                        // Do something with the profile data if needed
+                        localStorage.setItem("token", data.access_token);
+                        console.log(data);
+                        return true;
+                    } else {
+                        // Handle non-OK response status
+                        console.log(`Error: ${response.status}`);
+                        return false;
+                    }
+                } catch (error) {
+                    console.log(error);
+                    return false;
+                }
+            },
+			crear_usuario: async (email, password, nombre, apellido, direccion, telefono, dni) => {
 
 				try {
-					let response = await fetch(BACKEND_URL + "/api/login/user", {
+					let response = await fetch(BACKEND_URL + "/api/usuario", {
 						method: "POST",
 						headers: {
 							"Content-Type": "application/json"
 						},
 						body: JSON.stringify({
 							"email": email,
-							"password": password
-						})
-					});
-			
-					if (response.ok) {
-						let data = await response.json();
-						// Do something with the profile data if needed
-						localStorage.setItem("token", data.access_token);
-						console.log(data);
-						return true;
-					} else {
-						// Handle non-OK response status
-						console.log(`Error: ${response.status}`);
-						return false;
-					}
-			
-				} catch (error) {
-					console.log(error);
-					return false;
-				}
-			},
-			login_doctor: async (email, password) => {
+							"password": password,
+							"nombre":nombre,
+							"apellido":apellido,
+							"direccion":direccion,
+							"telefono":telefono,
+							"dni":dni,
 
-				try {
-					let response = await fetch(BACKEND_URL + "/api/login/doctor", {
-						method: "POST",
-						headers: {
-							"Content-Type": "application/json"
-						},
-						body: JSON.stringify({
-							"email": email,
-							"password": password
 						})
 					});
-			
+
 					if (response.ok) {
 						let data = await response.json();
-						// Do something with the profile data if needed
-						localStorage.setItem("token", data.access_token);
-						console.log(data);
+						
+						console.log("Usuario creado correctamente:", data);
 						return true;
 					} else {
-						// Handle non-OK response status
+						console.error("Error al crear usuario:", data.error);
 						console.log(`Error: ${response.status}`);
 						return false;
 					}
-			
+
 				} catch (error) {
-					console.log(error);
+					console.error("Error de red:", error);
 					return false;
 				}
-			},
-		}
-	};
+			}
+	}
 };
 
 export default getState;
