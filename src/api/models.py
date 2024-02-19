@@ -6,7 +6,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    
 
     def __repr__(self):
         return f'<User {self.email}>'
@@ -27,7 +27,7 @@ class Usuarios(db.Model):
     direccion = db.Column(db.String(200), nullable=False)
     telefono = db.Column(db.Integer, nullable=False)
     dni = db.Column(db.String(9), nullable=False)
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+   
 
     def __repr__(self):
         return f'<Usuario {self.email}>'
@@ -48,7 +48,7 @@ class Doctores(db.Model):
     telefono = db.Column(db.Integer, nullable=False)
     dni = db.Column(db.String(9), nullable=False)
     id_Especialidad = db.Column(db.Integer, db.ForeignKey('especialidades.id'))
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    
 
     especialidad_Doctor = db.relationship('Especialidades', backref='doctores', lazy=True)
 
@@ -84,7 +84,7 @@ class Citas(db.Model):
     id_Doctor = db.Column(db.Integer, db.ForeignKey('doctores.id'))
     fecha = db.Column(db.String(150), nullable=False)
     Hora = db.Column(db.String(150), nullable=False)
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    
 
     Citas_Usuario = db.relationship('Usuarios', backref='citas', lazy=True)
     Citas_Doctor = db.relationship('Doctores', backref='citas', lazy=True)

@@ -49,7 +49,7 @@ def login_usuario():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
 
-    user_query = User.query.filter_by(email=email).first()
+    user_query = Usuarios.query.filter_by(email=email).first()
 
     #print(user_query.email)
 

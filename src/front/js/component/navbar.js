@@ -7,7 +7,7 @@ export const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
         <Link to="/" className="navbar-brand">
-          <img src={LogoBarzanitas} alt="Logo de Barzanitas" className="logo-img"></img>
+          <img src={LogoBarzanitas} alt="Logo de Barzanitas" className="logo-img" />
           <span className="navbar-text ms-2">Barzanitas</span>
         </Link>
 
@@ -26,14 +26,14 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <button type="button" className="btn btn-primary me-3">
-                Soy Cliente
-              </button>
+              <Link to="/login/doctores" className="btn btn-primary me-3">
+                Soy Doctor
+              </Link>
             </li>
             <li className="nav-item">
-              <button type="button" className="btn btn-success me-3">
-                Soy Doctor
-              </button>
+              <Link to="/login/usuarios" className="btn btn-success me-3">
+                Soy Cliente
+              </Link>
             </li>
             <li className="nav-item">
               <button type="button" className="btn btn-danger me-5">
