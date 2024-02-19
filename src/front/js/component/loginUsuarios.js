@@ -1,6 +1,6 @@
 import React from "react";
 
-const LoginUsuario = () => {
+const LoginUsuarios = () => {
   return (
     <div className="container mt-5 ">
       <div className="row justify-content-center">
@@ -35,4 +35,4 @@ const LoginUsuario = () => {
     </div>
   );
 };
-export default LoginUsuario;
+export default LoginUsuarios;
