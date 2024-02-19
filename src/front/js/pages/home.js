@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext,useEffect } from "react";
 import { Context } from "../store/appContext";
 import Hospital1 from "../../img/Hospital1.jpg";
 import "../../styles/home.css";
@@ -12,6 +12,7 @@ import Nutriología from "../../img/Nutriología.jpg";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
+      
 
   return (
     <div className="text-center mt-5">

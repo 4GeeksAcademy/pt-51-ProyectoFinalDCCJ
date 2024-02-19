@@ -7,7 +7,7 @@ const LoginUsuarios = () => {
         <div className="col-md-6">
           <div className="card  ">
             <div className="card-header text-center ">
-              <h5 className="card-title">Iniciar Sesión</h5><i class="fa-solid fa-heart-pulse"></i>
+              <h5 className="card-title">Iniciar Sesión</h5><i className="fa-solid fa-heart-pulse"></i>
             </div>
             <div className="card-body">
               <form action="">

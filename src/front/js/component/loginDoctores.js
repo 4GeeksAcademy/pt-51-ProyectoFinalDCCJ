@@ -7,7 +7,7 @@ const LoginDoctores = () => {
                 <div className="col-md-6">
                     <div className="card  ">
                         <div className="card-header text-center ">
-                            <h5 className="card-title">Iniciar Sesión</h5><i class="fa-solid fa-stethoscope"></i>
+                            <h5 className="card-title">Iniciar Sesión</h5><i className="fa-solid fa-stethoscope"></i>
                         </div>
                         <div className="card-body">
                             <form action="">
@@ -24,7 +24,7 @@ const LoginDoctores = () => {
                                     <label for="rememberMe" className="form-check-label">Recordar Sesion</label>
                                 </div>
                                 <div className="d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-outline-success rounded-pill px-4">Iniciar</button>
+                                    <button type="submit" className="btn btn-outline-success rounded-pill px-4">Iniciar</button>
                                 </div>
                             </form>
                             <p className="mt-3 text-center">¿No tienes una cuenta? <a href="#">Registrate aquí</a></p>
