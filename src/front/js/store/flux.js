@@ -108,8 +108,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try {
 					let response = await fetch(BACKEND_URL + "/api/usuario", {
+						'mode': 'no-cors',
 						method: "POST",
 						headers: {
+							'Access-Control-Allow-Origin': '*',
 							"Content-Type": "application/json"
 						},
 						body: JSON.stringify({
@@ -140,6 +142,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false;
 				}
 			}
+		}
 	}
 };
 

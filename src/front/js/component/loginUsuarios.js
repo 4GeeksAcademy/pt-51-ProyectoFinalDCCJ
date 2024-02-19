@@ -24,10 +24,10 @@ const LoginUsuarios = () => {
                   <label for="rememberMe" className="form-check-label">Recordar Sesion</label>
                 </div>
                 <div className="d-flex justify-content-center">
-                  <button type="submit" class="btn btn-outline-success rounded-pill px-4">Iniciar</button>
+                  <button type="submit" className="btn btn-outline-success rounded-pill px-4">Iniciar</button>
                 </div>
               </form>
-              <p className="mt-3 text-center">¿No tienes una cuenta? <a href="#">Registrate aquí</a></p>
+              <p className="mt-3 text-center">¿No tienes una cuenta? <Link to="/registro/usuarios" className="nav-link">Registrate aquí</Link></p>
             </div>
           </div>
         </div>

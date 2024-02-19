@@ -9,7 +9,7 @@ const Login = () => {
     console.log(params)
     return (
         <>
-            {params.role == "usuario" ? <LoginUsuarios /> : <LoginDoctores />}
+            {params.role == "usuarios" ? <LoginUsuarios /> : <LoginDoctores />}
         </>
     );
 };
