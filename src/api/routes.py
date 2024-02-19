@@ -35,7 +35,26 @@ def get_usuarios():
 
 @api.route('/usuario', methods=['POST'])
 def crear_usuarios():
-    
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+    nombre = request.json.get("nombre", None)
+    apellido = request.json.get("apellido", None)
+    direccion = request.json.get("direccion", None)
+    telefono = request.json.get("telefono", None)
+    dni = request.json.get("dni", None)
+    print(email)
+    new = Usuarios(
+            email= email,
+			password= password,
+			nombre=nombre,
+			apellido=apellido,
+			direccion=direccion,
+			telefono=telefono,
+			dni=dni,
+            is_active=True
+    )
+    db.session.add(new)
+    db.session.commit()
     response_body = {
         "message": "Usuarios creado",
     }
