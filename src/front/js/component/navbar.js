@@ -1,8 +1,16 @@
-import React from "react";
+import React,{ useContext } from "react";
 import { Link } from "react-router-dom";
 import LogoBarzanitas from "../../img/LogoBarzanitas.png";
+import { Context } from "../store/appContext";
 
 export const Navbar = () => {
+  const { actions } = useContext(Context);
+
+  const handleLogout = () => {
+    actions.Logout();
+    localStorage.removeItem("token");
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
@@ -36,9 +44,9 @@ export const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <button type="button" className="btn btn-danger me-5">
+              <Link to="/" onClick={handleLogout} className="btn btn-danger me-5">
                 Cerrar Sesión
-              </button>
+              </Link>
             </li>
             <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -46,9 +54,9 @@ export const Navbar = () => {
               </a>
               <ul className="dropdown-menu dropdown-menu-end p-3 fs-5">
                 <li>
-                  <a className="dropdown-item fs-5 py-3" href="#">
+                  <Link to="/especialidades" className="dropdown-item fs-5 py-3" href="#">
                     Especialidades
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a className="dropdown-item fs-5 py-3" href="#">
