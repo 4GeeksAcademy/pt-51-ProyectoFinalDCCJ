@@ -27,6 +27,7 @@ class Usuarios(db.Model):
     direccion = db.Column(db.String(200), nullable=False)
     telefono = db.Column(db.Integer, nullable=False)
     dni = db.Column(db.String(9), nullable=False)
+    is_active = db.Column(db.Boolean, default=True)  # Añade esta línea
    
 
     def __repr__(self):
@@ -34,8 +35,16 @@ class Usuarios(db.Model):
 
     def serialize(self):
         return {
-            "id": self.id,
-            "email": self.email,
+            # "id": self.id,
+            # "email": self.email,
+        "id": self.id,
+        "email": self.email,
+        "nombre": self.nombre,
+        "apellido": self.apellido,
+        "direccion": self.direccion,
+        "telefono": self.telefono,
+        "dni": self.dni,
+        "is_active": self.is_active
             # do not serialize the password, its a security breach
         }
     
@@ -48,6 +57,7 @@ class Doctores(db.Model):
     telefono = db.Column(db.Integer, nullable=False)
     dni = db.Column(db.String(9), nullable=False)
     id_Especialidad = db.Column(db.Integer, db.ForeignKey('especialidades.id'))
+    is_active = db.Column(db.Boolean, default=True) 
     
 
     especialidad_Doctor = db.relationship('Especialidades', backref='doctores', lazy=True)
@@ -59,6 +69,11 @@ class Doctores(db.Model):
         return {
             "id": self.id,
             "email": self.email,
+            "nombre": self.nombre,
+            "apellido": self.apellido,
+            "telefono": self.telefono,
+            "dni": self.dni,
+            "is_active": self.is_active
             # do not serialize the password, its a security breach
         }
     
