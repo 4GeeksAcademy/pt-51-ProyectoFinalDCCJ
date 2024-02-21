@@ -24,7 +24,7 @@ def usuarios():
 
 @api.route('/usuario', methods=['GET'])
 def get_usuarios():
-    usuario_query = Usuarios.query.all() #estamos haciendo una consulta a la User para que traiga todos
+    usuario_query = User.query.all() #estamos haciendo una consulta a la User para que traiga todos
     usuario_query = list(map(lambda item: item.serialize(), usuario_query))
     response_body = {
         "message": "Usuarios encontrados",
@@ -42,24 +42,46 @@ def crear_usuarios():
     direccion = request.json.get("direccion", None)
     telefono = request.json.get("telefono", None)
     dni = request.json.get("dni", None)
-    print(email)
+
+    # Verificar si el email ya está en uso
+    if Usuarios.query.filter_by(email=email).first():
+        response_body = {
+            "error": "El email ya está registrado"
+        }
+        return jsonify(response_body), 400
+
+    # Verificar si el DNI ya está en uso
+    if Usuarios.query.filter_by(dni=dni).first():
+        response_body = {
+            "error": "El DNI ya está registrado"
+        }
+        return jsonify(response_body), 400
+
+    # Resto del código para crear el usuario...
+
+    # Crear un nuevo objeto Usuarios
     new = Usuarios(
-            email= email,
-			password= password,
-			nombre=nombre,
-			apellido=apellido,
-			direccion=direccion,
-			telefono=telefono,
-			dni=dni,
-            is_active=True
+        email=email,
+        password=password,
+        nombre=nombre,
+        apellido=apellido,
+        direccion=direccion,
+        telefono=telefono,
+        dni=dni,
+        is_active=True
     )
+
+    # Agregar y confirmar la transacción en la base de datos
     db.session.add(new)
     db.session.commit()
+
+    
     response_body = {
         "message": "Usuario creado",
     }
-
     return jsonify(response_body), 200
+    
+
 
 
 
@@ -104,30 +126,40 @@ def crear_doctores():
     telefono = request.json.get("telefono", None)
     dni = request.json.get("dni", None)
     
+    # Verificar si el email ya está en uso
+    if Doctores.query.filter_by(email=email).first():
+        response_body = {
+            "error": "El email ya está registrado"
+        }
+        return jsonify(response_body), 400
+
+    # Verificar si el DNI ya está en uso
+    if Doctores.query.filter_by(dni=dni).first():
+        response_body = {
+            "error": "El DNI ya está registrado"
+        }
+        return jsonify(response_body), 400
+
+    # Resto del código para crear el usuario...
+
+    # Crear un nuevo objeto Usuarios
     new = Doctores(
-            email= email,
-			password= password,
-			nombre=nombre,
-			apellido=apellido,
-			telefono=telefono,
-			dni=dni,
-            is_active=True
+        email=email,
+        password=password,
+        nombre=nombre,
+        apellido=apellido,
+        telefono=telefono,
+        dni=dni,
+        is_active=True
     )
+
+    # Agregar y confirmar la transacción en la base de datos
     db.session.add(new)
     db.session.commit()
+
+    
     response_body = {
-        "message": "Doctor creado",
+        "message": "Usuario creado",
     }
-
     return jsonify(response_body), 200
-
-@api.route('/doctores', methods=['GET'])
-def get_doctores():
-    doctor_query = Doctores.query.all() #estamos haciendo una consulta a Doctores para que traiga todos
-    doctor_query = list(map(lambda item: item.serialize(), doctor_query))
-    response_body = {
-        "message": "Usuarios encontrados",
-        "Usuario":doctor_query
-    }
-
-    return jsonify(response_body), 200
+    
