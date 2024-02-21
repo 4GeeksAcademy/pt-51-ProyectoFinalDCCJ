@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import NewUser from "../component/newUser";
-// import NewDoctor from"../component/newDoctor";
+import NewDoctor from"../component/newDoctor";
 
 
 const Registrarse = () => {

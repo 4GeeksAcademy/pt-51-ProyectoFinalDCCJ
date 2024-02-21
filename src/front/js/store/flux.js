@@ -2,7 +2,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			
-				Usuario:[]
+				Usuario:[],
+				Doctor:[]
 				
 			
 			
@@ -122,6 +123,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return true;
 				  } else {
 					console.error("Error al crear usuario:", response.statusText);
+					console.log(`Error: ${response.status}`);
+					return false;
+				  }
+				} catch (error) {
+				  console.error("Error de red:", error);
+				  return false;
+				}
+			  },
+			  CrearDoctor: async (email, password, nombre, apellido, telefono, dni) => {
+				try {
+				  let response = await fetch(process.env.BACKEND_URL + "/api/doctor", {
+					method: "POST",
+					headers: {
+					  "Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+					  email,
+					  password,
+					  nombre,
+					  apellido,
+					  telefono,
+					  dni,
+					}),
+				  });
+			  
+				  if (response.ok) {
+					let data = await response.json();
+					console.log("Doctor creado correctamente:", data);
+					return true;
+				  } else {
+					console.error("Error al crear el Doctor:", response.statusText);
 					console.log(`Error: ${response.status}`);
 					return false;
 				  }
