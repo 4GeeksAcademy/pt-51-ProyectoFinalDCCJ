@@ -24,7 +24,7 @@ def usuarios():
 
 @api.route('/usuario', methods=['GET'])
 def get_usuarios():
-    usuario_query = User.query.all() #estamos haciendo una consulta a la User para que traiga todos
+    usuario_query = Usuarios.query.all() #estamos haciendo una consulta a la User para que traiga todos
     usuario_query = list(map(lambda item: item.serialize(), usuario_query))
     response_body = {
         "message": "Usuarios encontrados",
@@ -121,3 +121,13 @@ def crear_doctores():
 
     return jsonify(response_body), 200
 
+@api.route('/doctores', methods=['GET'])
+def get_doctores():
+    doctor_query = Doctores.query.all() #estamos haciendo una consulta a Doctores para que traiga todos
+    doctor_query = list(map(lambda item: item.serialize(), doctor_query))
+    response_body = {
+        "message": "Usuarios encontrados",
+        "Usuario":doctor_query
+    }
+
+    return jsonify(response_body), 200

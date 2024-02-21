@@ -3,10 +3,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			
 				Usuario:[],
-				Doctor:[]
-				
-			
-			
+				Doctor:[],
+				Doctores:[]
+						
 			
 		},
 		actions: {
@@ -161,6 +160,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  console.error("Error de red:", error);
 				  return false;
 				}
+			  },
+			  ObtenerDoctores: async()=>{
+				fetch(process.env.BACKEND_URL + "/api/doctores")
+				.then(res => res.json())
+                .then(data => setStore({ Doctores: data }))
+                .catch(err => console.error(err))
 			  }
 			
 
