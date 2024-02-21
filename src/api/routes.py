@@ -56,7 +56,7 @@ def crear_usuarios():
     db.session.add(new)
     db.session.commit()
     response_body = {
-        "message": "Usuarios creado",
+        "message": "Usuario creado",
     }
 
     return jsonify(response_body), 200
@@ -95,4 +95,29 @@ def login_doctor():
     access_token = create_access_token(identity=email)
     return jsonify(access_token=access_token)
 
+@api.route('/doctor', methods=['POST'])
+def crear_doctores():
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+    nombre = request.json.get("nombre", None)
+    apellido = request.json.get("apellido", None)
+    telefono = request.json.get("telefono", None)
+    dni = request.json.get("dni", None)
+    
+    new = Doctores(
+            email= email,
+			password= password,
+			nombre=nombre,
+			apellido=apellido,
+			telefono=telefono,
+			dni=dni,
+            is_active=True
+    )
+    db.session.add(new)
+    db.session.commit()
+    response_body = {
+        "message": "Doctor creado",
+    }
+
+    return jsonify(response_body), 200
 
