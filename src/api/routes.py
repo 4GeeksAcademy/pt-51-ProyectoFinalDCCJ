@@ -51,7 +51,8 @@ def crear_usuarios():
 			direccion=direccion,
 			telefono=telefono,
 			dni=dni,
-            is_active=True
+            is_active=True,
+            imagen=""
     )
     db.session.add(new)
     db.session.commit()
@@ -111,7 +112,8 @@ def crear_doctores():
 			apellido=apellido,
 			telefono=telefono,
 			dni=dni,
-            is_active=True
+            is_active=True,
+            imagen=""
     )
     db.session.add(new)
     db.session.commit()
@@ -127,7 +129,7 @@ def get_doctores():
     doctor_query = list(map(lambda item: item.serialize(), doctor_query))
     response_body = {
         "message": "Usuarios encontrados",
-        "Usuario":doctor_query
+        "doctores":doctor_query
     }
 
     return jsonify(response_body), 200
