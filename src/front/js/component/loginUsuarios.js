@@ -39,9 +39,11 @@ const LoginUsuarios = () => {
                   <label htmlFor="rememberMe" className="form-check-label">Recordar Sesión</label>
                 </div>
                 <div className="d-flex justify-content-center">
-                  <button type="submit" className="btn btn-outline-success rounded-pill px-4">
-                    Iniciar
-                  </button>
+                <Link to="/especialidades">
+                    <button type="submit" className="btn btn-outline-success rounded-pill px-4">
+                      Iniciar
+                    </button>
+               </Link>
                 </div>
               </form>
               <p className="mt-3 text-center">
