@@ -28,6 +28,7 @@ class Usuarios(db.Model):
     telefono = db.Column(db.Integer, nullable=False)
     dni = db.Column(db.String(9), nullable=False)
     is_active = db.Column(db.Boolean, default=True)  # Añade esta línea
+    imagen = db.Column(db.String(500))
    
 
     def __repr__(self):
@@ -44,7 +45,8 @@ class Usuarios(db.Model):
         "direccion": self.direccion,
         "telefono": self.telefono,
         "dni": self.dni,
-        "is_active": self.is_active
+        "is_active": self.is_active,
+        "imagen": self.imagen
             # do not serialize the password, its a security breach
         }
     
@@ -57,7 +59,8 @@ class Doctores(db.Model):
     telefono = db.Column(db.Integer, nullable=False)
     dni = db.Column(db.String(9), nullable=False)
     id_Especialidad = db.Column(db.Integer, db.ForeignKey('especialidades.id'))
-    is_active = db.Column(db.Boolean, default=True) 
+    is_active = db.Column(db.Boolean, default=True)
+    imagen = db.Column(db.String(500)) 
     
 
     especialidad_Doctor = db.relationship('Especialidades', backref='doctores', lazy=True)
@@ -73,7 +76,8 @@ class Doctores(db.Model):
             "apellido": self.apellido,
             "telefono": self.telefono,
             "dni": self.dni,
-            "is_active": self.is_active
+            "is_active": self.is_active,
+            "imagen": self.imagen
             # do not serialize the password, its a security breach
         }
     
@@ -81,6 +85,7 @@ class Especialidades(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(150), nullable=False)
     descripcion = db.Column(db.String(1000), nullable=False)
+    imagen = db.Column(db.String(500))
 
     def __repr__(self):
         return f'<Especialidad {self.nombre}>'
@@ -89,6 +94,8 @@ class Especialidades(db.Model):
         return {
             "id": self.id,
             "email": self.nombre,
+            "descripcion":self.descripcion,
+            "imagen": self.imagen
             # do not serialize the password, its a security breach
         }
 
@@ -111,5 +118,6 @@ class Citas(db.Model):
         return {
             "id": self.id,
             "Usuario": self.id_Usuario,
+            "Doctor": self.id_Doctor
             # do not serialize the password, its a security breach
         }

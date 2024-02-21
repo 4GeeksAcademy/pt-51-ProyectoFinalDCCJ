@@ -59,9 +59,9 @@ export const Navbar = () => {
                   </Link>
                 </li>
                 <li>
-                  <a className="dropdown-item fs-5 py-3" href="#">
+                  <Link to="/doctores" className="dropdown-item fs-5 py-3" href="#">
                     Doctores
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a className="dropdown-item fs-5 py-3" href="#">
