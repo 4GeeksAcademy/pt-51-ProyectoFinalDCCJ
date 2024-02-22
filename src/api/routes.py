@@ -128,8 +128,27 @@ def get_doctores():
     doctor_query = Doctores.query.all() #estamos haciendo una consulta a Doctores para que traiga todos
     doctor_query = list(map(lambda item: item.serialize(), doctor_query))
     response_body = {
-        "message": "Usuarios encontrados",
+        "message": "Doctores encontrados",
         "doctores":doctor_query
+    }
+
+    return jsonify(response_body), 200
+
+@api.route('/', methods=['GET'])
+def get_home_data():
+    doctores_query = Doctores.query.all()
+    especialidades_query = Especialidades.query.all()
+
+    if not doctores_query and not especialidades_query:
+        return jsonify({"error": "No se encontraron doctores ni especialidades"}), 404
+
+    doctores_query_serialized = list(map(lambda item: item.serialize(), doctores_query))
+    especialidades_query_serialized = list(map(lambda item: item.serialize(), especialidades_query))
+
+    response_body = {
+        "message": "Datos encontrados",
+        "doctores": doctores_query_serialized,
+        "especialidades": especialidades_query_serialized
     }
 
     return jsonify(response_body), 200
