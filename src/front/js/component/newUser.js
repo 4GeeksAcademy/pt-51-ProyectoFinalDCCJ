@@ -27,33 +27,45 @@ const NewUser = () => {
     return (
         <div className="w-75 mx-auto p-2">
             <form onSubmit={handleSubmit}>
-                <div className="form-floating mb-3">
-                    <input type="email" className="form-control" id="floatingEmail" placeholder="name@example.com" onChange={(event) => { setEmail(event.target.value) }} />
-                    <label htmlFor="floatingEmail">Email</label>
+                <div className="form-floating mb-5">
+                    <div className="row">
+                        <div className="col-md-6">
+                            <input type="email" className="form-control" id="floatingEmail" placeholder="name@example.com" onChange={(event) => { setEmail(event.target.value) }} />
+                            <label htmlFor="floatingEmail">Email</label>
+                        </div>
+                        <div className="col-md-6">
+                            <input type="password" className="form-control" id="floatingPassword" placeholder="Password" onChange={(event) => { setPassword(event.target.value) }} />
+                            <label htmlFor="floatingPassword">Password</label>
+                        </div>
+                    </div>
                 </div>
-                <div className="form-floating mb-3">
-                    <input type="password" className="form-control" id="floatingPassword" placeholder="Password" onChange={(event) => { setPassword(event.target.value) }} />
-                    <label htmlFor="floatingPassword">Password</label>
+                <div className="form-floating mb-5">
+                    <div className="row">
+                        <div className="col-md-6">
+                            <input type="text" className="form-control" id="floatingName" placeholder="Nombre" onChange={(event) => { setNombre(event.target.value) }} />
+                            <label htmlFor="floatingName">Nombre</label>
+                        </div>
+                        <div className="col-md-6">
+                            <input type="text" className="form-control" id="floatingLastName" placeholder="Apellidos" onChange={(event) => { setApellido(event.target.value) }} />
+                            <label htmlFor="floatingLastName">Apellidos</label>
+                        </div>
+                    </div>
                 </div>
-                <div className="form-floating mb-3">
-                    <input type="name" className="form-control" id="floatingName" placeholder="Nombre" onChange={(event) => { setNombre(event.target.value) }} />
-                    <label htmlFor="floatingName">Nombre</label>
-                </div>
-                <div className="form-floating mb-3">
-                    <input type="lastName" className="form-control" id="floatingLastName" placeholder="Apellidos" onChange={(event) => { setApellido(event.target.value) }} />
-                    <label htmlFor="floatingLastName">Apellidos</label>
-                </div>
-                <div className="form-floating mb-3">
-                    <input type="direction" className="form-control" id="floatingDirection" placeholder="Dirección" onChange={(event) => { setDireccion(event.target.value) }} />
-                    <label htmlFor="floatingDirection">Dirección</label>
-                </div>
-                <div className="form-floating mb-3">
-                    <input type="telephone" className="form-control" id="floatingTelephone" placeholder="Teléfono" onChange={(event) => { setTelefono(event.target.value) }} />
-                    <label htmlFor="floatingTelephone">Teléfono</label>
-                </div>
-                <div className="form-floating mb-3">
-                    <input type="dni" className="form-control" id="floatingDni" placeholder="DNI" onChange={(event) => { setDni(event.target.value) }} />
-                    <label htmlFor="floatingDni">DNI</label>
+                <div className="form-floating mb-5">
+                    <div className="row">
+                        <div className="col-md-4">
+                            <input type="text" className="form-control" id="floatingDirection" placeholder="Dirección" onChange={(event) => { setDireccion(event.target.value) }} />
+                            <label htmlFor="floatingDirection">Dirección</label>
+                        </div>
+                        <div className="col-md-4">
+                            <input type="tel" className="form-control" id="floatingTelephone" placeholder="Teléfono" onChange={(event) => { setTelefono(event.target.value) }} />
+                            <label htmlFor="floatingTelephone">Teléfono</label>
+                        </div>
+                        <div className="col-md-4">
+                            <input type="text" className="form-control" id="floatingDni" placeholder="DNI" onChange={(event) => { setDni(event.target.value) }} />
+                            <label htmlFor="floatingDni">DNI</label>
+                        </div>
+                    </div>
                 </div>
                 <button type="submit" className="btn btn-primary">Registrarse</button>
             </form>
