@@ -171,7 +171,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 					} catch (error) {
 					//console.log("Error loading message from backend", error)
 					}
-				}
+			},
+			DoctoresHome: async () => {
+				try{
+					let response = await fetch(process.env.BACKEND_URL + "/api")
+					const data = await response.json()
+					setStore({Doctores : data.doctores})
+					// don't forget to return something, that is how the async resolves
+					return data;
+					} catch (error) {
+					//console.log("Error loading message from backend", error)
+					}
+				},
+			EspecialidadesHome: async () => {
+					try{
+						let response = await fetch(process.env.BACKEND_URL + "/api")
+						const data = await response.json()
+
+						console.log("Respuesta del backend:", data);
+						setStore({Especialidades : data.especialidades})
+						// don't forget to return something, that is how the async resolves
+						return data;
+						} catch (error) {
+						//console.log("Error loading message from backend", error)
+						}
+					}	
+
+
 
 
 		}
