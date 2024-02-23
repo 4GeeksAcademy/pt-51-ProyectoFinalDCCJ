@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Usuarios, Doctores, Especialidades, Citas
+from api.models import db, User, Usuarios, Doctores, Especialidades, Citas, CardEspecialidades
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
@@ -79,4 +79,22 @@ def login_doctor():
     access_token = create_access_token(identity=email)
     return jsonify(access_token=access_token)
 
+# linea de cardEspecialidades"carlos"
+# @api.route('/especialidades', methods=['GET'])
+# def get_especialidades():
+#     cardEspecialidades_query = Doctores.query.all()
 
+#     # Verificar si se encontraron doctores
+#     if cardEspecialidades_query:
+#         cardEspecialidades_query = list(map(lambda item: item.serialize(), cardEspecialidades_query))
+#         response_body = {
+#             "message": "Datos Encontrados",
+#             "especialidades": cardEspecialidades_query
+#         }
+#         return jsonify(response_body), 200
+#     else:
+        
+#         response_body = {
+#             "message": "No se encontraron especialidades"
+#         }
+#         return jsonify(response_body), 404  # No encontrado
