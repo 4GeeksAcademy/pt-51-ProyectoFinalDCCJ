@@ -4,7 +4,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			Usuario: [],
 			Doctor: [],
-			Doctores: []
+			Doctores: [],
+			
 
 
 		},
@@ -174,7 +175,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			DoctoresHome: async () => {
 				try{
-					let response = await fetch(process.env.BACKEND_URL + "/api")
+					let response = await fetch(process.env.BACKEND_URL + "/api/info/doctores/especialidades")
 					const data = await response.json()
 					setStore({Doctores : data.doctores})
 					// don't forget to return something, that is how the async resolves
@@ -185,7 +186,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				},
 			EspecialidadesHome: async () => {
 					try{
-						let response = await fetch(process.env.BACKEND_URL + "/api")
+						let response = await fetch(process.env.BACKEND_URL + "/api/info/doctores/especialidades")
 						const data = await response.json()
 
 						console.log("Respuesta del backend:", data);

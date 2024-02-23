@@ -184,7 +184,7 @@ def get_doctores():
         }
         return jsonify(response_body), 404  # No encontrado
 
-@api.route('/', methods=['GET'])
+@api.route('/info/doctores/especialidades', methods=['GET'])
 def get_home_data():
     doctores_query = Doctores.query.all()
     especialidades_query = Especialidades.query.all()
@@ -202,3 +202,7 @@ def get_home_data():
     }
 
     return jsonify(response_body), 200
+        
+      
+      
+      
