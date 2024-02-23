@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 const NewDoctor = () => {
     const { actions } = useContext(Context);
@@ -62,7 +63,9 @@ const NewDoctor = () => {
                         </div>
                     </div>
                 </div>
-                <button type="submit" className="btn btn-primary">Registrarse</button>
+                <Link to="/login/doctores">
+                    <button type="submit" className="btn btn-primary">Registrarse</button>
+                </Link>
             </form>
         </div>
  
