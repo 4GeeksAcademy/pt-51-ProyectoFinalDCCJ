@@ -184,26 +184,7 @@ def get_doctores():
         }
         return jsonify(response_body), 404  # No encontrado
 
-@api.route('/', methods=['GET'])
-def get_home_data():
-    doctores_query = Doctores.query.all()
-    especialidades_query = Especialidades.query.all()
-
-    if not doctores_query and not especialidades_query:
-        return jsonify({"error": "No se encontraron doctores ni especialidades"}), 404
-
-    doctores_query_serialized = list(map(lambda item: item.serialize(), doctores_query))
-    especialidades_query_serialized = list(map(lambda item: item.serialize(), especialidades_query))
-
-    response_body = {
-      
-         "message": "Doctores encontrados",
-        "doctores":doctor_query
-    }
-
-    return jsonify(response_body), 200 
-
-@api.route('/', methods=['GET'])
+@api.route('/info/doctores/especialidades', methods=['GET'])
 def get_home_data():
     doctores_query = Doctores.query.all()
     especialidades_query = Especialidades.query.all()
@@ -221,13 +202,7 @@ def get_home_data():
     }
 
     return jsonify(response_body), 200
-        "message": "Datos encontrados",
-        "doctores": doctores_query_serialized,
-        "especialidades": especialidades_query_serialized
-    }
-
-    return jsonify(response_body), 200
-      
+        
       
       
       
