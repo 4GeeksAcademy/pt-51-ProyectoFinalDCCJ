@@ -1,13 +1,21 @@
-import React from "react";
+import React,{ useContext } from "react";
 import { Link } from "react-router-dom";
 import LogoBarzanitas from "../../img/LogoBarzanitas.png";
+import { Context } from "../store/appContext";
 
 export const Navbar = () => {
+  const { actions } = useContext(Context);
+
+  const handleLogout = () => {
+    actions.Logout();
+    localStorage.removeItem("token");
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
         <Link to="/" className="navbar-brand">
-          <img src={LogoBarzanitas} alt="Logo de Barzanitas" className="logo-img"></img>
+          <img src={LogoBarzanitas} alt="Logo de Barzanitas" className="logo-img" />
           <span className="navbar-text ms-2">Barzanitas</span>
         </Link>
 
@@ -26,19 +34,19 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <button type="button" className="btn btn-primary me-3">
-                Soy Cliente
-              </button>
-            </li>
-            <li className="nav-item">
-              <button type="button" className="btn btn-success me-3">
+              <Link to="/login/doctores" className="btn btn-primary me-3">
                 Soy Doctor
-              </button>
+              </Link>
             </li>
             <li className="nav-item">
-              <button type="button" className="btn btn-danger me-5">
+              <Link to="/login/usuarios" className="btn btn-success me-3">
+                Soy Cliente
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/" onClick={handleLogout} className="btn btn-danger me-5">
                 Cerrar Sesión
-              </button>
+              </Link>
             </li>
             <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -46,14 +54,14 @@ export const Navbar = () => {
               </a>
               <ul className="dropdown-menu dropdown-menu-end p-3 fs-5">
                 <li>
-                  <a className="dropdown-item fs-5 py-3" href="#">
+                  <Link to="/especialidades" className="dropdown-item fs-5 py-3" href="#">
                     Especialidades
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a className="dropdown-item fs-5 py-3" href="#">
+                  <Link to="/doctores" className="dropdown-item fs-5 py-3" href="#">
                     Doctores
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a className="dropdown-item fs-5 py-3" href="#">

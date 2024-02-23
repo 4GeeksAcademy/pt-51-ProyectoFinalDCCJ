@@ -1,23 +1,16 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+
+			Usuario: [],
+			Doctor: [],
+			Doctores: [],
+			
+
 
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
+			//Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
@@ -31,7 +24,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					// don't forget to return something, that is how the async resolves
 					return data;
 				} catch (error) {
-					console.log("Error loading message from backend", error)
+					//console.log("Error loading message from backend", error)
 				}
 			},
 			changeColor: (index, color) => {
@@ -48,9 +41,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
-			login_user: async (email, password) => {
+			LoginUser: async (email, password) => {
 				try {
-					let response = await fetch(BACKEND_URL + "/api/login/user", {
+					let response = await fetch(process.env.BACKEND_URL + "/api/login/user", {
 						method: "POST",
 						headers: {
 							"Content-Type": "application/json"
@@ -64,10 +57,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 						let data = await response.json();
 						// Do something with the profile data if needed
 						localStorage.setItem("token", data.access_token);
-						console.log(data);
+						console.log("Usuario autenticado correctamente:", data);
+
 						return true;
 					} else {
-						// Handle non-OK response status
+						console.log("Error al autenticar al usuario:", response.statusText);
 						console.log(`Error: ${response.status}`);
 						return false;
 					}
@@ -76,9 +70,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false;
 				}
 			},
-			login_doctor: async (email, password) => {
+			LoginDoctor: async (email, password) => {
 				try {
-					let response = await fetch(BACKEND_URL + "/api/login/doctor", {
+					let response = await fetch(process.env.BACKEND_URL + "/api/login/doctor", {
 						method: "POST",
 						headers: {
 							"Content-Type": "application/json"
@@ -92,66 +86,123 @@ const getState = ({ getStore, getActions, setStore }) => {
 						let data = await response.json();
 						// Do something with the profile data if needed
 						localStorage.setItem("token", data.access_token);
-						console.log(data);
+						console.log("Doctor autenticado correctamente:", data);
+
 						return true;
 					} else {
-						// Handle non-OK response status
+						console.log("Error al autenticar al Doctor:", response.statusText);
 						console.log(`Error: ${response.status}`);
 						return false;
 					}
 				} catch (error) {
-					console.log(error);
+					console.error("Error en la autenticación:", error);
 					return false;
 				}
 			},
-			crear_usuario: async (email, password, nombre, apellido, direccion, telefono, dni) => {
-
+			CrearUsuario: async (email, password, nombre, apellido, direccion, telefono, dni) => {
 				try {
-					let response = await fetch(BACKEND_URL + "/api/usuario", {
+					let response = await fetch(process.env.BACKEND_URL + "/api/usuario", {
 						method: "POST",
 						headers: {
-							"Content-Type": "application/json"
+							"Content-Type": "application/json",
 						},
 						body: JSON.stringify({
-							"email": email,
-							"password": password,
-							"nombre": nombre,
-							"apellido": apellido,
-							"direccion": direccion,
-							"telefono": telefono,
-							"dni": dni,
-
-						})
+							email,
+							password,
+							nombre,
+							apellido,
+							direccion,
+							telefono,
+							dni,
+						}),
 					});
 
 					if (response.ok) {
 						let data = await response.json();
-
 						console.log("Usuario creado correctamente:", data);
 						return true;
 					} else {
-						console.error("Error al crear usuario:", data.error);
+						console.error("Error al crear usuario:", response.statusText);
 						console.log(`Error: ${response.status}`);
 						return false;
 					}
-
 				} catch (error) {
 					console.error("Error de red:", error);
 					return false;
 				}
 			},
-			obtenerEspecialidades: async () => {
+			CrearDoctor: async (email, password, nombre, apellido, telefono, dni) => {
 				try {
-					let response = await fetch(process.env.BACKEND_URL + "/especialidades")
-					const date = await response.json()
-					setStore({ especialidades: data.Especialidades })
+					let response = await fetch(process.env.BACKEND_URL + "/api/doctor", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify({
+							email,
+							password,
+							nombre,
+							apellido,
+							telefono,
+							dni,
+						}),
+					});
 
-					return data;
+					if (response.ok) {
+						let data = await response.json();
+						console.log("Doctor creado correctamente:", data);
+						return true;
+					} else {
+						console.error("Error al crear el Doctor:", response.statusText);
+						console.log(`Error: ${response.status}`);
+						return false;
+					}
 				} catch (error) {
-
+					console.error("Error de red:", error);
+					return false;
 				}
-			}
+			},
+			ObtenerDoctores: async () => {
+				try{
+					let response = await fetch(process.env.BACKEND_URL + "/api/doctores")
+					const data = await response.json()
+					setStore({Doctores : data.doctores})
+					// don't forget to return something, that is how the async resolves
+					return data;
+					} catch (error) {
+					//console.log("Error loading message from backend", error)
+					}
+			},
+			DoctoresHome: async () => {
+				try{
+					let response = await fetch(process.env.BACKEND_URL + "/api/info/doctores/especialidades")
+					const data = await response.json()
+					setStore({Doctores : data.doctores})
+					// don't forget to return something, that is how the async resolves
+					return data;
+					} catch (error) {
+					//console.log("Error loading message from backend", error)
+					}
+				},
+			EspecialidadesHome: async () => {
+					try{
+						let response = await fetch(process.env.BACKEND_URL + "/api/info/doctores/especialidades")
+						const data = await response.json()
+
+						console.log("Respuesta del backend:", data);
+						setStore({Especialidades : data.especialidades})
+						// don't forget to return something, that is how the async resolves
+						return data;
+						} catch (error) {
+						//console.log("Error loading message from backend", error)
+						}
+					}	
+
+
+
+
 		}
+
 	}
 };
 

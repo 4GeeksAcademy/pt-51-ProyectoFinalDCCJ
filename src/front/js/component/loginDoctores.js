@@ -1,33 +1,54 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 const LoginDoctores = () => {
+    const { actions } = useContext(Context);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        // Llama a la función LoginDoctor del contexto
+        const success = await actions.LoginDoctor(email, password);
+
+        if (success) {
+            // Aquí redirigir al doctor a la página deseada después de iniciar sesión
+        }
+    };
     return (
-        <div className="container mt-5 ">
+        <div className="container mt-5">
             <div className="row justify-content-center">
                 <div className="col-md-6">
-                    <div className="card  ">
-                        <div className="card-header text-center ">
-                            <h5 className="card-title">Iniciar Sesión</h5><i class="fa-solid fa-stethoscope"></i>
+                    <div className="card">
+                        <div className="card-header text-center">
+                            <h5 className="card-title">Iniciar Sesión</h5><i className="fa-solid fa-stethoscope"></i>
                         </div>
                         <div className="card-body">
-                            <form action="">
+                            <form onSubmit={handleLogin}>
                                 <div className="form-floating mb-3">
-                                    <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" required />
-                                    <label for="floatingInput">Email</label>
+                                    <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" required onChange={(event) => { setEmail(event.target.value) }} />
+                                    <label htmlFor="floatingInput">Email</label>
                                 </div>
                                 <div className="form-floating mb-2">
-                                    <input type="password" className="form-control" id="floatingPassword" placeholder="Password" required />
-                                    <label for="floatingPassword">Password</label>
+                                    <input type="password" className="form-control" id="floatingPassword" placeholder="Password" required onChange={(event) => { setPassword(event.target.value) }} />
+                                    <label htmlFor="floatingPassword">Password</label>
                                 </div>
                                 <div className="form-check mb-3">
                                     <input type="checkbox" className="form-check-input" />
-                                    <label for="rememberMe" className="form-check-label">Recordar Sesion</label>
+                                    <label htmlFor="rememberMe" className="form-check-label">Recordar Sesión</label>
                                 </div>
                                 <div className="d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-outline-success rounded-pill px-4">Iniciar</button>
+                                <Link to="/especialidades">
+                                    <button type="submit" className="btn btn-outline-success rounded-pill px-4">
+                                        Iniciar
+                                    </button>
+                                </Link>
                                 </div>
                             </form>
-                            <p className="mt-3 text-center">¿No tienes una cuenta? <a href="#">Registrate aquí</a></p>
+                            <p className="mt-3 text-center">
+                                ¿No tienes una cuenta? <Link to="/registro/doctores" className="nav-link">Regístrate aquí</Link>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -35,4 +56,5 @@ const LoginDoctores = () => {
         </div>
     );
 };
+
 export default LoginDoctores;
