@@ -18,6 +18,7 @@ import Usuarios from "./component/loginDoctores"; // Corregido el nombre del com
 import Especialidades from "./pages/especialidades";
 import Registrarse from "./pages/registrarse";
 import Doctores from "./pages/doctores";
+import Empresa from "./pages/empresa";
 
 
 const Layout = () => {
@@ -37,6 +38,7 @@ const Layout = () => {
                         <Route element={<Login />} path="/login/:role" />
                         <Route element={<Especialidades />} path="/especialidades" />
                         <Route element={<Doctores />} path="/doctores" />
+                        <Route element={<Empresa />} path="/empresa" />
                         <Route element={<Registrarse />} path="/registro/:role" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>

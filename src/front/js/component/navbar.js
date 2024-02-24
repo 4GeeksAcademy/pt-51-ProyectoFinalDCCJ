@@ -64,9 +64,9 @@ export const Navbar = () => {
                   </Link>
                 </li>
                 <li>
-                  <a className="dropdown-item fs-5 py-3" href="#">
-                    La empresa
-                  </a>
+                  <Link to="/empresa" className="dropdown-item fs-5 py-3" href="#">
+                    La Empresa
+                  </Link>
                 </li>
                 <li>
                   <a className="dropdown-item fs-5 py-3" href="#">
