@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 90605d98769b
-Revises: 359b39e22123
-Create Date: 2024-02-14 20:04:08.896537
+Revision ID: ba099e7eff1c
+Revises: 
+Create Date: 2024-02-25 13:49:57.963457
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '90605d98769b'
-down_revision = '359b39e22123'
+revision = 'ba099e7eff1c'
+down_revision = None
 branch_labels = None
 depends_on = None
 
@@ -22,7 +22,15 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('nombre', sa.String(length=150), nullable=False),
     sa.Column('descripcion', sa.String(length=1000), nullable=False),
+    sa.Column('imagen', sa.String(length=500), nullable=True),
     sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('user',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('email', sa.String(length=120), nullable=False),
+    sa.Column('password', sa.String(length=80), nullable=False),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('email')
     )
     op.create_table('usuarios',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -33,7 +41,8 @@ def upgrade():
     sa.Column('direccion', sa.String(length=200), nullable=False),
     sa.Column('telefono', sa.Integer(), nullable=False),
     sa.Column('dni', sa.String(length=9), nullable=False),
-    sa.Column('is_active', sa.Boolean(), nullable=False),
+    sa.Column('is_active', sa.Boolean(), nullable=True),
+    sa.Column('imagen', sa.String(length=500), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')
     )
@@ -46,7 +55,8 @@ def upgrade():
     sa.Column('telefono', sa.Integer(), nullable=False),
     sa.Column('dni', sa.String(length=9), nullable=False),
     sa.Column('id_Especialidad', sa.Integer(), nullable=True),
-    sa.Column('is_active', sa.Boolean(), nullable=False),
+    sa.Column('is_active', sa.Boolean(), nullable=True),
+    sa.Column('imagen', sa.String(length=500), nullable=True),
     sa.ForeignKeyConstraint(['id_Especialidad'], ['especialidades.id'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')
@@ -57,7 +67,6 @@ def upgrade():
     sa.Column('id_Doctor', sa.Integer(), nullable=True),
     sa.Column('fecha', sa.String(length=150), nullable=False),
     sa.Column('Hora', sa.String(length=150), nullable=False),
-    sa.Column('is_active', sa.Boolean(), nullable=False),
     sa.ForeignKeyConstraint(['id_Doctor'], ['doctores.id'], ),
     sa.ForeignKeyConstraint(['id_Usuario'], ['usuarios.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -70,5 +79,6 @@ def downgrade():
     op.drop_table('citas')
     op.drop_table('doctores')
     op.drop_table('usuarios')
+    op.drop_table('user')
     op.drop_table('especialidades')
     # ### end Alembic commands ###

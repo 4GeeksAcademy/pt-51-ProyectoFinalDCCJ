@@ -5,7 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			Usuario: [],
 			Doctor: [],
 			Doctores: [],
-			
+			Especialidades:[]
 
 
 		},
