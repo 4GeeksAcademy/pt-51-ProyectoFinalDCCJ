@@ -31,36 +31,14 @@ const VistaEspecialidades = () => {
     useEffect(() => {
         actions.EspecialidadesHome();
     }, []);
-    // console.log(store.CardEspecialidades);
-
-
+    
     return (
         <div className="container pt-5">
-            {/* <ul className="flex-nowrap d-flex flex-row overflow-scroll list-unstyled gap-1 px-0"> */}
-            {store.Especialidades.map(especialidad => (
-                // <li key={item.id} className="col-4 px-0 w-auto my-2">
+            {store.Especialidades.map(especialidad => (  
                 <CardEspecialidades key={especialidad.id} titulo={especialidad.email} descripcion={especialidad.descripcion} url={especialidad.imagen} />
-                // </li>
             ))}
-            {/* </ul> */}
         </div>
     );
 };
 export default VistaEspecialidades;
 
-{/* <div className="col p-5" key={item.uid}>
-//         <div className="p-2 g-col-6" style={{ width: "250px" }}>
-//             <img src={`https://starwars-visualguide.com/assets/img/characters/${item.uid}.jpg`} className="card-img-top" alt="..." />
-//             <div className="card-body p-7">
-//                 <h5 className="card-title text-center">{item.name}</h5>
-//                 <p>{store.detallespersonaje.gender}</p>
-//                 <Link className='btn btn-primary mx-3' to={`/detailview/personaje/${item.uid}`}>Learn more!</Link>
-//                 <button className='btn btn-warning'
-//                     onClick={() => {
-//                         let name = item.name
-//                         actions.setFavorites(name)
-//                     }}
-//                 ><i className="fa fa-heart text-light"></i></button>
-//             </div>
-//         </div>
-//     </div> */}
