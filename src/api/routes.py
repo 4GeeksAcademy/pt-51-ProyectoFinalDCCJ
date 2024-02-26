@@ -202,7 +202,3 @@ def get_home_data():
     }
 
     return jsonify(response_body), 200
-        
-      
-      
-      
