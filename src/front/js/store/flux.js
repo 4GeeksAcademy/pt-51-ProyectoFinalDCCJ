@@ -131,7 +131,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false;
 				}
 			},
-			CrearDoctor: async (email, password, nombre, apellido, telefono, dni) => {
+			CrearDoctor: async (email, password, nombre, apellido, telefono, dni, url_Calendly) => {
 				try {
 					let response = await fetch(process.env.BACKEND_URL + "/api/doctor", {
 						method: "POST",
@@ -145,6 +145,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							apellido,
 							telefono,
 							dni,
+							url_Calendly
 						}),
 					});
 
@@ -197,10 +198,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						//console.log("Error loading message from backend", error)
 						}
 					}	
-
-
-
-
 		}
 
 	}
