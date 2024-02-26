@@ -196,8 +196,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return data;
 						} catch (error) {
 						//console.log("Error loading message from backend", error)
-						}
-					}	
+						}	
+					}
+				
 		}
 
 	}

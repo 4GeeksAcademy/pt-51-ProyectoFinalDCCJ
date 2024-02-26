@@ -95,7 +95,7 @@ class Especialidades(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "email": self.nombre,
+            "nombre": self.nombre,
             "descripcion":self.descripcion,
             "imagen": self.imagen
             # do not serialize the password, its a security breach
@@ -123,3 +123,6 @@ class Citas(db.Model):
             "Doctor": self.id_Doctor
             # do not serialize the password, its a security breach
         }
+    
+
+    
