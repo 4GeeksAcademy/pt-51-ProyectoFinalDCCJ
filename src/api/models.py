@@ -60,7 +60,8 @@ class Doctores(db.Model):
     dni = db.Column(db.String(9), nullable=False)
     id_Especialidad = db.Column(db.Integer, db.ForeignKey('especialidades.id'))
     is_active = db.Column(db.Boolean, default=True)
-    imagen = db.Column(db.String(500)) 
+    imagen = db.Column(db.String(500))
+    url_Calendly = db.Column(db.String(150)) 
     
 
     especialidad_Doctor = db.relationship('Especialidades', backref='doctores', lazy=True)
@@ -77,7 +78,8 @@ class Doctores(db.Model):
             "telefono": self.telefono,
             "dni": self.dni,
             "is_active": self.is_active,
-            "imagen": self.imagen
+            "imagen": self.imagen,
+            "url_Calendly":self.url_Calendly
             # do not serialize the password, its a security breach
         }
     
