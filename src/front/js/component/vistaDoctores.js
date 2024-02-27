@@ -4,13 +4,13 @@ import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 
 const VistaDoctores = (props) => {
-    //const [url, setUrl] = useState("")
-    console.log(props.url_Calendly);
-    let url=""
+    const [url, setUrl] = useState("")
+    //console.log(props.url_Calendly);
+   
     const handleClick=(url)=>{
          url=(props.url_Calendly)
      }
-     console.log(url);
+     //console.log(url);
     return (
         <div className="w-100 p-2">
             <div className="card mb-3">
@@ -26,7 +26,7 @@ const VistaDoctores = (props) => {
                             <p className="card-text">{props.email}</p>
                             <p className="card-text"><small className="text-body-secondary">{props.telefono}</small></p>
                             <Link to="/fichadoctor">
-                                <button type="button" className="btn btn-primary" onClick={handleClick()}>Pedir Cita</button>
+                                <button type="button" className="btn btn-primary" onClick={handleClick}>Pedir Cita</button>
                             </Link>
                         </div>
                     </div>
@@ -42,7 +42,7 @@ VistaDoctores.propTypes = {
     telefono: PropTypes.number,
     dni: PropTypes.string,
     imagen: PropTypes.string,
-    url_Calendry: PropTypes.string
+    url_Calendly: PropTypes.string
 
 };
 export default VistaDoctores
