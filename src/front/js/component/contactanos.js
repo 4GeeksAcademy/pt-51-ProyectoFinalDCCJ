@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useFormspark } from '@formspark/use-formspark';
+import { ToastContainer, toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Contactanos = () => {
-  const FORMSPARK_FORM_ID = 'K70oKA4lE'; // Reemplaza con tu ID real de Formspark
-
-  const [submit, submitting] = useFormspark({
-    formId: FORMSPARK_FORM_ID,
-  });
-
-  const [formData, setFormData] = useState({
-    nombre: '',
-    email: '',
-    mensaje: '',
-  });
+  const FORMSPARK_FORM_ID = 'K70oKA4lE';
+  const [submit] = useFormspark({ formId: FORMSPARK_FORM_ID });
+  const [formData, setFormData] = useState({ nombre: '', email: '', mensaje: '' });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,23 +18,41 @@ const Contactanos = () => {
     e.preventDefault();
 
     try {
-      // Validación de datos
       if (!formData.nombre || !formData.email || !formData.mensaje) {
         throw new Error('Todos los campos son obligatorios');
       }
 
-      
-
-      // Enviar datos a Formspark
       await submit(formData);
 
-      // Lógica adicional después de enviar el formulario, si es necesario.
-
-      // Redirige a la página que deseas después de enviar el formulario.
-      window.location.href = '/';
+      toast.success('Formulario enviado correctamente!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+        onClose: () => {
+          // Utiliza setTimeout para realizar la redirección después de un breve tiempo
+          setTimeout(() => navigate('/'), 1000);
+        },
+      });
     } catch (error) {
       console.error('Error al enviar el formulario:', error);
-      // Puedes mostrar un mensaje de error al usuario o realizar otras acciones según tus necesidades.
+      
+      toast.error('Error al enviar el formulario. Verifica tus datos e intenta nuevamente.', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
     }
   };
 
@@ -89,6 +103,20 @@ const Contactanos = () => {
           Enviar
         </button>
       </form>
+
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
     </div>
   );
 };
