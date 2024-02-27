@@ -19,6 +19,7 @@ import Especialidades from "./pages/especialidades";
 import Registrarse from "./pages/registrarse";
 import Doctores from "./pages/doctores";
 import Empresa from "./pages/empresa";
+import Recuperacion from "./pages/recuperacion";
 
 
 const Layout = () => {
@@ -40,6 +41,7 @@ const Layout = () => {
                         <Route element={<Doctores />} path="/doctores" />
                         <Route element={<Empresa />} path="/empresa" />
                         <Route element={<Registrarse />} path="/registro/:role" />
+                        <Route element={<Recuperacion />} path="/recuperacion" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />
