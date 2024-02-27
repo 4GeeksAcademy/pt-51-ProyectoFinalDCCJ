@@ -211,10 +211,7 @@ def contactanos():
     # Verificar si los datos están presentes
     if "nombre" in data and "email" in data and "mensaje" in data:
         # Puedes realizar acciones con los datos, por ejemplo, almacenarlos en la base de datos
-        # Aquí estoy simplemente imprimiendo los datos recibidos en la consola
-        print("Nombre:", data["nombre"])
-        print("Email:", data["email"])
-        print("Mensaje:", data["mensaje"])
+        
 
         response_body = {
             "message": "Datos recibidos exitosamente"

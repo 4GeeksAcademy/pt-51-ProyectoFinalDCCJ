@@ -12,7 +12,7 @@ const CalendlyComponent = () => {
   };  
 
   CalendlyComponent.propTypes = {
-	nombre: PropTypes.string,
+	  nombre: PropTypes.string,
     email: PropTypes.string,
     apellido: PropTypes.string,
     telefono: PropTypes.number,

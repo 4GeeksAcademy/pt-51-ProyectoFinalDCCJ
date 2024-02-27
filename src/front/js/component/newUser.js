@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const NewUser = () => {
     const { actions } = useContext(Context);
@@ -12,16 +14,36 @@ const NewUser = () => {
     const [direccion, setDireccion] = useState("");
     const [telefono, setTelefono] = useState("");
     const [dni, setDni] = useState("");
-    const [error, setError] = useState(null);
-    const [success, setSuccess] = useState(null);
+    const Navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
             await actions.CrearUsuario(email, password, nombre, apellido, direccion, telefono, dni);
-            setSuccess("Usuario creado correctamente");
+            
+            toast.success('Usuario creado correctamente', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
+              Navigate('/login/usuarios');
         } catch (error) {
-            setError("Error al crear usuario. Por favor, verifica los datos e intenta nuevamente.");
+            
+            toast.error('Error al crear usuario. Por favor, verifica los datos e intenta nuevamente', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
         }
     };
 
@@ -68,11 +90,23 @@ const NewUser = () => {
                         </div>
                     </div>
                 </div>
-                <Link to="/login/usuarios">
+                
                     <button type="submit" className="btn btn-primary">Registrarse</button>
-                </Link>
+                
                 
             </form>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
         </div>
     );
 };

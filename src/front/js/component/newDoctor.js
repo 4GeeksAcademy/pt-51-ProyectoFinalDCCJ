@@ -1,6 +1,9 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const NewDoctor = () => {
     const { actions } = useContext(Context);
@@ -13,14 +16,36 @@ const NewDoctor = () => {
     const [dni, setDni] = useState("");
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
+    const Navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
             await actions.CrearDoctor(email, password, nombre, apellido, telefono, dni);
             setSuccess("Doctor creado correctamente");
+            toast.success('Inicio de sesión exitoso', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
+              Navigate('/login/doctor');
         } catch (error) {
             setError("Error al crear el doctor. Por favor, verifica los datos e intenta nuevamente.");
+            toast.error('Inicio de sesión fallido. Verifica tus credenciales.', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
         }
     };
 
@@ -63,10 +88,22 @@ const NewDoctor = () => {
                         </div>
                     </div>
                 </div>
-                <Link to="/login/doctores">
+                
                     <button type="submit" className="btn btn-primary">Registrarse</button>
-                </Link>
+                
             </form>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
         </div>
  
     );
