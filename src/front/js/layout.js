@@ -12,7 +12,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 
 import Login from "./pages/login";
-import VistaFichaDoctor from "./pages/vistaFichaDoctor";
+
 import Usuarios from "./component/loginDoctores"; // Corregido el nombre del componente
 // import Doctores from "./component/loginUsuarios"; // Corregido el nombre del componente
 import Contactanos from "./component/contactanos";
@@ -20,9 +20,12 @@ import Especialidades from "./pages/especialidades";
 import Registrarse from "./pages/registrarse";
 import Doctores from "./pages/doctores";
 import Empresa from "./pages/empresa";
-
+import VistaFichaDoctor from "./pages/vistaFichaDoctor";
+import VistaHomeDoctores from "./component/vistaHomeDoctores";
+import VistaHomeEspecialidades from "./component/vistaHomeEspecialidades";
 import VistaNuevaClave from "./pages/nuevaClave";
 import VistaEnviarCorreo from "./pages/enviarCorreo";
+
 
 
 const Layout = () => {

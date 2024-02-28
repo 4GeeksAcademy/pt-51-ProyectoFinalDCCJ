@@ -38,9 +38,9 @@ const VistaEspecialidades = () => {
         <div className="container pt-5">
             {/* <ul className="flex-nowrap d-flex flex-row overflow-scroll list-unstyled gap-1 px-0"> */}
             {store.Especialidades.map(especialidad => (
-                // <li key={item.id} className="col-4 px-0 w-auto my-2">
+                 //<li key={item.id} className="col-4 px-0 w-auto my-2">
                 <CardEspecialidades key={especialidad.id} titulo={especialidad.email} descripcion={especialidad.descripcion} url={especialidad.imagen} />
-                // </li>
+                 //</li>
             ))}
             {/* </ul> */}
         </div>

@@ -210,7 +210,6 @@ def get_home_data():
 
     return jsonify(response_body), 200
 
-
 #RECUPERACION CONTRASEÑA OLVIDADA 
 @api.route("/forgotpassword", methods=["POST"])
 def forgotpassword():
@@ -231,25 +230,4 @@ def forgotpassword():
     msg.html = f"""<h1>Su nueva contraseña es: {recover_password}</h1>"""
     current_app.mail.send(msg)
     return jsonify({"msg": "Su nueva clave ha sido enviada al correo electrónico ingresado"}), 200
-
-@api.route('/info/contactanos', methods=['POST'])
-def contactanos():
-    # Obtener los datos del formulario
-    data = request.json
-
-    # Verificar si los datos están presentes
-    if "nombre" in data and "email" in data and "mensaje" in data:
-        # Puedes realizar acciones con los datos, por ejemplo, almacenarlos en la base de datos
-        
-
-        response_body = {
-            "message": "Datos recibidos exitosamente"
-        }
-        return jsonify(response_body), 200
-    else:
-        # Manejar el caso en el que no se proporcionan todos los datos esperados
-        response_body = {
-            "message": "Faltan datos en la solicitud"
-        }
-        return jsonify(response_body), 400  # Código de error de solicitud incorrecta
 
