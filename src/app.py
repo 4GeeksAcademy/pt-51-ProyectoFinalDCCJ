@@ -11,6 +11,7 @@ from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
 from flask_jwt_extended import JWTManager
+from flask_mail import Mail #IMPORTAR LA FUNCION Mail() de flask_mail
 
 # from models import Person
 
@@ -23,6 +24,22 @@ app.url_map.strict_slashes = False
 app.config["JWT_SECRET_KEY"] = "super-secret"  # Change this!
 jwt = JWTManager(app)
 
+#CONFIGURACION EMAIL
+mail_settings = {
+    "MAIL_SERVER": 'sandbox.smtp.mailtrap.io',
+    "MAIL_PORT":  2525,
+    "MAIL_USE_TLS": True,
+    "MAIL_USE_SSL": False,
+    "MAIL_USERNAME":  '6db8188d6dbf30', #ACA COLOQUEN EL CORREO DE LA APP DEL ALUMN
+    "MAIL_PASSWORD": '5cded246a31e7c', #PASSWORD DEL CORREO DE LA APP DEL ALUMNO
+    "MAIL_DEFAULT_SENDER": 'cmag.131993@gmail.com'
+}
+
+app.config.update(mail_settings)
+mail = Mail(app)
+#agregan mail a la app y se va llamar en routes.py como current_app
+app.mail= mail
+#FIN CONFIGURACION EMAIL
 
 # database condiguration
 db_url = os.getenv("DATABASE_URL")
@@ -71,6 +88,32 @@ def serve_any_other_file(path):
     response = send_from_directory(static_file_dir, path)
     response.cache_control.max_age = 0  # avoid cache memory
     return response
+
+@app.route('/upload', methods=['POST'])
+def upload():
+  if 'file' not in request.files:
+    return jsonify({'error': 'no file'}), 400
+  
+  file = request.files['file']
+
+  try:
+    response = cloudinary.uploader.upload(file, folder='uploads')
+
+    return jsonify({'message': 'file uploaded', 'url': response['secure_url']}), 200
+  
+  except Exception as error:
+    return jsonify({'error': error}), 500
+
+@app.route('/images', methods=['GET'])
+def get_images():
+  try:
+    response = api.resources(type='upload', prefix='uploads/')
+
+    return jsonify({'message': 'images retrieved', "images": response['resources']}), 200
+  except Exception as error:
+    return jsonify({'error': error}), 500
+
+
 
 
 # this only runs if `$ python src/main.py` is executed

@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 
 const NewDoctor = () => {
     const { store, actions } = useContext(Context);
@@ -16,9 +16,27 @@ const NewDoctor = () => {
     const [dni, setDni] = useState("");
     const [url_Calendly, setUrl_Calendly] = useState("");
     const [especialidad, setEspecialidad] = useState("");
+    const [Url_imagen, setUrl_imagen] = useState("");
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
     const Navigate = useNavigate();
+
+    const handleFileChange = async (e) => {
+        const file = e.target.files[0];
+        const data = new FormData();
+        data.append("file", file);
+        data.append("upload_preset", "Presents_react");
+        try {
+            const response = await axios.post("https://api.cloudinary.com/v1_1/dn4eqesd6/image/upload", data);
+            setUrl_imagen(response.data.secure_url);
+        } catch (error) {
+            console.error("Error al cargar la imagen a Cloudinary:", error);
+        }
+    };
+
+    const FuncionDeleteImage = () => {
+        setUrl_imagen("");
+    };
 
     console.log(especialidad);
     useEffect(() => {
@@ -28,8 +46,8 @@ const NewDoctor = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await actions.CrearDoctor(email, password, nombre, apellido, telefono, dni, url_Calendly, especialidad);
-            setSuccess("Doctor creado correctamente");
+            await actions.CrearDoctor(email, password, nombre, apellido, telefono, dni, url_Calendly, especialidad, Url_imagen);
+
             toast.success('Inicio de sesión exitoso', {
                 position: "top-right",
                 autoClose: 5000,
@@ -39,10 +57,11 @@ const NewDoctor = () => {
                 draggable: true,
                 progress: undefined,
                 theme: "colored",
-              });
-              Navigate('/login/doctor');
+            });
+
+            Navigate('/login/doctor');
         } catch (error) {
-            setError("Error al crear el doctor. Por favor, verifica los datos e intenta nuevamente.");
+            console.error("Error al crear el doctor:", error);
             toast.error('Inicio de sesión fallido. Verifica tus credenciales.', {
                 position: "top-right",
                 autoClose: 5000,
@@ -52,7 +71,7 @@ const NewDoctor = () => {
                 draggable: true,
                 progress: undefined,
                 theme: "colored",
-              });
+            });
         }
     };
     // const especialidades = () => {
@@ -62,7 +81,33 @@ const NewDoctor = () => {
     return (
         <div className="w-75 mx-auto p-2">
             <form onSubmit={handleSubmit}>
-                <div className="form-floating mb-5">
+                <div className="mb-3">
+                    <label htmlFor="fileInput" className="btn btn-primary">
+                        Seleccionar Archivo
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleFileChange}
+                            id="fileInput"
+                            style={{ display: 'none' }}
+                        />
+                    </label>
+                    {Url_imagen && (
+                        <div className="ml-2">
+                            <button className="btn btn-danger" type="button" onClick={FuncionDeleteImage}>
+                                Eliminar Imagen
+                            </button>
+                        </div>
+                    )}
+                </div>
+                
+                {Url_imagen && (
+                    <div>
+                        <img src={Url_imagen} alt="Subida" className="mb-3" style={{ maxWidth: '200px', maxHeight: '200px' }} />
+                    </div>
+                )}
+
+            <div className="form-floating mb-5">
                     <div className="row">
                         <div className="col-md-6">
                             <input type="email" className="form-control" id="floatingEmail" placeholder="name@example.com" onChange={(event) => { setEmail(event.target.value) }} />
@@ -88,10 +133,11 @@ const NewDoctor = () => {
                 </div>
                 <div className="form-floating mb-5">
                     <div className="row">
-                         <div className="col-md-6">
+                        <div className="col-md-6">
                             <input type="tel" className="form-control" id="floatingTelephone" placeholder="Teléfono" onChange={(event) => { setTelefono(event.target.value) }} />
                             <label htmlFor="floatingTelephone">Teléfono</label>
                         </div>
+                        
                         <div className="col-md-6">
                             <input type="text" className="form-control" id="floatingDni" placeholder="DNI" onChange={(event) => { setDni(event.target.value) }} />
                             <label htmlFor="floatingDni">DNI</label>
@@ -122,10 +168,10 @@ const NewDoctor = () => {
                         </div>
                     </div>
                 </div>
-                
-                    <button type="submit" className="btn btn-primary">Registrarse</button>
-                
+               
+                <button type="submit" className="btn btn-primary">Registrarse</button>
             </form>
+            
             <ToastContainer
                 position="top-right"
                 autoClose={5000}
@@ -139,9 +185,7 @@ const NewDoctor = () => {
                 theme="colored"
             />
         </div>
- 
     );
 };
 
 export default NewDoctor;
-

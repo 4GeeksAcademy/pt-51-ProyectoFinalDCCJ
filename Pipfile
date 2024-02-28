@@ -19,6 +19,7 @@ flask-admin = "*"
 typing-extensions = "*"
 flask-sqlalchemy = "*"
 flask-jwt-extended = "*"
+flask-mail = "*"
 
 [requires]
 python_version = "3.10"

@@ -181,7 +181,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					let response = await fetch(process.env.BACKEND_URL + "/api/info/doctores/especialidades")
 					const data = await response.json()
 					console.log("Data from backend:", data);
-					setStore({  HomeDoctores: data.doctores });
+					setStore({ HomeDoctores: data.homedoctores });
 					// don't forget to return something, that is how the async resolves
 					return data;
 					} catch (error) {
@@ -194,17 +194,46 @@ const getState = ({ getStore, getActions, setStore }) => {
 						const data = await response.json()
 
 						console.log("Respuesta del backend:", data);
-						setStore({HomeEspecialidades: data.especialidades });
+						setStore({ HomeEspecialidades: data.HomeEspecialidades });
 						// don't forget to return something, that is how the async resolves
 						return data;
 						} catch (error) {
 						//console.log("Error loading message from backend", error)
-						}	
-					}
-				
-		}
+						}
+					},
 
-	}
+					changePassword: async (email, password, newpassword) => {
+						console.log(email, password, newpassword)
+						// try {
+						// 	let response = await fetch(process.env.BACKEND_URL + "/api/login/user", {
+						// 		method: "POST",
+						// 		headers: {
+						// 			"Content-Type": "application/json"
+						// 		},
+						// 		body: JSON.stringify({
+						// 			"email": email,
+						// 			"password": password
+						// 		})
+						// 	});
+						// 	if (response.ok) {
+						// 		let data = await response.json();
+						// 		// Do something with the profile data if needed
+						// 		localStorage.setItem("token", data.access_token);
+						// 		console.log("Usuario autenticado correctamente:", data);
+		
+						// 		return true;
+						// 	} else {
+						// 		console.log("Error al autenticar al usuario:", response.statusText);
+						// 		console.log(`Error: ${response.status}`);
+						// 		return false;
+						// 	}
+						// } catch (error) {
+						// 	console.log(error);
+						// 	return false;
+						// }
+					},
+    }
+  }
 };
 
 export default getState;
