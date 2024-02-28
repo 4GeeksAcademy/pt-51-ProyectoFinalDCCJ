@@ -181,7 +181,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					let response = await fetch(process.env.BACKEND_URL + "/api/info/doctores/especialidades")
 					const data = await response.json()
 					console.log("Data from backend:", data);
-					setStore({  HomeDoctores: data.doctores });
+					setStore({ HomeDoctores: data.homedoctores });
 					// don't forget to return something, that is how the async resolves
 					return data;
 					} catch (error) {
@@ -194,7 +194,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						const data = await response.json()
 
 						console.log("Respuesta del backend:", data);
-						setStore({HomeEspecialidades: data.especialidades });
+						setStore({ HomeEspecialidades: data.HomeEspecialidades });
 						// don't forget to return something, that is how the async resolves
 						return data;
 						} catch (error) {

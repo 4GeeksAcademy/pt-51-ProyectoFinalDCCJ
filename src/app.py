@@ -72,6 +72,32 @@ def serve_any_other_file(path):
     response.cache_control.max_age = 0  # avoid cache memory
     return response
 
+@app.route('/upload', methods=['POST'])
+def upload():
+  if 'file' not in request.files:
+    return jsonify({'error': 'no file'}), 400
+  
+  file = request.files['file']
+
+  try:
+    response = cloudinary.uploader.upload(file, folder='uploads')
+
+    return jsonify({'message': 'file uploaded', 'url': response['secure_url']}), 200
+  
+  except Exception as error:
+    return jsonify({'error': error}), 500
+
+@app.route('/images', methods=['GET'])
+def get_images():
+  try:
+    response = api.resources(type='upload', prefix='uploads/')
+
+    return jsonify({'message': 'images retrieved', "images": response['resources']}), 200
+  except Exception as error:
+    return jsonify({'error': error}), 500
+
+
+
 
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':
