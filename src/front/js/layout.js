@@ -20,7 +20,6 @@ import Especialidades from "./pages/especialidades";
 import Registrarse from "./pages/registrarse";
 import Doctores from "./pages/doctores";
 import Empresa from "./pages/empresa";
-import VistaFichaDoctor from "./pages/vistaFichaDoctor";
 
 
 const Layout = () => {

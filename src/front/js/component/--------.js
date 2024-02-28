@@ -9,7 +9,7 @@ const FichaDoctor  = (url) => {
     console.log(url);
     return (
         <div>
-            {/* <InlineWidget url= {url} /> */}
+            <InlineWidget url= {url} />
         </div>
     )
         

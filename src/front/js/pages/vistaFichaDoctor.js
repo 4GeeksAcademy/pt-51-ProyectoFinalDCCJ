@@ -1,22 +1,16 @@
 import React, { useState, useEffect, useContext} from "react";
 import { Link, useParams } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import { Context } from "../store/appContext";
 import CalendlyComponent from "../component/calendlyComponent";
 
 const VistaFichaDoctor = () => {
-    const { url } = useParams(); // Utilizo useParams para obtener el parámetro de la URL
-    const { store, actions } = useContext(Context);
 
-    useEffect(() => {
-        actions.ObtenerDoctores();
-    }, []);
-
-    console.log(url);
 
     return (
         <div className="col-12">
-            <CalendlyComponent url={url}/>
+            <CalendlyComponent useParams/>
         </div>
     );
 };
