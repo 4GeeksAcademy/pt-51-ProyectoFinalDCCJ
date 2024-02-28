@@ -10,6 +10,7 @@ const LoginUsuarios = () => {
   const [password, setPassword] = useState("");
   const Navigate = useNavigate();
 
+
   const handleLogin = async (e) => {
     e.preventDefault();
     // Llama a la función login_user del contexto
@@ -64,15 +65,20 @@ const LoginUsuarios = () => {
                   <label htmlFor="rememberMe" className="form-check-label">Recordar Sesión</label>
                 </div>
                 <div className="d-flex justify-content-center">
-                  
+
+                  <Link to="/especialidades">
                     <button type="submit" className="btn btn-outline-success rounded-pill px-4">
                       Iniciar
                     </button>
-                  
+                  </Link>
+
                 </div>
               </form>
               <p className="mt-3 text-center">
                 ¿No tienes una cuenta? <Link to="/registro/usuarios" className="nav-link">Regístrate aquí</Link>
+              </p>
+              <p className="mt-3 text-center">
+                ¿Se te olvidado la clave? <Link to="/enviarcorreo" className="nav-link">Pulsa Aqui</Link>
               </p>
             </div>
           </div>

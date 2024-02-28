@@ -47,20 +47,3 @@ const VistaEspecialidades = () => {
     );
 };
 export default VistaEspecialidades;
-
-{/* <div className="col p-5" key={item.uid}>
-//         <div className="p-2 g-col-6" style={{ width: "250px" }}>
-//             <img src={`https://starwars-visualguide.com/assets/img/characters/${item.uid}.jpg`} className="card-img-top" alt="..." />
-//             <div className="card-body p-7">
-//                 <h5 className="card-title text-center">{item.name}</h5>
-//                 <p>{store.detallespersonaje.gender}</p>
-//                 <Link className='btn btn-primary mx-3' to={`/detailview/personaje/${item.uid}`}>Learn more!</Link>
-//                 <button className='btn btn-warning'
-//                     onClick={() => {
-//                         let name = item.name
-//                         actions.setFavorites(name)
-//                     }}
-//                 ><i className="fa fa-heart text-light"></i></button>
-//             </div>
-//         </div>
-//     </div> */}
