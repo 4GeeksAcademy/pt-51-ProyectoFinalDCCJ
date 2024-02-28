@@ -2,8 +2,8 @@ import React from 'react';
 
 const Empresa = () => {
   return (
-    <div>
-      <h1>Barzanitas: Cuidando de tu Salud con Compromiso y Calidad</h1>
+    <div className='ms-5 me-5'>
+      <h1 className='text-center mt-5 mb-5'>Barzanitas: Cuidando de tu Salud con Compromiso y Calidad</h1>
 
       <p>
         En el corazón de nuestra comunidad, emerge un faro de atención médica comprometida con la excelencia y la empatía: Clínica Médica Barzanitas. Desde su fundación, nuestra clínica se ha consolidado como un referente en el cuidado de la salud, brindando servicios integrales con un enfoque centrado en el paciente.
@@ -39,7 +39,7 @@ const Empresa = () => {
         En resumen, Clínica Médica Barzanitas se esfuerza por ser mucho más que un proveedor de atención médica; buscamos ser un socio en el viaje hacia la salud y el bienestar. Nuestro compromiso inquebrantable con la calidad, la tecnología, la comunidad y, sobre todo, con nuestros pacientes, nos posiciona como un faro de confianza en el panorama de la atención médica local.
       </p>
 
-      <h2>Barzanitas: donde tu salud es nuestra prioridad.</h2>
+      <h2 className='text-center'>Barzanitas: donde tu salud es nuestra prioridad.</h2>
     </div>
   );
 };

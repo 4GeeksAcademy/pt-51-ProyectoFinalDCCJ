@@ -17,10 +17,12 @@ export const Home = () => {
     actions.DoctoresHome();
     actions.EspecialidadesHome();
   }, []);
+  
 
   // Verificar si Doctores y Especialidades están definidos
-  const doctoresToShow = store.Doctores ? store.Doctores.slice(0, 3) : [];
-  const especialidadesToShow = store.Especialidades ? store.Especialidades.slice(0, 3) : [];
+  const doctoresToShow = store.HomeDoctores ? store.HomeDoctores.slice(0, 3) : [];
+  const especialidadesToShow = store.HomeEspecialidades ? store.HomeEspecialidades.slice(0, 3) : [];
+ 
 
   return (
     <div className="text-center mt-5">
@@ -32,7 +34,7 @@ export const Home = () => {
         <ul className="flex-nowrap d-flex flex-row list-unstyled gap-1 px-0 mx-auto">
           {doctoresToShow.map(item => (
             <li key={item.id} className="col-4 px-0 w-auto my-2">
-              <VistaHomeDoctores nombre={item.nombre} imagen={item.imagen} />
+              <VistaHomeDoctores nombre={item.nombre} imagen={item.imagen}  />
             </li>
           ))}
         </ul>
@@ -47,11 +49,12 @@ export const Home = () => {
         <ul className="flex-nowrap d-flex flex-row list-unstyled gap-1 px-0 mx-auto">
           {especialidadesToShow.map(item => (
             <li key={item.id} className="col-4 px-0 w-auto my-2">
-              <VistaHomeEspecialidades nombre={item.nombre} imagen={item.imagen} />
+              <VistaHomeEspecialidades nombre={item.nombre} descripcion={item.descripcion} imagen={item.imagen} />
             </li>
           ))}
         </ul>
       </div>
+
     </div>
   );
 };
