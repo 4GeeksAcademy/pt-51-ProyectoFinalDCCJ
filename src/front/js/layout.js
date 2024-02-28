@@ -20,13 +20,15 @@ import Especialidades from "./pages/especialidades";
 import Registrarse from "./pages/registrarse";
 import Doctores from "./pages/doctores";
 import Empresa from "./pages/empresa";
-import VistaFichaDoctor from "./pages/vistaFichaDoctor";
+
+import VistaNuevaClave from "./pages/nuevaClave";
+import VistaEnviarCorreo from "./pages/enviarCorreo";
 
 
 const Layout = () => {
-  const basename = process.env.BASENAME || "";
+    const basename = process.env.BASENAME || "";
 
-  if (!process.env.BACKEND_URL || process.env.BACKEND_URL === "") return <BackendURL />;
+    if (!process.env.BACKEND_URL || process.env.BACKEND_URL === "") return <BackendURL />;
 
     return (
         <div>
@@ -43,6 +45,8 @@ const Layout = () => {
                         <Route element={<Empresa />} path="/empresa" />
                         <Route element={<Contactanos />} path="/contactanos" />
                         <Route element={<Registrarse />} path="/registro/:role" />
+                        <Route element={<VistaNuevaClave />} path="/vistanuevaclave" />
+                        <Route element={<VistaEnviarCorreo />} path="/enviarcorreo" />
                         <Route element={<VistaFichaDoctor />} path="/fichadoctor" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>

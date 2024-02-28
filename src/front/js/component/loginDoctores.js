@@ -74,6 +74,9 @@ const LoginDoctores = () => {
                             <p className="mt-3 text-center">
                                 ¿No tienes una cuenta? <Link to="/registro/doctores" className="nav-link">Regístrate aquí</Link>
                             </p>
+                            <p className="mt-3 text-center">
+                                ¿Se te olvidado la clave? <Link to="/enviarcorreo" className="nav-link">Pulsa Aqui</Link>
+                            </p>
                         </div>
                     </div>
                 </div>
