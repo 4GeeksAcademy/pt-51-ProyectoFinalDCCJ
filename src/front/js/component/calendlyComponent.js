@@ -1,15 +1,16 @@
 import React from "react";
 import { InlineWidget } from "react-calendly";
 import PropTypes from "prop-types";
-import { useParams, searchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 
 const CalendlyComponent = () => {
-  console.log(searchParams);
+  console.log(searchParams.set(url));
+  console.log(useSearchParams());
   const [searchParams] = useSearchParams()
   return (   
     <div>
       <h1 className="ms-5">Agenda una cita</h1>
-      <InlineWidget url={searchParams} />
+      <InlineWidget url="https://calendly.com/diegoavila87/citas" />
     </div>
   )
   };  

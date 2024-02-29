@@ -24,6 +24,7 @@ import VistaHomeDoctores from "./component/vistaHomeDoctores";
 import VistaHomeEspecialidades from "./component/vistaHomeEspecialidades";
 import VistaNuevaClave from "./pages/nuevaClave";
 import VistaEnviarCorreo from "./pages/enviarCorreo";
+import VistaFichaDoctor from "./pages/vistaFichaDoctor";
 
 
 

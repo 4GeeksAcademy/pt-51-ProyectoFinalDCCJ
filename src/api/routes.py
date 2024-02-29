@@ -210,8 +210,6 @@ def get_home_data():
 
     return jsonify(response_body), 200
 
-<<<<<<< HEAD
-=======
 #RECUPERACION CONTRASEÑA OLVIDADA 
 @api.route("/forgotpassword", methods=["POST"])
 def forgotpassword():
@@ -233,4 +231,3 @@ def forgotpassword():
     current_app.mail.send(msg)
     return jsonify({"msg": "Su nueva clave ha sido enviada al correo electrónico ingresado"}), 200
 
->>>>>>> 92849d4135a77ccd8710dd8fffb91500b9134433

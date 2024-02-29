@@ -7,7 +7,7 @@ const VistaDoctores = (props) => {
 
     const [searchParams] = useSearchParams()
 
-    console.log(searchParams);
+    console.log(searchParams.get(""));
 
 
    
