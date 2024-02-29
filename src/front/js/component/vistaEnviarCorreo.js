@@ -20,7 +20,7 @@ const VistaEmail = () => {
         }),
         onSubmit: values => {
             actions.sendEmail(values.email)
-            alert(JSON.stringify(values, null, 2));
+            formik.resetForm();
         },
     });
 

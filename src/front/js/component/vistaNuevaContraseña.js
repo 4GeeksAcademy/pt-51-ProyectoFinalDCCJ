@@ -52,7 +52,7 @@ const NuevaContraseña = () => {
                 <div className="form-floating mb-3">
                   <input type="password" className="form-control" id="floatingPassword" name="password" placeholder="Password" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.password} />
 
-                  <label for="floatingPassword">Nueva Contraseña</label>
+                  <label for="floatingPassword">Antigua Contraseña</label>
                 </div>
 
                 {formik.touched.password && formik.errors.password ? (
@@ -62,7 +62,7 @@ const NuevaContraseña = () => {
                 <div className="form-floating mb-3">
                   <input type="password" className="form-control" id="floatingPassword" name="recoveredpassword" placeholder="Password" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.recoveredpassword} />
 
-                  <label for="floatingPassword">Repetir Contraseña</label>
+                  <label for="floatingPassword">Nueva Contraseña</label>
                 </div>
 
                 {formik.touched.recoveredpassword && formik.errors.recoveredpassword ? (
