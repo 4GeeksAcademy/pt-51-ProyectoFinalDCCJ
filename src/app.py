@@ -30,9 +30,9 @@ mail_settings = {
     "MAIL_PORT":  2525,
     "MAIL_USE_TLS": True,
     "MAIL_USE_SSL": False,
-    "MAIL_USERNAME":  '6db8188d6dbf30', #ACA COLOQUEN EL CORREO DE LA APP DEL ALUMN
-    "MAIL_PASSWORD": '5cded246a31e7c', #PASSWORD DEL CORREO DE LA APP DEL ALUMNO
-    "MAIL_DEFAULT_SENDER": 'cmag.131993@gmail.com'
+    "MAIL_USERNAME":  'ee0d2f79957192', #ACA COLOQUEN EL CORREO DE LA APP DEL ALUMN
+    "MAIL_PASSWORD": '21526bad57a806', #PASSWORD DEL CORREO DE LA APP DEL ALUMNO
+    "MAIL_DEFAULT_SENDER": 'barzanitas@outlook.com'
 }
 
 app.config.update(mail_settings)
