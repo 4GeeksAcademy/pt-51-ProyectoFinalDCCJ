@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext} from "react";
 import { Link, useParams } from "react-router-dom";
 import VistaDoctores from "../component/vistaDoctores";
 import { Context } from "../store/appContext";
+import VistaHomeDoctores from "../component/vistaHomeDoctores";
 
 const Doctores = () => {
     const { store, actions } = useContext(Context);
@@ -15,7 +16,7 @@ const Doctores = () => {
 				<ul className=" d-flex justify-content-center list-unstyled gap-1 px-0">
 					{store.Doctores.map(item => (
 						<li key={item.id} className="col-4 px-0 w-auto my-2">
-							<VistaDoctores  nombre={item.nombre} imagen={item.imagen} apellido={item.apellido} email={item.email} telefono={item.telefono}/>
+							<VistaDoctores id={item.id} nombre={item.nombre} imagen={item.imagen} apellido={item.apellido} email={item.email} telefono={item.telefono} url_Calendly={item.url_Calendly}/>
 						</li>
 					))}
 				</ul>

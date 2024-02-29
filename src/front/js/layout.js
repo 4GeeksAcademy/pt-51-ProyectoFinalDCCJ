@@ -10,17 +10,22 @@ import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+
 import Login from "./pages/login";
 
 import Usuarios from "./component/loginDoctores"; // Corregido el nombre del componente
 // import Doctores from "./component/loginUsuarios"; // Corregido el nombre del componente
-
+import Contactanos from "./component/contactanos";
 import Especialidades from "./pages/especialidades";
 import Registrarse from "./pages/registrarse";
 import Doctores from "./pages/doctores";
 import Empresa from "./pages/empresa";
+import VistaFichaDoctor from "./pages/vistaFichaDoctor";
+import VistaHomeDoctores from "./component/vistaHomeDoctores";
+import VistaHomeEspecialidades from "./component/vistaHomeEspecialidades";
 import VistaNuevaClave from "./pages/nuevaClave";
 import VistaEnviarCorreo from "./pages/enviarCorreo";
+
 
 
 const Layout = () => {
@@ -41,9 +46,11 @@ const Layout = () => {
                         <Route element={<Especialidades />} path="/especialidades" />
                         <Route element={<Doctores />} path="/doctores" />
                         <Route element={<Empresa />} path="/empresa" />
+                        <Route element={<Contactanos />} path="/contactanos" />
                         <Route element={<Registrarse />} path="/registro/:role" />
                         <Route element={<VistaNuevaClave />} path="/vistanuevaclave" />
                         <Route element={<VistaEnviarCorreo />} path="/enviarcorreo" />
+                        <Route element={<VistaFichaDoctor />} path="/fichadoctor" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />
@@ -54,4 +61,3 @@ const Layout = () => {
 };
 
 export default injectContext(Layout);
-

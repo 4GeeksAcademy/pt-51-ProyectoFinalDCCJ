@@ -46,6 +46,7 @@ def crear_usuarios():
     direccion = request.json.get("direccion", None)
     telefono = request.json.get("telefono", None)
     dni = request.json.get("dni", None)
+    imagen = request.json.get("imagen", None)
 
     # Validar entradas
     if not email or not password or not nombre or not apellido or not direccion or not telefono or not dni:
@@ -65,7 +66,7 @@ def crear_usuarios():
         telefono=telefono,
         dni=dni,
         is_active=True,
-        imagen=""
+        imagen=imagen
     )
 
     # Agregar y confirmar en la base de datos
@@ -129,10 +130,12 @@ def crear_doctores():
     nombre = request.json.get("nombre", None)
     apellido = request.json.get("apellido", None)
     telefono = request.json.get("telefono", None)
-    dni = request.json.get("dni", None)
+    dni = request.json.get("dni", None),
+    imagen = request.json.get("imagen", None),
+    url_Calendly = request.json.get("url_Calendly", None)
 
     # Validar entradas
-    if not email or not password or not nombre or not apellido or not telefono or not dni:
+    if not email or not password or not nombre or not apellido or not telefono or not dni or not url_Calendly:
         response_body = {
             "error": "Todos los campos son obligatorios."
         }
@@ -148,7 +151,8 @@ def crear_doctores():
         telefono=telefono,
         dni=dni,
         is_active=True,
-        imagen=""
+        imagen=imagen,
+        url_Calendly=url_Calendly
     )
 
     # Agregar y confirmar en la base de datos
@@ -226,3 +230,4 @@ def forgotpassword():
     msg.html = f"""<h1>Su nueva contraseña es: {recover_password}</h1>"""
     current_app.mail.send(msg)
     return jsonify({"msg": "Su nueva clave ha sido enviada al correo electrónico ingresado"}), 200
+

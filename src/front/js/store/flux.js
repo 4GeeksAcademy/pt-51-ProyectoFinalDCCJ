@@ -5,7 +5,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			Usuario: [],
 			Doctor: [],
 			Doctores: [],
-			Especialidades: []
+			Especialidades:[],
+			HomeDoctores:[],
+			HomeEspecialidades:[]
 
 
 		},
@@ -131,7 +133,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false;
 				}
 			},
-			CrearDoctor: async (email, password, nombre, apellido, telefono, dni) => {
+			CrearDoctor: async (email, password, nombre, apellido, telefono, dni, url_Calendly) => {
 				try {
 					let response = await fetch(process.env.BACKEND_URL + "/api/doctor", {
 						method: "POST",
@@ -145,6 +147,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							apellido,
 							telefono,
 							dni,
+							url_Calendly
 						}),
 					});
 
@@ -177,7 +180,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					let response = await fetch(process.env.BACKEND_URL + "/api/info/doctores/especialidades")
 					const data = await response.json()
-					setStore({ Doctores: data.doctores })
+					console.log("Data from backend:", data);
+					setStore({ HomeDoctores: data.homedoctores });
 					// don't forget to return something, that is how the async resolves
 					return data;
 				} catch (error) {

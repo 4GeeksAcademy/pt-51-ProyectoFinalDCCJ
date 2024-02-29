@@ -1,11 +1,15 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginUsuarios = () => {
   const { actions } = useContext(Context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const Navigate = useNavigate();
+
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -13,9 +17,31 @@ const LoginUsuarios = () => {
     const success = await actions.LoginUser(email, password);
 
     if (success) {
-      // Aquí redirigir al usuario a la página deseada después de iniciar sesión
+      toast.success('Inicio de sesión exitoso', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      Navigate('/especialidades');
+    } else {
+      toast.error('Inicio de sesión fallido. Verifica tus credenciales.', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     }
   };
+
   return (
     <div className="container mt-5">
       <div className="row justify-content-center">
@@ -39,11 +65,13 @@ const LoginUsuarios = () => {
                   <label htmlFor="rememberMe" className="form-check-label">Recordar Sesión</label>
                 </div>
                 <div className="d-flex justify-content-center">
+
                   <Link to="/especialidades">
                     <button type="submit" className="btn btn-outline-success rounded-pill px-4">
                       Iniciar
                     </button>
                   </Link>
+
                 </div>
               </form>
               <p className="mt-3 text-center">
@@ -56,6 +84,18 @@ const LoginUsuarios = () => {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 };

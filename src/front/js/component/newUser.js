@@ -1,6 +1,9 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const NewUser = () => {
     const { actions } = useContext(Context);
@@ -9,24 +12,88 @@ const NewUser = () => {
     const [password, setPassword] = useState("");
     const [nombre, setNombre] = useState("");
     const [apellido, setApellido] = useState("");
-    const [direccion, setDireccion] = useState("");
     const [telefono, setTelefono] = useState("");
     const [dni, setDni] = useState("");
-    const [error, setError] = useState(null);
-    const [success, setSuccess] = useState(null);
+    const [Url_imagen, setUrl_imagen] = useState("");
+    const Navigate = useNavigate();
+
+    const handleFileChange = async (e) => {
+        const file = e.target.files[0];
+        const data = new FormData();
+        data.append("file", file);
+        data.append("upload_preset", "Presents_react");
+        try {
+            const response = await axios.post("https://api.cloudinary.com/v1_1/dn4eqesd6/image/upload", data);
+            setUrl_imagen(response.data.secure_url);
+        } catch (error) {
+            console.error("Error al cargar la imagen a Cloudinary:", error);
+        }
+    };
+
+    const FuncionDeleteImage = () => {
+        setUrl_imagen("");
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await actions.CrearUsuario(email, password, nombre, apellido, direccion, telefono, dni);
-            setSuccess("Usuario creado correctamente");
+            await actions.CrearDoctor(email, password, nombre, apellido, telefono, dni, Url_imagen);
+
+            toast.success('Inicio de sesión exitoso', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+
+            Navigate('/login/doctor');
         } catch (error) {
-            setError("Error al crear usuario. Por favor, verifica los datos e intenta nuevamente.");
+            console.error("Error al crear el doctor:", error);
+            toast.error('Inicio de sesión fallido. Verifica tus credenciales.', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
         }
     };
 
     return (
         <div className="w-75 mx-auto p-2">
+            <div className="mb-3">
+                    <label htmlFor="fileInput" className="btn btn-primary">
+                        Seleccionar Archivo
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleFileChange}
+                            id="fileInput"
+                            style={{ display: 'none' }}
+                        />
+                    </label>
+                    {Url_imagen && (
+                        <div className="ml-2">
+                            <button className="btn btn-danger" type="button" onClick={FuncionDeleteImage}>
+                                Eliminar Imagen
+                            </button>
+                        </div>
+                    )}
+                </div>
+                
+                {Url_imagen && (
+                    <div>
+                        <img src={Url_imagen} alt="Subida" className="mb-3" style={{ maxWidth: '200px', maxHeight: '200px' }} />
+                    </div>
+                )}
+             
             <form onSubmit={handleSubmit}>
                 <div className="form-floating mb-5">
                     <div className="row">
@@ -55,12 +122,12 @@ const NewUser = () => {
                 <div className="form-floating mb-5">
                     <div className="row">
                         <div className="col-md-4">
-                            <input type="text" className="form-control" id="floatingDirection" placeholder="Dirección" onChange={(event) => { setDireccion(event.target.value) }} />
-                            <label htmlFor="floatingDirection">Dirección</label>
-                        </div>
-                        <div className="col-md-4">
                             <input type="tel" className="form-control" id="floatingTelephone" placeholder="Teléfono" onChange={(event) => { setTelefono(event.target.value) }} />
                             <label htmlFor="floatingTelephone">Teléfono</label>
+                        </div>
+                        <div className="col-md-4">
+                            <input type="tel" className="form-control" id="floatingDireccion" placeholder="Dirección" onChange={(event) => { setDireccion(event.target.value) }} />
+                            <label htmlFor="floatingDireccion">Dirección</label>
                         </div>
                         <div className="col-md-4">
                             <input type="text" className="form-control" id="floatingDni" placeholder="DNI" onChange={(event) => { setDni(event.target.value) }} />
@@ -68,11 +135,21 @@ const NewUser = () => {
                         </div>
                     </div>
                 </div>
-                <Link to="/login/usuarios">
-                    <button type="submit" className="btn btn-primary">Registrarse</button>
-                </Link>
-                
+              
+                <button type="submit" className="btn btn-primary">Registrarse</button>
             </form>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
         </div>
     );
 };

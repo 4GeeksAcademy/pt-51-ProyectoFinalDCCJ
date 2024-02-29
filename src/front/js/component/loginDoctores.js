@@ -1,11 +1,15 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const LoginDoctores = () => {
     const { actions } = useContext(Context);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const Navigate =useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -13,9 +17,30 @@ const LoginDoctores = () => {
         const success = await actions.LoginDoctor(email, password);
 
         if (success) {
-            // Aquí redirigir al doctor a la página deseada después de iniciar sesión
-        }
-    };
+            toast.success('Inicio de sesión exitoso', {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+            Navigate('/especialidades');//cambiar a la página de ver sus citas con los pacientes
+          } else {
+            toast.error('Inicio de sesión fallido. Verifica tus credenciales.', {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+          }
+        };
     return (
         <div className="container mt-5">
             <div className="row justify-content-center">
@@ -39,11 +64,11 @@ const LoginDoctores = () => {
                                     <label htmlFor="rememberMe" className="form-check-label">Recordar Sesión</label>
                                 </div>
                                 <div className="d-flex justify-content-center">
-                                <Link to="/especialidades">
+                                
                                     <button type="submit" className="btn btn-outline-success rounded-pill px-4">
                                         Iniciar
                                     </button>
-                                </Link>
+                               
                                 </div>
                             </form>
                             <p className="mt-3 text-center">
@@ -56,6 +81,18 @@ const LoginDoctores = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
         </div>
     );
 };
