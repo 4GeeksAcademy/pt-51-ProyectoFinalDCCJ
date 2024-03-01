@@ -5,6 +5,8 @@
 // import { InlineWidget } from "react-calendly";
 
 
+
+
 // const FichaDoctor  = (url) => {       
 //     console.log(url);
 //     return (
@@ -12,6 +14,7 @@
 //             {/* <InlineWidget url= {url} /> */}
 //         </div>
 //     )
+
         
 // };
 // FichaDoctor.propTypes = {

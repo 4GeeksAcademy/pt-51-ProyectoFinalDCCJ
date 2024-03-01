@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 
 const VistaDoctores = (props) => {
-    const [url, setUrl] = useState("")
-    //console.log(props.url_Calendly);
+
+    const [searchParams] = useSearchParams()
+
+    console.log(searchParams.get(""));
+
+
    
-    const handleClick=(url)=>{
-         url=(props.url_Calendly)
-     }
-     //console.log(url);
     return (
         <div className="w-100 p-2">
             <div className="card mb-3">
@@ -25,8 +25,8 @@ const VistaDoctores = (props) => {
                             <p className="card-text">{props.url_Calendly}</p>
                             <p className="card-text">{props.email}</p>
                             <p className="card-text"><small className="text-body-secondary">{props.telefono}</small></p>
-                            <Link to="/fichadoctor">
-                                <button type="button" className="btn btn-primary" onClick={handleClick}>Pedir Cita</button>
+                            <Link to={`/fichadoctor?${props.url_Calendly}`}>
+                                <button type="button" className="btn btn-primary">Pedir Cita</button>
                             </Link>
                         </div>
                     </div>

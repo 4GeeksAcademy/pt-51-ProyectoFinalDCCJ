@@ -20,11 +20,11 @@ import Especialidades from "./pages/especialidades";
 import Registrarse from "./pages/registrarse";
 import Doctores from "./pages/doctores";
 import Empresa from "./pages/empresa";
-import VistaFichaDoctor from "./pages/vistaFichaDoctor";
 import VistaHomeDoctores from "./component/vistaHomeDoctores";
 import VistaHomeEspecialidades from "./component/vistaHomeEspecialidades";
 import VistaNuevaClave from "./pages/nuevaClave";
 import VistaEnviarCorreo from "./pages/enviarCorreo";
+import VistaFichaDoctor from "./pages/vistaFichaDoctor";
 
 
 

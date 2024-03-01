@@ -61,6 +61,7 @@ class Doctores(db.Model):
     id_Especialidad = db.Column(db.Integer, db.ForeignKey('especialidades.id'))
     is_active = db.Column(db.Boolean, default=True)
     imagen = db.Column(db.String(500))
+    url_Calendly =db.Column(db.String(500))
     
     
 
@@ -79,6 +80,7 @@ class Doctores(db.Model):
             "dni": self.dni,
             "is_active": self.is_active,
             "imagen": self.imagen,
+            "url_Calendly": self.url_Calendly
             
             # do not serialize the password, its a security breach
         }

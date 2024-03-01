@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const NewDoctor = () => {
-    const { actions } = useContext(Context);
+    const { store, actions } = useContext(Context);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -14,6 +14,8 @@ const NewDoctor = () => {
     const [apellido, setApellido] = useState("");
     const [telefono, setTelefono] = useState("");
     const [dni, setDni] = useState("");
+    const [url_Calendly, setUrl_Calendly] = useState("");
+    const [especialidad, setEspecialidad] = useState("");
     const [Url_imagen, setUrl_imagen] = useState("");
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
@@ -36,10 +38,15 @@ const NewDoctor = () => {
         setUrl_imagen("");
     };
 
+    console.log(especialidad);
+    useEffect(() => {
+        actions.EspecialidadesHome();
+    }, []);
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await actions.CrearDoctor(email, password, nombre, apellido, telefono, dni, Url_imagen);
+            await actions.CrearDoctor(email, password, nombre, apellido, telefono, dni, url_Calendly, especialidad, Url_imagen);
 
             toast.success('Inicio de sesión exitoso', {
                 position: "top-right",
@@ -67,6 +74,9 @@ const NewDoctor = () => {
             });
         }
     };
+    // const especialidades = () => {
+    //     let datos = store.Especialidades.map
+    // }
 
     return (
         <div className="w-75 mx-auto p-2">
@@ -131,6 +141,30 @@ const NewDoctor = () => {
                         <div className="col-md-6">
                             <input type="text" className="form-control" id="floatingDni" placeholder="DNI" onChange={(event) => { setDni(event.target.value) }} />
                             <label htmlFor="floatingDni">DNI</label>
+                        </div>
+                        <div className="col-md-6">
+                            <input type="text" className="form-control" id="floatingUrl_Calendly" placeholder="url_Calendly" onChange={(event) => { setUrl_Calendly(event.target.value) }} />
+                            <label htmlFor="floatingDni">url_Calendly</label>
+                        </div>
+                        <div className="col-md-6">
+                            {/* <select className="form-select"  id="floatingEspecialidad" placeholder="especialidad" onSelect={(event) => { setEspecialidad(event.target.value) }}>
+                                <option selected>Selecciona especialidad...</option>
+                                for (let index = 0; index < datos.length; index++) {
+                                    const element = array[index];
+                                    <option defaultValue={datos.id}>{datos.npmbre}erf</option>
+                                }
+                                {store.Especialidades.map(especialidad => (
+                                // <li key={item.id} className="col-4 px-0 w-auto my-2">
+                                
+                                //<CardEspecialidades key={especialidad.id} titulo={especialidad.email} descripcion={especialidad.descripcion} url={especialidad.imagen} />
+                                // </li>
+                                ))}
+                                <option defaultValue="1">One</option>
+                                <option defaultValue="2">Two</option>
+                                <option defaultValue="3">Three</option>
+                            </select>
+                            <label className="input-group-text" htmlFor="floatingEspecialidad">Especialidad</label>
+                             */}
                         </div>
                     </div>
                 </div>
