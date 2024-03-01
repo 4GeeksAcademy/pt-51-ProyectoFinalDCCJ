@@ -1,3 +1,6 @@
+import { ToastContainer, toast } from 'react-toastify';
+import React from 'react';
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -101,7 +104,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false;
 				}
 			},
-			CrearUsuario: async (email, password, nombre, apellido, direccion, telefono, dni) => {
+			CrearUsuario: async (email, password, nombre, apellido, direccion, telefono, dni, Url_imagen) => {
 				try {
 					let response = await fetch(process.env.BACKEND_URL + "/api/usuario", {
 						method: "POST",
@@ -116,25 +119,51 @@ const getState = ({ getStore, getActions, setStore }) => {
 							direccion,
 							telefono,
 							dni,
+							Url_imagen
 						}),
 					});
 
 					if (response.ok) {
 						let data = await response.json();
 						console.log("Usuario creado correctamente:", data);
+						toast.success('Registro exitoso', {
+							position: "top-right",
+							autoClose: 5000,
+							hideProgressBar: false,
+							closeOnClick: true,
+							pauseOnHover: true,
+							draggable: true,
+							progress: undefined,
+							theme: "colored",
+						});
 						return true;
 					} else {
 						console.error("Error al crear usuario:", response.statusText);
 						console.log(`Error: ${response.status}`);
+						toast.error('Creación de usuario errónea. Verifica tus credenciales.', {
+							position: "top-right",
+							autoClose: 5000,
+							hideProgressBar: false,
+							closeOnClick: true,
+							pauseOnHover: true,
+							draggable: true,
+							progress: undefined,
+							theme: "colored",
+						});
 						return false;
 					}
 				} catch (error) {
 					console.error("Error de red:", error);
+				
 					return false;
 				}
 			},
-			CrearDoctor: async (email, password, nombre, apellido, telefono, dni, url_Calendly) => {
+			CrearDoctor: async (email, password, nombre, apellido, telefono, dni, Url_imagen,url_Calendly) => {
+				console.log(Url_imagen);
+				// await actions.CrearDoctor(email, password, nombre, apellido, telefono, dni, especialidad, Url_imagen, url_Calendly)
 				try {
+					
+					
 					let response = await fetch(process.env.BACKEND_URL + "/api/doctor", {
 						method: "POST",
 						headers: {
@@ -147,21 +176,44 @@ const getState = ({ getStore, getActions, setStore }) => {
 							apellido,
 							telefono,
 							dni,
-							url_Calendly
+							url_Calendly,
+							Url_imagen
 						}),
 					});
 
 					if (response.ok) {
+
 						let data = await response.json();
 						console.log("Doctor creado correctamente:", data);
+						 toast.success('Creado doctor correctamente', {
+										position: "top-right",
+										autoClose: 5000,
+										hideProgressBar: false,
+										closeOnClick: true,
+										pauseOnHover: true,
+										draggable: true,
+										progress: undefined,
+										theme: "colored",
+									});
 						return true;
 					} else {
 						console.error("Error al crear el Doctor:", response.statusText);
 						console.log(`Error: ${response.status}`);
+						toast.error('Doctor no se pudo crear. Verifica tus credenciales.', {
+							position: "top-right",
+							autoClose: 5000,
+							hideProgressBar: false,
+							closeOnClick: true,
+							pauseOnHover: true,
+							draggable: true,
+							progress: undefined,
+							theme: "colored",
+						});
 						return false;
 					}
 				} catch (error) {
 					console.error("Error de red:", error);
+				
 					return false;
 				}
 			},
@@ -181,7 +233,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					let response = await fetch(process.env.BACKEND_URL + "/api/info/doctores/especialidades")
 					const data = await response.json()
 					console.log("Data from backend:", data);
-					setStore({ HomeDoctores: data.homedoctores });
+					setStore({ Doctores: data.doctores });
 					// don't forget to return something, that is how the async resolves
 					return data;
 				} catch (error) {
@@ -261,11 +313,76 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false;
 				}
 			}
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+			// MostrarImagen: async () => {
+			// 	try {
+			// 		let response = await fetch("https://api.cloudinary.com/v1_1/dn4eqesd6/image/upload")
+			// 		const data = await response.json()
+			// 		setStore({ Url_imagen: data.doctores })
+			// 		// don't forget to return something, that is how the async resolves
+			// 		return data;
+			// 	} catch (error) {
+			// 		//console.log("Error loading message from backend", error)
+			// 	}
+			// },
+
+
 
 
 		}
 
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	}
+	
+
 };
+			<ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+        	/>
 
 export default getState;
