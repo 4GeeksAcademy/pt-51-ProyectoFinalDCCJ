@@ -9,6 +9,9 @@ from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_requir
 from flask_mail import Message #importamos Message() de flask_mail
 import random #importamos ramdom y string para generar una clave aleatoria nueva
 import string
+import cloudinary
+import cloudinary.uploader
+import os
 
 api = Blueprint('api', __name__)
 
@@ -46,10 +49,10 @@ def crear_usuarios():
     direccion = request.json.get("direccion", None)
     telefono = request.json.get("telefono", None)
     dni = request.json.get("dni", None)
-    imagen = request.json.get("imagen", None)
+    Url_imagen = request.json.get("Url_imagen", None)
 
     # Validar entradas
-    if not email or not password or not nombre or not apellido or not direccion or not telefono or not dni:
+    if not email or not password or not nombre or not apellido or not direccion or not telefono or not Url_imagen or not dni:
         response_body = {
             "error": "Todos los campos son obligatorios."
         }
@@ -66,7 +69,7 @@ def crear_usuarios():
         telefono=telefono,
         dni=dni,
         is_active=True,
-        imagen=imagen
+        Url_imagen=Url_imagen
     )
 
     # Agregar y confirmar en la base de datos
@@ -131,7 +134,7 @@ def crear_doctores():
     apellido = request.json.get("apellido", None)
     telefono = request.json.get("telefono", None)
     dni = request.json.get("dni", None),
-    imagen = request.json.get("imagen", None),
+    Url_imagen = request.json.get("Url_imagen", None),
     url_Calendly = request.json.get("url_Calendly", None)
 
     # Validar entradas
@@ -151,7 +154,7 @@ def crear_doctores():
         telefono=telefono,
         dni=dni,
         is_active=True,
-        imagen=imagen,
+        Url_imagen=Url_imagen,
         url_Calendly=url_Calendly
     )
 
@@ -231,3 +234,72 @@ def forgotpassword():
     current_app.mail.send(msg)
     return jsonify({"msg": "Su nueva clave ha sido enviada al correo electrónico ingresado"}), 200
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cloudinary.config(
+    cloud_name='dn4eqesd6',
+    api_key='957435238177421',
+    api_secret='Gk6rbXVsytSzCMRWgkKTP_vtvLw'
+)
+
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@api.route('https://api.cloudinary.com/v1_1/dn4eqesd6/image/upload', methods=['POST'])
+def upload_file():
+    if 'file' not in request.files:
+        return jsonify({'error': 'No hay parte del archivo'}), 400
+
+    file = request.files['file']
+
+    if file.filename == '':
+        return jsonify({'error': 'Ningún archivo seleccionado'}), 400
+
+    if file and allowed_file(file.filename):
+        # Subir imagen a Cloudinary
+        upload_result = cloudinary.uploader.upload(file)
+
+        # Obtener la URL de la imagen en Cloudinary
+        Url_imagen = upload_result['secure_url']
+
+        # Puedes almacenar la URL en una base de datos o realizar otras acciones
+        # Guardar en base de datos, realizar lógica de negocio, etc.
+
+        return jsonify({'success': True, 'message': 'Archivo subido exitosamente', 'Url_imagen': Url_imagen}), 200
+
+    return jsonify({'error': 'Tipo de archivo no válido'}), 400
+
+@api.route('https://api.cloudinary.com/v1_1/dn4eqesd6/image/upload', methods=['GET'])
+def get_image():
+    # En tu aplicación real, esta URL debería ser recuperada desde una base de datos u otro almacenamiento.
+    Url_imagen = "https://res.cloudinary.com/dn4eqesd6/image/private/s--QN-VtAwo--/v1709319747/ProyectoFinal/ch0mirxzwxpi6mi5kodp.jpg"
+
+    # Devuelve la URL de la imagen al cliente
+    return jsonify({'Url_imagen': Url_imagen})

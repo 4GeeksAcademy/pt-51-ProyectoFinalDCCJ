@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 56f550b88f16
+Revision ID: 98a46f6a9d24
 Revises: 
-Create Date: 2024-02-28 18:17:03.282134
+Create Date: 2024-03-01 16:04:07.308714
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '56f550b88f16'
+revision = '98a46f6a9d24'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -42,8 +42,9 @@ def upgrade():
     sa.Column('telefono', sa.Integer(), nullable=False),
     sa.Column('dni', sa.String(length=9), nullable=False),
     sa.Column('is_active', sa.Boolean(), nullable=True),
-    sa.Column('imagen', sa.String(length=500), nullable=True),
+    sa.Column('Url_imagen', sa.String(length=500), nullable=True),
     sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('dni'),
     sa.UniqueConstraint('email')
     )
     op.create_table('doctores',
@@ -56,8 +57,8 @@ def upgrade():
     sa.Column('dni', sa.String(length=9), nullable=False),
     sa.Column('id_Especialidad', sa.Integer(), nullable=True),
     sa.Column('is_active', sa.Boolean(), nullable=True),
-    sa.Column('imagen', sa.String(length=500), nullable=True),
-    sa.Column('url_Calendly', sa.String(length=150), nullable=True),
+    sa.Column('Url_imagen', sa.String(length=500), nullable=True),
+    sa.Column('url_Calendly', sa.String(length=500), nullable=True),
     sa.ForeignKeyConstraint(['id_Especialidad'], ['especialidades.id'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')

@@ -27,7 +27,7 @@ const LoginDoctores = () => {
               progress: undefined,
               theme: "colored",
             });
-            Navigate('/especialidades');//cambiar a la página de ver sus citas con los pacientes
+            Navigate('/paginaDoctores');//cambiar a la página de ver sus citas con los pacientes
           } else {
             toast.error('Inicio de sesión fallido. Verifica tus credenciales.', {
               position: "top-right",

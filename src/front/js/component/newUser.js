@@ -13,6 +13,7 @@ const NewUser = () => {
     const [nombre, setNombre] = useState("");
     const [apellido, setApellido] = useState("");
     const [telefono, setTelefono] = useState("");
+    const [direccion, setDireccion] = useState("");
     const [dni, setDni] = useState("");
     const [Url_imagen, setUrl_imagen] = useState("");
     const Navigate = useNavigate();
@@ -22,6 +23,7 @@ const NewUser = () => {
         const data = new FormData();
         data.append("file", file);
         data.append("upload_preset", "Presents_react");
+        console.log(Url_imagen);
         try {
             const response = await axios.post("https://api.cloudinary.com/v1_1/dn4eqesd6/image/upload", data);
             setUrl_imagen(response.data.secure_url);
@@ -37,32 +39,14 @@ const NewUser = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await actions.CrearDoctor(email, password, nombre, apellido, telefono, dni, Url_imagen);
+            await actions.CrearUsuario(email, password, nombre, apellido, telefono, direccion, dni, Url_imagen);
 
-            toast.success('Inicio de sesión exitoso', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+          
 
-            Navigate('/login/doctor');
+            Navigate('/login/usuario');
         } catch (error) {
-            console.error("Error al crear el doctor:", error);
-            toast.error('Inicio de sesión fallido. Verifica tus credenciales.', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            console.error("Error al crear el usuario:", error);
+        
         }
     };
 
@@ -122,12 +106,12 @@ const NewUser = () => {
                 <div className="form-floating mb-5">
                     <div className="row">
                         <div className="col-md-4">
-                            <input type="tel" className="form-control" id="floatingTelephone" placeholder="Teléfono" onChange={(event) => { setTelefono(event.target.value) }} />
-                            <label htmlFor="floatingTelephone">Teléfono</label>
-                        </div>
-                        <div className="col-md-4">
                             <input type="tel" className="form-control" id="floatingDireccion" placeholder="Dirección" onChange={(event) => { setDireccion(event.target.value) }} />
                             <label htmlFor="floatingDireccion">Dirección</label>
+                        </div>
+                        <div className="col-md-4">
+                            <input type="tel" className="form-control" id="floatingTelefono" placeholder="Teléfono" onChange={(event) => { setTelefono(event.target.value) }} />
+                            <label htmlFor="floatingTelefono">Teléfono</label>
                         </div>
                         <div className="col-md-4">
                             <input type="text" className="form-control" id="floatingDni" placeholder="DNI" onChange={(event) => { setDni(event.target.value) }} />
