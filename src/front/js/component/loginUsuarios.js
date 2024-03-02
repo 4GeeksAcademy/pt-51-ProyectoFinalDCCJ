@@ -27,7 +27,7 @@ const LoginUsuarios = () => {
         progress: undefined,
         theme: "colored",
       });
-      Navigate('/especialidades');
+      Navigate('/paginaUsuarios');
     } else {
       toast.error('Inicio de sesión fallido. Verifica tus credenciales.', {
         position: "top-right",

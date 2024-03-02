@@ -1,0 +1,19 @@
+
+.custom-table th:nth-child(1),
+.custom-table td:nth-child(1) {
+        width: 90%;
+}
+.custom-table th:nth-child(2),
+.custom-table td:nth-child(2) {
+        width: 40%;
+}
+
+.custom-table th:nth-child(3),
+.custom-table td:nth-child(3) {
+        width: 40%;    
+}
+
+.custom-table th:nth-child(4),
+.custom-table td:nth-child(4) {
+        width: 10%;
+}
