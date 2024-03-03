@@ -3,13 +3,7 @@ import { Link, useParams, useSearchParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 
-const InfoDoctores = (props) => {
-
-    const [searchParams] = useSearchParams()
-
-    console.log(searchParams.get(""));
-
-
+const DatosDoctores = (props) => {
    
     return (
         <div className="w-100 p-2">
@@ -25,9 +19,6 @@ const InfoDoctores = (props) => {
                             <p className="card-text">{props.url_Calendly}</p>
                             <p className="card-text">{props.email}</p>
                             <p className="card-text"><small className="text-body-secondary">{props.telefono}</small></p>
-                            {/* <Link to={`/fichadoctor?${props.url_Calendly}`}>
-                                <button type="button" className="btn btn-primary">Pedir Cita</button>
-                            </Link> */}
                         </div>
                     </div>
                 </div>
@@ -35,7 +26,7 @@ const InfoDoctores = (props) => {
         </div>
     );
 };
-InfoDoctores.propTypes = {
+DatosDoctores.propTypes = {
     nombre: PropTypes.string,
     email: PropTypes.string,
     apellido: PropTypes.string,
@@ -45,4 +36,4 @@ InfoDoctores.propTypes = {
     url_Calendly: PropTypes.string
 
 };
-export default InfoDoctores;
+export default DatosDoctores;

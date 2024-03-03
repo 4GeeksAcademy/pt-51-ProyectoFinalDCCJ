@@ -23,7 +23,7 @@ const NewUser = () => {
         const data = new FormData();
         data.append("file", file);
         data.append("upload_preset", "Presents_react");
-        console.log(Url_imagen);
+        
         try {
             const response = await axios.post("https://api.cloudinary.com/v1_1/dn4eqesd6/image/upload", data);
             setUrl_imagen(response.data.secure_url);
@@ -35,7 +35,7 @@ const NewUser = () => {
     const FuncionDeleteImage = () => {
         setUrl_imagen("");
     };
-
+    console.log(Url_imagen);
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -43,7 +43,7 @@ const NewUser = () => {
 
           
 
-            Navigate('/login/usuario');
+            Navigate('/login/usuarios');
         } catch (error) {
             console.error("Error al crear el usuario:", error);
         
@@ -52,7 +52,8 @@ const NewUser = () => {
 
     return (
         <div className="w-75 mx-auto p-2">
-            <div className="mb-3">
+            <form onSubmit={handleSubmit}>
+                <div className="mb-3">
                     <label htmlFor="fileInput" className="btn btn-primary">
                         Seleccionar Archivo
                         <input
@@ -78,7 +79,7 @@ const NewUser = () => {
                     </div>
                 )}
              
-            <form onSubmit={handleSubmit}>
+            
                 <div className="form-floating mb-5">
                     <div className="row">
                         <div className="col-md-6">
@@ -106,7 +107,7 @@ const NewUser = () => {
                 <div className="form-floating mb-5">
                     <div className="row">
                         <div className="col-md-4">
-                            <input type="tel" className="form-control" id="floatingDireccion" placeholder="Dirección" onChange={(event) => { setDireccion(event.target.value) }} />
+                            <input type="text" className="form-control" id="floatingDireccion" placeholder="Dirección" onChange={(event) => { setDireccion(event.target.value) }} />
                             <label htmlFor="floatingDireccion">Dirección</label>
                         </div>
                         <div className="col-md-4">

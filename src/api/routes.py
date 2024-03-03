@@ -52,7 +52,7 @@ def crear_usuarios():
     Url_imagen = request.json.get("Url_imagen", None)
 
     # Validar entradas
-    if not email or not password or not nombre or not apellido or not direccion or not telefono or not Url_imagen or not dni:
+    if not email or not password or not nombre or not apellido or not direccion or not telefono or not dni:
         response_body = {
             "error": "Todos los campos son obligatorios."
         }
