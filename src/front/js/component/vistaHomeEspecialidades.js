@@ -8,8 +8,8 @@ const VistaHomeEspecialidades = (props) => {
       <div className="card mb-3" style={{ maxWidth: "540px" }}>
         <div className="row g-0">
           <div className="col-md-4">
-            {props.Url_imagen ? (
-              <img src={props.Url_imagen} className="img-fluid rounded-start" alt={`Imagen de ${props.nombre}`} />
+            {props.imagen ? (
+              <img src={props.imagen} className="img-fluid rounded-start" alt={`Imagen de ${props.nombre}`} />
             ) : (
               <span>No hay imagen disponible</span>
             )}

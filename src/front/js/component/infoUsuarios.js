@@ -2,9 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
-import "../../styles/infoDoctores.css";
 
-const InfoDoctores = (props) => {
+
+const InfoUsuarios = (props) => {
     return (
         <div>
             <img src={props.imagen} className="img-fluid rounded-start ps-5" alt="..." />
@@ -39,16 +39,16 @@ const InfoDoctores = (props) => {
                             </tr>
                             <tr>
 
-                                <th scope="row">url_Calendly</th>
+                                <th scope="row">Dirección</th>
                                  
-                                <td colSpan="2">{props.url_Calendly}</td>
+                                <td colSpan="2">{props.direccion}</td>
                                 
 
                             </tr>
                             
                             
-                                <th className="table-primary" scope="row">Pinche en el enlace para ver sus citas</th>
-                                <Link to = "/fichadoctor">
+                                <th className="table-primary" scope="row">Pinche en el enlace para seleccionar su cita</th>
+                                <Link to = "/ficha">
                                 <td colSpan="2">{props.url_Calendly}</td>
                                 </Link>
                            
@@ -62,14 +62,15 @@ const InfoDoctores = (props) => {
     );
 };
 
-InfoDoctores.propTypes = {
+InfoUsuarios.propTypes = {
     nombre: PropTypes.string,
     email: PropTypes.string,
     apellido: PropTypes.string,
     telefono: PropTypes.number,
+    direccion:PropTypes.string,
     dni: PropTypes.string,
     Url_imagen: PropTypes.string,
-    url_Calendly: PropTypes.string,
+    
 };
 
-export default InfoDoctores;
+export default InfoUsuarios;

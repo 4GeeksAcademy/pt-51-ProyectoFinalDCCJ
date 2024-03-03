@@ -49,15 +49,15 @@ const NewDoctor = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         console.log(Url_imagen)
-        // try {
+         try {
             await actions.CrearDoctor(email, password, nombre, apellido, telefono, dni, Url_imagen,url_Calendly)
             
             
             Navigate('/login/doctor');
-        // } catch (error) {
+         } catch (error) {
             //console.error("Error al crear el doctor:", error);
         
-        // }
+         }
     };
     // const especialidades = () => {
     //     let datos = store.Especialidades.map

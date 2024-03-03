@@ -79,6 +79,7 @@
         "axios": "^1.6.7",
         "cloudinary-react": "^1.8.1",
         "formik": "^2.4.5",
+        "jwt-decode": "^4.0.0",
         "prop-types": "^15.6.1",
         "react": "^16.8.4",
         "react-calendly": "^4.3.0",

@@ -62,12 +62,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 						let data = await response.json();
 						// Do something with the profile data if needed
 						localStorage.setItem("token", data.access_token);
-						console.log("Usuario autenticado correctamente:", data);
+						
+						toast.success('Usuario autenticado correctamente', {
+							position: "top-right",
+							autoClose: 5000,
+							hideProgressBar: false,
+							closeOnClick: true,
+							pauseOnHover: true,
+							draggable: true,
+							progress: undefined,
+							theme: "colored",
+						});
 
 						return true;
 					} else {
 						console.log("Error al autenticar al usuario:", response.statusText);
 						console.log(`Error: ${response.status}`);
+						toast.error('Error al autenticar al Doctor. Verifica tus credenciales.', {
+							position: "top-right",
+							autoClose: 5000,
+							hideProgressBar: false,
+							closeOnClick: true,
+							pauseOnHover: true,
+							draggable: true,
+							progress: undefined,
+							theme: "colored",
+						});
 						return false;
 					}
 				} catch (error) {
@@ -91,12 +111,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 						let data = await response.json();
 						// Do something with the profile data if needed
 						localStorage.setItem("token", data.access_token);
-						console.log("Doctor autenticado correctamente:", data);
+						
+						toast.success('Doctor autenticado correctamente', {
+							position: "top-right",
+							autoClose: 5000,
+							hideProgressBar: false,
+							closeOnClick: true,
+							pauseOnHover: true,
+							draggable: true,
+							progress: undefined,
+							theme: "colored",
+						});
 
 						return true;
 					} else {
 						console.log("Error al autenticar al Doctor:", response.statusText);
 						console.log(`Error: ${response.status}`);
+						toast.error('Error al autenticar al Doctor. Verifica tus credenciales.', {
+							position: "top-right",
+							autoClose: 5000,
+							hideProgressBar: false,
+							closeOnClick: true,
+							pauseOnHover: true,
+							draggable: true,
+							progress: undefined,
+							theme: "colored",
+						});
 						return false;
 					}
 				} catch (error) {
@@ -312,8 +352,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error);
 					return false;
 				}
-			}
-			
+			},
+		
 
 
 
@@ -335,18 +375,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 			
-			// MostrarImagen: async () => {
-			// 	try {
-			// 		let response = await fetch("https://api.cloudinary.com/v1_1/dn4eqesd6/image/upload")
-			// 		const data = await response.json()
-			// 		setStore({ Url_imagen: data.doctores })
-			// 		// don't forget to return something, that is how the async resolves
-			// 		return data;
-			// 	} catch (error) {
-			// 		//console.log("Error loading message from backend", error)
-			// 	}
-			// },
-
+			
 
 
 
