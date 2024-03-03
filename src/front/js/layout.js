@@ -12,7 +12,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 
 import Login from "./pages/login";
-
+import Datos from "./pages/datos";
 
 import Contactanos from "./component/contactanos";
 import Especialidades from "./pages/especialidades";
@@ -42,6 +42,7 @@ const Layout = () => {
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<Login />} path="/login/:role" />
+                        <Route element={<Datos />} path="/datos/:role" />
                         <Route element={<Especialidades />} path="/especialidades" />
                         <Route element={<Doctores />} path="/doctores" />
                         <Route element={<Empresa />} path="/empresa" />

@@ -35,7 +35,7 @@ const NewUser = () => {
     const FuncionDeleteImage = () => {
         setUrl_imagen("");
     };
-
+    console.log(Url_imagen);
     const handleSubmit = async (event) => {
         event.preventDefault();
         console.log(Url_imagen);
@@ -44,7 +44,7 @@ const NewUser = () => {
            
           
 
-            Navigate('/login/usuario');
+            Navigate('/login/usuarios');
         } catch (error) {
             console.error("Error al crear el usuario:", error);
         
@@ -53,7 +53,7 @@ const NewUser = () => {
 
     return (
         <div className="w-75 mx-auto p-2">
-           <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="fileInput" className="btn btn-primary">
                         Seleccionar Archivo
@@ -108,12 +108,12 @@ const NewUser = () => {
                 <div className="form-floating mb-5">
                     <div className="row">
                         <div className="col-md-4">
-                            <input type="tel" className="form-control" id="floatingTeléfono" placeholder="Teléfono" onChange={(event) => { setTelefono(event.target.value) }} />
-                            <label htmlFor="floatingTeléfono">Teléfono</label>
-                        </div>
-                        <div className="col-md-4">
                             <input type="text" className="form-control" id="floatingDireccion" placeholder="Dirección" onChange={(event) => { setDireccion(event.target.value) }} />
                             <label htmlFor="floatingDireccion">Dirección</label>
+                        </div>
+                        <div className="col-md-4">
+                            <input type="tel" className="form-control" id="floatingTelefono" placeholder="Teléfono" onChange={(event) => { setTelefono(event.target.value) }} />
+                            <label htmlFor="floatingTelefono">Teléfono</label>
                         </div>
                         <div className="col-md-4">
                             <input type="text" className="form-control" id="floatingDni" placeholder="DNI" onChange={(event) => { setDni(event.target.value) }} />
@@ -141,3 +141,4 @@ const NewUser = () => {
 };
 
 export default NewUser;
+

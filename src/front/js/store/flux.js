@@ -145,6 +145,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 			CrearUsuario: async (email, password, nombre, apellido, direccion, telefono, dni, Url_imagen) => {
+				console.log(Url_imagen);
 				try {
 					let response = await fetch(process.env.BACKEND_URL + "/api/usuario", {
 						method: "POST",
@@ -198,7 +199,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false;
 				}
 			},
-			CrearDoctor: async (email, password, nombre, apellido, telefono, dni, Url_imagen,url_Calendly) => {
+			CrearDoctor: async (email, password, nombre, apellido, telefono, dni, Url_imagen, url_Calendly) => {
 				console.log(Url_imagen);
 				// await actions.CrearDoctor(email, password, nombre, apellido, telefono, dni, especialidad, Url_imagen, url_Calendly)
 				try {

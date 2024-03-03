@@ -44,6 +44,28 @@ const InfoDoctores = (props) => {
                                 <td colSpan="2">{props.url_Calendly}</td>
                                 
 
+
+   
+//     return (
+//         <div className="w-100 p-2">
+//             <div className="card mb-3">
+//                 <div className="row g-0">
+//                     <div className="col-6 col-md-4">
+//                         <img src={props.Url_imagen} className="img-fluid rounded-start" alt="..." />
+//                     </div>
+//                     <div className="col-md-8">
+//                         <div className="card-body">
+//                             <h5 className="card-title">{props.nombre} </h5>
+//                             <p className="card-text">{props.apellido}</p>
+//                             <p className="card-text">{props.url_Calendly}</p>
+//                             <p className="card-text">{props.email}</p>
+//                             <p className="card-text"><small className="text-body-secondary">{props.telefono}</small></p>
+//                             {/* <Link to={`/fichadoctor?${props.url_Calendly}`}>
+//                                 <button type="button" className="btn btn-primary">Pedir Cita</button>
+//                             </Link> */}
+//                         </div>
+//                     </div>
+// =======
                             </tr>
                             
                             
@@ -55,6 +77,7 @@ const InfoDoctores = (props) => {
                                 
                         </tbody>
                     </table>
+
                 </div>
             </div>
         </div>
