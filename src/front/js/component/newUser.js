@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const NewUser = () => {
-    const { actions } = useContext(Context);
+    const {store, actions } = useContext(Context);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -31,16 +31,17 @@ const NewUser = () => {
             console.error("Error al cargar la imagen a Cloudinary:", error);
         }
     };
-
+    console.log(Url_imagen);
     const FuncionDeleteImage = () => {
         setUrl_imagen("");
     };
     console.log(Url_imagen);
     const handleSubmit = async (event) => {
         event.preventDefault();
+        console.log(Url_imagen);
         try {
             await actions.CrearUsuario(email, password, nombre, apellido, telefono, direccion, dni, Url_imagen);
-
+           
           
 
             Navigate('/login/usuarios');
@@ -140,3 +141,4 @@ const NewUser = () => {
 };
 
 export default NewUser;
+

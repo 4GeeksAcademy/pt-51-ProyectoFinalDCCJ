@@ -9,7 +9,7 @@ const VistaHomeDoctores = (props) => {
           <div className="row g-0">
             <div className="col-md-4">
               {props.imagen ? (
-                <img src={props.Url_imagen} className="img-fluid rounded-start" alt={`Foto de ${props.nombre}`} />
+                <img src={props.imagen} className="img-fluid rounded-start" alt={`Foto de ${props.nombre}`} />
               ) : (
                 <span>No hay imagen disponible</span>
               )}
