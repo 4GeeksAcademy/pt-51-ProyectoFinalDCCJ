@@ -230,4 +230,3 @@ def forgotpassword():
     msg.html = f"""<h1>Su nueva contraseña es: {recover_password}</h1>"""
     current_app.mail.send(msg)
     return jsonify({"msg": "Su nueva clave ha sido enviada al correo electrónico ingresado"}), 200
-
