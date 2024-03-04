@@ -113,8 +113,8 @@ const NewUser = () => {
                             <label htmlFor="floatingDireccion">Dirección</label>
                         </div>
                         <div className="col-md-4">
-                            <input type="number" className="form-control" id="floatingTelefono" placeholder="Telefono" onChange={(event) => { setTelefono(event.target.value) }} />
-                            <label htmlFor="floatingTelefono">Telefono</label>
+                            <input type="tel" className="form-control" id="floatingTelefono" placeholder="Teléfono" onChange={(event) => { setTelefono(event.target.value) }} />
+                            <label htmlFor="floatingTelefono">Teléfono</label>
                         </div>
                         <div className="col-md-4">
                             <input type="text" className="form-control" id="floatingDni" placeholder="DNI" onChange={(event) => { setDni(event.target.value) }} />
@@ -142,3 +142,4 @@ const NewUser = () => {
 };
 
 export default NewUser;
+

@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Link, useParams, useSearchParams } from "react-router-dom";
-import { Context } from "../store/appContext";
+import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "../../styles/infoDoctores.css";
 
@@ -58,18 +57,18 @@ const InfoDoctores = (props) => {
                 </div>
             </div>
         </div>
-        </div>
-    );
+      </div>
+  );
 };
 
 InfoDoctores.propTypes = {
-    nombre: PropTypes.string,
-    email: PropTypes.string,
-    apellido: PropTypes.string,
-    telefono: PropTypes.number,
-    dni: PropTypes.string,
-    Url_imagen: PropTypes.string,
-    url_Calendly: PropTypes.string,
+  nombre: PropTypes.string,
+  email: PropTypes.string,
+  apellido: PropTypes.string,
+  telefono: PropTypes.number,
+  dni: PropTypes.string,
+  Url_imagen: PropTypes.string,
+  url_Calendly: PropTypes.string,
 };
 
 export default InfoDoctores;

@@ -206,14 +206,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(password);
 				console.log(nombre);
 				console.log(apellido);
+				console.log(typeof telefono);
 				console.log(telefono);
-				console.log(direccion);
 				console.log(dni);
-				// await actions.CrearDoctor(email, password, nombre, apellido, telefono, dni, especialidad, Url_imagen, url_Calendly)
+				console.log(direccion);
 				try {
+					let response = await fetch(process.env.BACKEND_URL + "/api/usuario", {
 					
-					
-					let response = await fetch(process.env.BACKEND_URL + "/api/cliente", {
 						method: "POST",
 						headers: {
 							"Content-Type": "application/json",
@@ -223,27 +222,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 							password,
 							nombre,
 							apellido,
-							telefono,
 							direccion,
+							telefono:parseInt(telefono),
 							dni,
 							Url_imagen
 						}),
 					});
-
+					let data = await response.json();
+					console.log(data);
 					if (response.ok) {
-
-						let data = await response.json();
-						console.log("Cliente creado correctamente:", data);
-						 toast.success('Creado cliente correctamente', {
-										position: "top-right",
-										autoClose: 5000,
-										hideProgressBar: false,
-										closeOnClick: true,
-										pauseOnHover: true,
-										draggable: true,
-										progress: undefined,
-										theme: "colored",
-									});
+						// let data = await response.json();
+						console.log("Usuario creado correctamente:", data);
+						toast.success('Registro exitoso', {
+							position: "top-right",
+							autoClose: 5000,
+							hideProgressBar: false,
+							closeOnClick: true,
+							pauseOnHover: true,
+							draggable: true,
+							progress: undefined,
+							theme: "colored",
+						});
 						return true;
 					} else {
 						console.error("Error al crear el Cliente:", response.statusText);

@@ -30,7 +30,16 @@ class Usuarios(db.Model):
     is_active = db.Column(db.Boolean, default=True)  # Añade esta línea
     Url_imagen = db.Column(db.String(500))
    
-
+    #     email=email,
+    #     password=password,
+    #     nombre=nombre,
+    #     apellido=apellido,
+    #     direccion=direccion,
+    #     telefono=telefono,
+    #     dni=dni,
+    #     is_active=True,
+    #     Url_imagen=Url_imagen
+    # )
     def __repr__(self):
         return f'<Usuario {self.email}>'
 
@@ -49,6 +58,7 @@ class Usuarios(db.Model):
         "Url_imagen": self.Url_imagen
             # do not serialize the password, its a security breach
         }
+    
     
 class Doctores(db.Model):
     id = db.Column(db.Integer, primary_key=True)
