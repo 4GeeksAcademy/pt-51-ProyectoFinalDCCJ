@@ -4,7 +4,7 @@ import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 
 
-const DatosUsuarios = (props) => {
+const InfoUsuarios = (props) => {
     return (
         <div>
             <img src={props.imagen} className="img-fluid rounded-start ps-5" alt="..." />
@@ -62,7 +62,7 @@ const DatosUsuarios = (props) => {
     );
 };
 
-DatosUsuarios.propTypes = {
+InfoUsuarios.propTypes = {
     nombre: PropTypes.string,
     email: PropTypes.string,
     apellido: PropTypes.string,
@@ -73,4 +73,4 @@ DatosUsuarios.propTypes = {
     
 };
 
-export default DatosUsuarios;
+export default InfoUsuarios;

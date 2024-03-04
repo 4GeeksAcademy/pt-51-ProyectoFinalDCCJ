@@ -28,7 +28,7 @@ def usuarios():
 
     return jsonify(response_body), 200
 
-@api.route('/usuario', methods=['GET'])
+@api.route('/usuarios', methods=['GET'])
 def get_usuarios():
     usuario_query = Usuarios.query.all() #estamos haciendo una consulta a la User para que traiga todos
     usuario_query = list(map(lambda item: item.serialize(), usuario_query))
@@ -105,7 +105,7 @@ def login_usuario():
 
 
 
-    if email != user_query.email or password != user_query.password:
+    if user_query is None or email != user_query.email or password != user_query.password:
         return jsonify({"msg": "Bad username or password"}), 401
 
     access_token = create_access_token(identity=email)
@@ -233,10 +233,6 @@ def forgotpassword():
     msg.html = f"""<h1>Su nueva contraseña es: {recover_password}</h1>"""
     current_app.mail.send(msg)
     return jsonify({"msg": "Su nueva clave ha sido enviada al correo electrónico ingresado"}), 200
-
-
-
-
 
 
 

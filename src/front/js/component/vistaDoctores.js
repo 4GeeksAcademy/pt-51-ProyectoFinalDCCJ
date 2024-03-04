@@ -26,9 +26,10 @@ const VistaDoctores = (props) => {
                             <p className="card-text">{props.apellido}</p>
                             <p className="card-text">{props.url_Calendly}</p>
                             <p className="card-text">{props.email}</p>
+                            <p className="card-text">{props.especialidad}</p>
                             <p className="card-text"><small className="text-body-secondary">{props.telefono}</small></p>
-                            <Link to={`/fichadoctor?${props.url_Calendly}`}>
-                                <button type="button" className="btn btn-primary">Pedir Cita</button>
+                            <Link to={`/fichadoctor/${props.url_Calendly}`}>Pedir Cita
+                                {/* <button type="button" className="btn btn-primary"></button> */}
                             </Link>
                             {/* {createPortal(
                             <PopupButton
@@ -51,6 +52,7 @@ VistaDoctores.propTypes = {
     nombre: PropTypes.string,
     email: PropTypes.string,
     apellido: PropTypes.string,
+    especialidad: PropTypes.string,
     telefono: PropTypes.number,
     dni: PropTypes.string,
     Url_imagen: PropTypes.string,

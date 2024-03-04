@@ -36,7 +36,7 @@ export const Home = () => {
         <ul className="flex-nowrap d-flex flex-row list-unstyled gap-1 px-0 mx-auto">
           {showDoctores.map(item => (
             <li key={item.id} className="col-4 px-0 w-auto my-2">
-              <VistaHomeDoctores nombre={item.nombre} Url_imagen={item.Url_imagen}  />
+              <VistaHomeDoctores nombre={item.nombre} imagen={item.Url_imagen}  />
             </li>
           ))}
         </ul>
@@ -51,7 +51,7 @@ export const Home = () => {
         <ul className="flex-nowrap d-flex flex-row list-unstyled gap-1 px-0 mx-auto">
           {showEspecialidades.map(item => (
             <li key={item.id} className="col-4 px-0 w-auto my-2">
-              <VistaHomeEspecialidades nombre={item.nombre} descripcion={item.descripcion} Url_imagen={item.Url_imagen} />
+              <VistaHomeEspecialidades nombre={item.nombre} descripcion={item.descripcion} imagen={item.Url_imagen} />
             </li>
           ))}
         </ul>

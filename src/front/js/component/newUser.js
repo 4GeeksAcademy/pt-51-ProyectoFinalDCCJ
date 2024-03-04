@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const NewUser = () => {
-    const { actions } = useContext(Context);
+    const {store, actions } = useContext(Context);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -24,6 +24,7 @@ const NewUser = () => {
         data.append("file", file);
         data.append("upload_preset", "Presents_react");
         
+        
         try {
             const response = await axios.post("https://api.cloudinary.com/v1_1/dn4eqesd6/image/upload", data);
             setUrl_imagen(response.data.secure_url);
@@ -31,16 +32,17 @@ const NewUser = () => {
             console.error("Error al cargar la imagen a Cloudinary:", error);
         }
     };
-
+    console.log(Url_imagen);
     const FuncionDeleteImage = () => {
         setUrl_imagen("");
     };
     console.log(Url_imagen);
     const handleSubmit = async (event) => {
         event.preventDefault();
+        console.log(Url_imagen);
         try {
-            await actions.CrearUsuario(email, password, nombre, apellido, telefono, direccion, dni, Url_imagen);
-
+            await actions.CrearUsuario(email, password, nombre, apellido, telefono, direccion, Url_imagen);
+           
           
 
             Navigate('/login/usuarios');
@@ -111,8 +113,8 @@ const NewUser = () => {
                             <label htmlFor="floatingDireccion">Dirección</label>
                         </div>
                         <div className="col-md-4">
-                            <input type="tel" className="form-control" id="floatingTelefono" placeholder="Teléfono" onChange={(event) => { setTelefono(event.target.value) }} />
-                            <label htmlFor="floatingTelefono">Teléfono</label>
+                            <input type="number" className="form-control" id="floatingTelefono" placeholder="Telefono" onChange={(event) => { setTelefono(event.target.value) }} />
+                            <label htmlFor="floatingTelefono">Telefono</label>
                         </div>
                         <div className="col-md-4">
                             <input type="text" className="form-control" id="floatingDni" placeholder="DNI" onChange={(event) => { setDni(event.target.value) }} />

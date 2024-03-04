@@ -24,7 +24,7 @@ import VistaNuevaClave from "./pages/nuevaClave";
 import VistaEnviarCorreo from "./pages/enviarCorreo";
 import VistaFichaDoctor from "./pages/vistaFichaDoctor";
 import PaginaDoctores from "./pages/paginaDoctores";
-
+import DoctoresEspecialidad from "./pages/doctoresEspecialidad";
 
 
 const Layout = () => {
@@ -50,8 +50,9 @@ const Layout = () => {
                         <Route element={<Registrarse />} path="/registro/:role" />
                         <Route element={<VistaNuevaClave />} path="/vistanuevaclave" />
                         <Route element={<VistaEnviarCorreo />} path="/enviarcorreo" />
-                        <Route element={<VistaFichaDoctor />} path="/fichadoctor" />
+                        <Route element={<VistaFichaDoctor />} path="/fichadoctor/:username_calendly" />
                         <Route element={<PaginaDoctores />} path="/paginaDoctores" />
+                        <Route element={<DoctoresEspecialidad />} path="/:especialidad/doctores" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />
