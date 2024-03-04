@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 const DatosDoctores = (props) => {
    
     return (
-        <div className="w-100 p-2">
+        <div className="w-100 p-2" >
             <div className="card mb-3">
                 <div className="row g-0">
                     <div className="col-6 col-md-4">

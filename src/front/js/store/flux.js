@@ -146,8 +146,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			CrearUsuario: async (email, password, nombre, apellido, direccion, telefono, dni, Url_imagen) => {
 				console.log(Url_imagen);
+				console.log(email);
+				console.log(password);
+				console.log(nombre);
+				console.log(apellido);
+				console.log(typeof telefono);
+				console.log(telefono);
+				console.log(dni);
+				console.log(direccion);
 				try {
 					let response = await fetch(process.env.BACKEND_URL + "/api/usuario", {
+					
 						method: "POST",
 						headers: {
 							"Content-Type": "application/json",
@@ -158,14 +167,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 							nombre,
 							apellido,
 							direccion,
-							telefono,
+							telefono:parseInt(telefono),
 							dni,
 							Url_imagen
 						}),
 					});
-
+					let data = await response.json();
+					console.log(data);
 					if (response.ok) {
-						let data = await response.json();
+						// let data = await response.json();
 						console.log("Usuario creado correctamente:", data);
 						toast.success('Registro exitoso', {
 							position: "top-right",
