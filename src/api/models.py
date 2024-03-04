@@ -26,7 +26,7 @@ class Usuarios(db.Model):
     apellido = db.Column(db.String(150), nullable=False)
     direccion = db.Column(db.String(200), nullable=False)
     telefono = db.Column(db.Integer, nullable=False)
-    dni = db.Column(db.String(9),unique=True, nullable=False)
+    dni = db.Column(db.String(9), nullable=False)
     is_active = db.Column(db.Boolean, default=True)  # Añade esta línea
     Url_imagen = db.Column(db.String(500))
    
@@ -90,8 +90,8 @@ class Doctores(db.Model):
             "dni": self.dni,
             "is_active": self.is_active,
             "Url_imagen": self.Url_imagen,
-            "url_Calendly": self.url_Calendly
-            
+            "url_Calendly": self.url_Calendly,
+            "especialidad": self.id_Especialidad
             # do not serialize the password, its a security breach
         }
     

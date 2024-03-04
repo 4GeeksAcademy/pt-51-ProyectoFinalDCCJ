@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -24,6 +24,7 @@ const NewUser = () => {
         data.append("file", file);
         data.append("upload_preset", "Presents_react");
         
+        
         try {
             const response = await axios.post("https://api.cloudinary.com/v1_1/dn4eqesd6/image/upload", data);
             setUrl_imagen(response.data.secure_url);
@@ -40,7 +41,7 @@ const NewUser = () => {
         event.preventDefault();
         console.log(Url_imagen);
         try {
-            await actions.CrearUsuario(email, password, nombre, apellido, telefono, direccion, dni, Url_imagen);
+            await actions.CrearUsuario(email, password, nombre, apellido, telefono, direccion, Url_imagen);
            
           
 

@@ -12,7 +12,7 @@ const CardEspecialidades = props => {
                 <div className="postcard__bar"></div>
                 <div className="postcard__preview-txt">{props.descripcion}</div>
                 <div >
-                    <button type="button" className="btn btn-outline-secondary rounded-pill px-4 mt-3"><strong>Ver profesionales</strong></button>
+                    <Link to={`/${props.id}/doctores`} type="button" className="btn btn-outline-secondary rounded-pill px-4 mt-3"><strong>Ver Profesionales</strong></Link>
                 </div>
             </div>
         </article>
@@ -21,7 +21,8 @@ const CardEspecialidades = props => {
     );
 };
 CardEspecialidades.propTypes = {
-    titulo: PropTypes.string,
+    id: PropTypes.number,
+    nombre: PropTypes.string,
     url: PropTypes.string,
     descripcion: PropTypes.string,
 };

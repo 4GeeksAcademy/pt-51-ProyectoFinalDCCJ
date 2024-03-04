@@ -28,7 +28,7 @@ def usuarios():
 
     return jsonify(response_body), 200
 
-@api.route('/usuario', methods=['GET'])
+@api.route('/usuarios', methods=['GET'])
 def get_usuarios():
     usuario_query = Usuarios.query.all() #estamos haciendo una consulta a la User para que traiga todos
     usuario_query = list(map(lambda item: item.serialize(), usuario_query))

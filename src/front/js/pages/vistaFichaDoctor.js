@@ -9,11 +9,12 @@ import CalendlyComponent from "../component/calendlyComponent";
 const VistaFichaDoctor = () => {
     //console.log(URLSearchParams.toString());
     //console.log(useSearchParams());
-    const [searchParams] = useSearchParams()
+    const params = useParams()
+    console.log(params);
     return (   
      <div>
       <h1 className="ms-5">Agenda una cita</h1>
-      <InlineWidget url="https://calendly.com/diegoavila87/citas" />
+      <InlineWidget url={`https://calendly.com/${params.username_calendly}/citas`} />
     </div>
   )
     // const [searchParams] = useSearchParams()
