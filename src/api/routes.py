@@ -50,45 +50,50 @@ def crear_usuarios():
     telefono = request.json.get("telefono", None)
     dni = request.json.get("dni", None)
     Url_imagen = request.json.get("Url_imagen", None)
-
+    print(email)
+    print(nombre) 
+    print(password) 
+    print(apellido) 
+    print(direccion) 
+    print(telefono) 
+    print(dni)
+    print(Url_imagen)   
+    
+    
     # Validar entradas
-    if not email or not password or not nombre or not apellido or not direccion or not telefono or not dni:
-        response_body = {
-            "error": "Todos los campos son obligatorios."
-        }
-        return jsonify(response_body), 400  # Solicitud incorrecta
+    user_query = Usuarios.query.filter_by(email=email).first()
+    if user_query is None:     # Crear nuevo usuario
+            # Crear nuevo usuario
+        new_user = Usuarios(
+            email=email,
+            password=password,
+            nombre=nombre,
+            apellido=apellido,
+            direccion=direccion,
+            telefono=telefono,
+            dni=dni,
+            is_active=True,
+            Url_imagen=Url_imagen
+        )
 
+        # Agregar y confirmar en la base de datos
+        db.session.add(new_user)
+        db.session.commit()
 
-    # Crear nuevo usuario
-    new_user = Usuarios(
-        email=email,
-        password=password,
-        nombre=nombre,
-        apellido=apellido,
-        direccion=direccion,
-        telefono=telefono,
-        dni=dni,
-        is_active=True,
-        Url_imagen=Url_imagen
-    )
-
-    # Agregar y confirmar en la base de datos
-    db.session.add(new_user)
-    db.session.commit()
-
-    # Verificar si la confirmación fue exitosa
-    if new_user.id:
-        response_body = {
-            "message": "Usuario creado"
-        }
-        return jsonify(response_body), 200
+        # Verificar si la confirmación fue exitosa
+        if new_user.id:
+            response_body = {
+                "message": "Usuario creado"
+            }
+            return jsonify(response_body), 200
+    
     else:
         # Manejar errores relacionados con la base de datos
-        db.session.rollback()
+        
         response_body = {
-            "error": "Error al crear el usuario."
+            "error": "El usuario ya existe."
         }
-        return jsonify(response_body), 500  # Error interno del servidor
+        return jsonify(response_body), 400  # Error interno del servidor
 	
 
 
