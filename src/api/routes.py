@@ -241,7 +241,13 @@ def forgotpassword():
 
 
 
-
+@api.route('/validate_token', methods=['GET'])
+@jwt_required()
+def validate_token():
+    current_user = get_jwt_identity()
+    if(current_user):
+        return jsonify({"is_loged": True}), 201
+    return jsonify({"is_loged": False}), 401
 
 
 

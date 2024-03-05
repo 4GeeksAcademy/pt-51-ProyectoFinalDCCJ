@@ -39,7 +39,7 @@ const VistaEspecialidades = () => {
             {/* <ul className="flex-nowrap d-flex flex-row overflow-scroll list-unstyled gap-1 px-0"> */}
             {store.Especialidades.map(especialidad => (
                  //<li key={item.id} className="col-4 px-0 w-auto my-2">
-                <CardEspecialidades id={especialidad.id} nombre={especialidad.nombre} descripcion={especialidad.descripcion} url={especialidad.imagen} />
+                <CardEspecialidades key={especialidad.id} id={especialidad.id} nombre={especialidad.nombre} descripcion={especialidad.descripcion} url={especialidad.imagen} />
                  //</li>
             ))}
             {/* </ul> */}
