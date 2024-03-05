@@ -5,4 +5,44 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages). 
 */
+.completo{
+    background-color:#FFF6E9;
+    
+    margin-bottom: -100px;
+    margin-top: -57px;
+  
+}
+.carousel-inner img,
+.img-fluid {
+  max-width: 75%; /* Establece el ancho máximo en 100% */
+  height: auto; /* Mantiene la relación de aspecto */
+}
 
+/* Opcional: Centra las imágenes horizontalmente usando mx-auto */
+.carousel-inner img,
+.img-fluid {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.card {
+  max-width: 1000px;
+  background-color: #B4D4FF; /* Cambia el color según tus preferencias */
+  border: 1px solid black; /* Añade un borde opcional */
+  border-radius: 10px; /* Añade esquinas redondeadas opcionalmente */
+}
+.card-container {
+  margin-left: 300px; /* Ajusta el valor según sea necesario */
+}
+
+.card img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+@media (max-width: 576px) {
+  /* Estilos específicos para pantallas pequeñas (menos de 576px de ancho) */
+  .card {
+    max-width: 100%;
+  }
+}

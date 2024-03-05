@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useFormspark } from '@formspark/use-formspark';
 import { ToastContainer, toast, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import "../../styles/contactanos.css";
 
 const Contactanos = () => {
   const FORMSPARK_FORM_ID = 'K70oKA4lE';

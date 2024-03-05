@@ -14,6 +14,7 @@ const VistaDoctores = (props) => {
 
    
     return (
+        
         <div className="w-100 p-2">
             <div className="card mb-3">
                 <div className="row g-0">
@@ -41,6 +42,7 @@ const VistaDoctores = (props) => {
                             rootElement={document.getElementById("root")}
                              text="Click here to schedule!"
                             />)} */}
+                            
                         </div>
                     </div>
                 </div>
@@ -59,4 +61,4 @@ VistaDoctores.propTypes = {
     url_Calendly: PropTypes.string
 
 };
-export default VistaDoctores
+export default VistaDoctores;
