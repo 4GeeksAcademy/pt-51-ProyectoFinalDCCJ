@@ -26,11 +26,20 @@ class Usuarios(db.Model):
     apellido = db.Column(db.String(150), nullable=False)
     direccion = db.Column(db.String(200), nullable=False)
     telefono = db.Column(db.Integer, nullable=False)
-    dni = db.Column(db.String(9),unique=True, nullable=False)
+    dni = db.Column(db.String(9), nullable=False)
     is_active = db.Column(db.Boolean, default=True)  # Añade esta línea
-    imagen = db.Column(db.String(500))
+    Url_imagen = db.Column(db.String(500))
    
-
+    #     email=email,
+    #     password=password,
+    #     nombre=nombre,
+    #     apellido=apellido,
+    #     direccion=direccion,
+    #     telefono=telefono,
+    #     dni=dni,
+    #     is_active=True,
+    #     Url_imagen=Url_imagen
+    # )
     def __repr__(self):
         return f'<Usuario {self.email}>'
 
@@ -46,9 +55,10 @@ class Usuarios(db.Model):
         "telefono": self.telefono,
         "dni": self.dni,
         "is_active": self.is_active,
-        "imagen": self.imagen
+        "Url_imagen": self.Url_imagen
             # do not serialize the password, its a security breach
         }
+    
     
 class Doctores(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -60,7 +70,7 @@ class Doctores(db.Model):
     dni = db.Column(db.String(9), nullable=False)
     id_Especialidad = db.Column(db.Integer, db.ForeignKey('especialidades.id'))
     is_active = db.Column(db.Boolean, default=True)
-    imagen = db.Column(db.String(500))
+    Url_imagen = db.Column(db.String(500))
     url_Calendly =db.Column(db.String(500))
     
     
@@ -79,9 +89,9 @@ class Doctores(db.Model):
             "telefono": self.telefono,
             "dni": self.dni,
             "is_active": self.is_active,
-            "imagen": self.imagen,
-            "url_Calendly": self.url_Calendly
-            
+            "Url_imagen": self.Url_imagen,
+            "url_Calendly": self.url_Calendly,
+            "especialidad": self.id_Especialidad
             # do not serialize the password, its a security breach
         }
     

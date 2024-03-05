@@ -1,3 +1,6 @@
+import { ToastContainer, toast } from 'react-toastify';
+import React from 'react';
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -59,12 +62,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 						let data = await response.json();
 						// Do something with the profile data if needed
 						localStorage.setItem("token", data.access_token);
-						console.log("Usuario autenticado correctamente:", data);
+						
+						toast.success('Usuario autenticado correctamente', {
+							position: "top-right",
+							autoClose: 5000,
+							hideProgressBar: false,
+							closeOnClick: true,
+							pauseOnHover: true,
+							draggable: true,
+							progress: undefined,
+							theme: "colored",
+						});
 
 						return true;
 					} else {
 						console.log("Error al autenticar al usuario:", response.statusText);
 						console.log(`Error: ${response.status}`);
+						toast.error('Error al autenticar al Doctor. Verifica tus credenciales.', {
+							position: "top-right",
+							autoClose: 5000,
+							hideProgressBar: false,
+							closeOnClick: true,
+							pauseOnHover: true,
+							draggable: true,
+							progress: undefined,
+							theme: "colored",
+						});
 						return false;
 					}
 				} catch (error) {
@@ -88,12 +111,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 						let data = await response.json();
 						// Do something with the profile data if needed
 						localStorage.setItem("token", data.access_token);
-						console.log("Doctor autenticado correctamente:", data);
+						
+						toast.success('Doctor autenticado correctamente', {
+							position: "top-right",
+							autoClose: 5000,
+							hideProgressBar: false,
+							closeOnClick: true,
+							pauseOnHover: true,
+							draggable: true,
+							progress: undefined,
+							theme: "colored",
+						});
 
 						return true;
 					} else {
 						console.log("Error al autenticar al Doctor:", response.statusText);
 						console.log(`Error: ${response.status}`);
+						toast.error('Error al autenticar al Doctor. Verifica tus credenciales.', {
+							position: "top-right",
+							autoClose: 5000,
+							hideProgressBar: false,
+							closeOnClick: true,
+							pauseOnHover: true,
+							draggable: true,
+							progress: undefined,
+							theme: "colored",
+						});
 						return false;
 					}
 				} catch (error) {
@@ -101,9 +144,75 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false;
 				}
 			},
-			CrearUsuario: async (email, password, nombre, apellido, direccion, telefono, dni) => {
+			// CrearUsuario: async (email, password, nombre, apellido, direccion, telefono, dni, Url_imagen) => {
+			// 	console.log(Url_imagen);
+			// 	try {
+			// 		let response = await fetch(process.env.BACKEND_URL + "/api/usuario", {
+			// 			method: "POST",
+			// 			headers: {
+			// 				"Content-Type": "application/json",
+			// 			},
+			// 			body: JSON.stringify({
+			// 				email,
+			// 				password,
+			// 				nombre,
+			// 				apellido,
+			// 				direccion,
+			// 				telefono,
+			// 				dni,
+			// 				Url_imagen
+			// 			}),
+			// 		});
+
+			// 		if (response.ok) {
+			// 			let data = await response.json();
+			// 			console.log("Usuario creado correctamente:", data);
+			// 			toast.success('Registro exitoso', {
+			// 				position: "top-right",
+			// 				autoClose: 5000,
+			// 				hideProgressBar: false,
+			// 				closeOnClick: true,
+			// 				pauseOnHover: true,
+			// 				draggable: true,
+			// 				progress: undefined,
+			// 				theme: "colored",
+			// 			});
+			// 			return true;
+			// 		} else {
+			// 			console.error("Error al crear usuario:", response.statusText);
+			// 			console.log(`Error: ${response.status}`);
+			// 			toast.error('Creación de usuario errónea. Verifica tus credenciales.', {
+			// 				position: "top-right",
+			// 				autoClose: 5000,
+			// 				hideProgressBar: false,
+			// 				closeOnClick: true,
+			// 				pauseOnHover: true,
+			// 				draggable: true,
+			// 				progress: undefined,
+			// 				theme: "colored",
+			// 			});
+			// 			return false;
+			// 		}
+			// 	} catch (error) {
+			// 		console.error("Error de red:", error);
+				
+			// 		return false;
+			// 	}
+			// },
+
+			CrearUsuario: async (email, password, nombre, apellido, telefono, direccion, dni, Url_imagen) => {
+				console.log(Url_imagen);
+				console.log(email);
+				console.log(password);
+				console.log(nombre);
+				console.log(apellido);
+				console.log(typeof telefono);
+				console.log(telefono);
+				console.log(dni);
+				console.log(direccion);
 				try {
 					let response = await fetch(process.env.BACKEND_URL + "/api/usuario", {
+					
 						method: "POST",
 						headers: {
 							"Content-Type": "application/json",
@@ -114,27 +223,63 @@ const getState = ({ getStore, getActions, setStore }) => {
 							nombre,
 							apellido,
 							direccion,
-							telefono,
+							telefono:parseInt(telefono),
 							dni,
+							Url_imagen
 						}),
 					});
-
+					let data = await response.json();
+					console.log(data);
 					if (response.ok) {
-						let data = await response.json();
+						// let data = await response.json();
 						console.log("Usuario creado correctamente:", data);
+						toast.success('Registro exitoso', {
+							position: "top-right",
+							autoClose: 5000,
+							hideProgressBar: false,
+							closeOnClick: true,
+							pauseOnHover: true,
+							draggable: true,
+							progress: undefined,
+							theme: "colored",
+						});
 						return true;
 					} else {
-						console.error("Error al crear usuario:", response.statusText);
+						console.error("Error al crear el Cliente:", response.statusText);
 						console.log(`Error: ${response.status}`);
+						toast.error('Cliente no se pudo crear. Verifica tus credenciales.', {
+							position: "top-right",
+							autoClose: 5000,
+							hideProgressBar: false,
+							closeOnClick: true,
+							pauseOnHover: true,
+							draggable: true,
+							progress: undefined,
+							theme: "colored",
+						});
 						return false;
 					}
 				} catch (error) {
 					console.error("Error de red:", error);
+				
 					return false;
 				}
 			},
-			CrearDoctor: async (email, password, nombre, apellido, telefono, dni, url_Calendly) => {
+
+
+			CrearDoctor: async (email, password, nombre, apellido, telefono, dni, Url_imagen, url_Calendly) => {
+				console.log(Url_imagen);
+				console.log(email);
+				console.log(password);
+				console.log(nombre);
+				console.log(apellido);
+				console.log(telefono);
+				console.log(dni);
+				
+				// await actions.CrearDoctor(email, password, nombre, apellido, telefono, dni, especialidad, Url_imagen, url_Calendly)
 				try {
+					
+					
 					let response = await fetch(process.env.BACKEND_URL + "/api/doctor", {
 						method: "POST",
 						headers: {
@@ -147,21 +292,44 @@ const getState = ({ getStore, getActions, setStore }) => {
 							apellido,
 							telefono,
 							dni,
-							url_Calendly
+							url_Calendly,
+							Url_imagen
 						}),
 					});
 
 					if (response.ok) {
+
 						let data = await response.json();
 						console.log("Doctor creado correctamente:", data);
+						 toast.success('Creado doctor correctamente', {
+										position: "top-right",
+										autoClose: 5000,
+										hideProgressBar: false,
+										closeOnClick: true,
+										pauseOnHover: true,
+										draggable: true,
+										progress: undefined,
+										theme: "colored",
+									});
 						return true;
 					} else {
 						console.error("Error al crear el Doctor:", response.statusText);
 						console.log(`Error: ${response.status}`);
+						toast.error('Doctor no se pudo crear. Verifica tus credenciales.', {
+							position: "top-right",
+							autoClose: 5000,
+							hideProgressBar: false,
+							closeOnClick: true,
+							pauseOnHover: true,
+							draggable: true,
+							progress: undefined,
+							theme: "colored",
+						});
 						return false;
 					}
 				} catch (error) {
 					console.error("Error de red:", error);
+				
 					return false;
 				}
 			},
@@ -176,12 +344,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 					//console.log("Error loading message from backend", error)
 				}
 			},
+			ObtenerUsuarios: async () => {
+				try {
+					let response = await fetch(process.env.BACKEND_URL + "/api/usuarios")
+					const data = await response.json()
+					setStore({ Usuarios: data.usuarios })
+					// don't forget to return something, that is how the async resolves
+					return data;
+				} catch (error) {
+					//console.log("Error loading message from backend", error)
+				}
+			},
 			DoctoresHome: async () => {
 				try {
 					let response = await fetch(process.env.BACKEND_URL + "/api/info/doctores/especialidades")
 					const data = await response.json()
 					console.log("Data from backend:", data);
-					setStore({ HomeDoctores: data.homedoctores });
+					setStore({ Doctores: data.doctores });
 					// don't forget to return something, that is how the async resolves
 					return data;
 				} catch (error) {
@@ -256,12 +435,66 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error en sendEmail:", error);
 					return { success: false, message: "Debe ingresar el correo" };
 				}
-			}
+			},
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+			
+
 
 
 		}
 
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	}
+	
+
 };
+			<ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+        	/>
 
 export default getState;

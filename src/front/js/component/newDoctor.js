@@ -17,8 +17,6 @@ const NewDoctor = () => {
     const [url_Calendly, setUrl_Calendly] = useState("");
     const [especialidad, setEspecialidad] = useState("");
     const [Url_imagen, setUrl_imagen] = useState("");
-    const [error, setError] = useState(null);
-    const [success, setSuccess] = useState(null);
     const Navigate = useNavigate();
 
     const handleFileChange = async (e) => {
@@ -28,51 +26,38 @@ const NewDoctor = () => {
         data.append("upload_preset", "Presents_react");
         try {
             const response = await axios.post("https://api.cloudinary.com/v1_1/dn4eqesd6/image/upload", data);
+            
+            
             setUrl_imagen(response.data.secure_url);
+            
+            
         } catch (error) {
             console.error("Error al cargar la imagen a Cloudinary:", error);
         }
+        
     };
-
+    console.log(Url_imagen);
     const FuncionDeleteImage = () => {
         setUrl_imagen("");
     };
 
-    console.log(especialidad);
-    useEffect(() => {
-        actions.EspecialidadesHome();
-    }, []);
+    // console.log(especialidad);
+    // useEffect(() => {
+    //     actions.EspecialidadesHome();
+    // }, []);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        try {
-            await actions.CrearDoctor(email, password, nombre, apellido, telefono, dni, url_Calendly, especialidad, Url_imagen);
-
-            toast.success('Inicio de sesión exitoso', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
-
+        console.log(Url_imagen)
+         try {
+            await actions.CrearDoctor(email, password, nombre, apellido, telefono, dni, Url_imagen,url_Calendly)
+            
+            
             Navigate('/login/doctor');
-        } catch (error) {
-            console.error("Error al crear el doctor:", error);
-            toast.error('Inicio de sesión fallido. Verifica tus credenciales.', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
-        }
+         } catch (error) {
+            //console.error("Error al crear el doctor:", error);
+        
+         }
     };
     // const especialidades = () => {
     //     let datos = store.Especialidades.map
@@ -133,19 +118,19 @@ const NewDoctor = () => {
                 </div>
                 <div className="form-floating mb-5">
                     <div className="row">
-                        <div className="col-md-6">
+                        <div className="col-md-4">
                             <input type="tel" className="form-control" id="floatingTelephone" placeholder="Teléfono" onChange={(event) => { setTelefono(event.target.value) }} />
                             <label htmlFor="floatingTelephone">Teléfono</label>
                         </div>
                         
-                        <div className="col-md-6">
+                        <div className="col-md-4">
                             <input type="text" className="form-control" id="floatingDni" placeholder="DNI" onChange={(event) => { setDni(event.target.value) }} />
                             <label htmlFor="floatingDni">DNI</label>
                         </div>
-                        <div className="col-md-6">
+                         <div className="col-md-4">
                             <input type="text" className="form-control" id="floatingUrl_Calendly" placeholder="url_Calendly" onChange={(event) => { setUrl_Calendly(event.target.value) }} />
                             <label htmlFor="floatingDni">url_Calendly</label>
-                        </div>
+                        </div> 
                         <div className="col-md-6">
                             {/* <select className="form-select"  id="floatingEspecialidad" placeholder="especialidad" onSelect={(event) => { setEspecialidad(event.target.value) }}>
                                 <option selected>Selecciona especialidad...</option>
@@ -171,7 +156,6 @@ const NewDoctor = () => {
                
                 <button type="submit" className="btn btn-primary">Registrarse</button>
             </form>
-            
             <ToastContainer
                 position="top-right"
                 autoClose={5000}
@@ -184,6 +168,7 @@ const NewDoctor = () => {
                 pauseOnHover
                 theme="colored"
             />
+       
         </div>
     );
 };

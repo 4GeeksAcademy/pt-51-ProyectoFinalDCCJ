@@ -29,7 +29,7 @@ const VistaHomeEspecialidades = (props) => {
 VistaHomeEspecialidades.propTypes = {
   nombre: PropTypes.string,
   descripcion: PropTypes.string,
-  imagen: PropTypes.string,
+  Url_imagen: PropTypes.string,
 };
 
 export default VistaHomeEspecialidades;

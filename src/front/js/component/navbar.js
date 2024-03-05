@@ -1,16 +1,70 @@
-import React,{ useContext } from "react";
+import React,{ useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import LogoBarzanitas from "../../img/LogoBarzanitas.png";
 import { Context } from "../store/appContext";
+import { jwtDecode as jwt_decode }  from "jwt-decode";
 
 export const Navbar = () => {
-  const { actions } = useContext(Context);
+  // const { actions } = useContext(Context);
 
-  const handleLogout = () => {
-    actions.Logout();
-    localStorage.removeItem("token");
-  };
+  // const handleLogout = () => {
+  //   actions.Logout();
+  //   localStorage.removeItem("token");
+  // };
 
+  // const token = localStorage.getItem("token");
+  // if (!token) {
+  //   console.error("El token no está presente en localStorage");
+  //   return false;
+  // }
+  // const decodedToken = jwt_decode(token);
+
+  // async function validacionDoctor() {
+  //   console.log(decodedToken);
+  //     //if (decodedToken && decodedToken.exp > Date.now() / 1000) {
+  //       if (token && decodedToken.exp > Date.now() / 1000) {
+  //       // El token es válido
+  //       console.log("si");
+  //       return(
+  //         true
+  //       // <Link to="/login/doctores" className="btn btn-primary me-3">
+  //       //   Mi Cuenta
+  //       // </Link>
+  //       )
+  //     } else {
+  //       // El token no es válido
+  //       console.log("no");
+  //       return(false)
+  //       // <Link to="/login/doctores" className="btn btn-primary me-3">
+  //       //   Soy Doctor
+  //       // </Link>
+  //     }
+  // }
+  // async function validacionUsuario() {
+  //   console.log(decodedToken);
+  //     //if (decodedToken && decodedToken.exp > Date.now() / 1000) {
+  //       if (token && decodedToken.exp > Date.now() / 1000) {
+  //       // El token es válido
+  //       console.log("si");
+  //       return(
+  //         true
+  //       // <Link to="/login/doctores" className="btn btn-primary me-3">
+  //       //   Mi Cuenta
+  //       // </Link>
+  //       )
+  //     } else {
+  //       // El token no es válido
+  //       console.log("no");
+  //       return(false)
+  //       // <Link to="/login/doctores" className="btn btn-primary me-3">
+  //       //   Soy Doctor
+  //       // </Link>
+  //     }
+  // }
+  // useEffect(() => {
+  //   validacionDoctor();
+  //   validacionUsuario();
+  // }, []);
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
@@ -36,17 +90,40 @@ export const Navbar = () => {
             <li className="nav-item">
               <Link to="/login/doctores" className="btn btn-primary me-3">
                 Soy Doctor
+              </Link>           
+              {/* { validacionDoctor ?
+              <Link to="/datos/doctores" className="btn btn-primary me-3">
+                Mi Cuenta
               </Link>
+              :
+              <Link to="/login/doctores" className="btn btn-primary me-3">
+                Soy Doctor
+              </Link>
+                } */}
+              
             </li>
             <li className="nav-item">
-              <Link to="/login/usuarios" className="btn btn-success me-3">
+              {/* <Link to="/login/usuarios" className="btn btn-success me-3">
+                Soy Cliente
+              </Link> */}
+              {/* { validacionDoctor() ?
+              <Link to="/datos/usuarios" className="btn btn-primary me-3">
+                Mi Cuenta
+              </Link>
+              : */}
+              <Link to="/login/usuarios" className="btn btn-primary me-3">
                 Soy Cliente
               </Link>
+                {/* } */}
             </li>
             <li className="nav-item">
-              <Link to="/" onClick={handleLogout} className="btn btn-danger me-5">
+              <Link to="/" className="btn btn-danger me-5">
                 Cerrar Sesión
               </Link>
+
+              {/* <Link to="/" onClick={handleLogout} className="btn btn-danger me-5">
+                Cerrar Sesión
+              </Link> */}
             </li>
             <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
