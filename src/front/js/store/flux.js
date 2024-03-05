@@ -47,6 +47,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ demo: demo });
 			},
 			LoginUser: async (email, password) => {
+				console.log(email,password);
 				try {
 					let response = await fetch(process.env.BACKEND_URL + "/api/login/user", {
 						method: "POST",
@@ -58,8 +59,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 							"password": password
 						})
 					});
+					
+					let data = await response.json();
 					if (response.ok) {
-						let data = await response.json();
 						// Do something with the profile data if needed
 						localStorage.setItem("token", data.access_token);
 						
@@ -201,15 +203,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// },
 
 			CrearUsuario: async (email, password, nombre, apellido, telefono, direccion, dni, Url_imagen) => {
-				console.log(Url_imagen);
-				console.log(email);
-				console.log(password);
-				console.log(nombre);
-				console.log(apellido);
-				console.log(typeof telefono);
-				console.log(telefono);
-				console.log(dni);
-				console.log(direccion);
+			
 				try {
 					let response = await fetch(process.env.BACKEND_URL + "/api/usuario", {
 					
@@ -229,7 +223,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}),
 					});
 					let data = await response.json();
-					console.log(data);
+					
 					if (response.ok) {
 						// let data = await response.json();
 						console.log("Usuario creado correctamente:", data);
@@ -245,8 +239,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						});
 						return true;
 					} else {
-						console.error("Error al crear el Cliente:", response.statusText);
-						console.log(`Error: ${response.status}`);
+						
 						toast.error('Cliente no se pudo crear. Verifica tus credenciales.', {
 							position: "top-right",
 							autoClose: 5000,
@@ -268,13 +261,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 			CrearDoctor: async (email, password, nombre, apellido, telefono, dni, Url_imagen, url_Calendly) => {
-				console.log(Url_imagen);
-				console.log(email);
-				console.log(password);
-				console.log(nombre);
-				console.log(apellido);
-				console.log(telefono);
-				console.log(dni);
+			
 				
 				// await actions.CrearDoctor(email, password, nombre, apellido, telefono, dni, especialidad, Url_imagen, url_Calendly)
 				try {

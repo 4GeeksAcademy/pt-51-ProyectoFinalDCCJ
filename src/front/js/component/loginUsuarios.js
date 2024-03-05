@@ -28,7 +28,7 @@ const LoginUsuarios = () => {
         progress: undefined,
         theme: "colored",
       });
-      Navigate('/paginaUsuarios');
+      Navigate('/especialidades');
     } else {
       toast.error('Inicio de sesión fallido. Verifica tus credenciales.', {
         position: "top-right",
@@ -67,11 +67,11 @@ const LoginUsuarios = () => {
                 </div>
                 <div className="d-flex justify-content-center">
 
-                  <Link to="/especialidades">
+                
                     <button type="submit" className="btn btn-outline-success rounded-pill px-4">
                       Iniciar
                     </button>
-                  </Link>
+                 
 
                 </div>
               </form>
