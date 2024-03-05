@@ -7,9 +7,9 @@ import { createPortal } from 'react-dom';
 
 const VistaDoctores = (props) => {
 
-    const [searchParams] = useSearchParams()
+    // const [searchParams] = useSearchParams()
 
-    console.log(searchParams.get(""));
+    // console.log(searchParams.get(""));
 
 
    
@@ -54,7 +54,7 @@ VistaDoctores.propTypes = {
     nombre: PropTypes.string,
     email: PropTypes.string,
     apellido: PropTypes.string,
-    especialidad: PropTypes.string,
+    especialidad: PropTypes.number,
     telefono: PropTypes.number,
     dni: PropTypes.string,
     Url_imagen: PropTypes.string,

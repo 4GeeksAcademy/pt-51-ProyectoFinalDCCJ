@@ -14,8 +14,8 @@ const DoctoresEspecialidad = () => {
         actions.ObtenerDoctores()
     }, []);
     
-    const token = localStorage.getItem("token");
-    const decodedToken = jwtDecode(token);
+    // const token = localStorage.getItem("token");
+    // const decodedToken = jwtDecode(token);
     console.log(params);
     return (
         
