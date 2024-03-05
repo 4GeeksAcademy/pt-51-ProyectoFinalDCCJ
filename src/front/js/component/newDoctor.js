@@ -48,7 +48,7 @@ const NewDoctor = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(Url_imagen)
+        
          try {
             await actions.CrearDoctor(email, password, nombre, apellido, telefono, dni, Url_imagen,url_Calendly)
             

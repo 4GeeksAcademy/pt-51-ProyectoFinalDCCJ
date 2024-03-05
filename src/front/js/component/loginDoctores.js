@@ -31,7 +31,7 @@ const LoginDoctores = () => {
               progress: undefined,
               theme: "colored",
             });
-            Navigate('/login/doctor');//cambiar a la página de ver sus citas con los pacientes
+            Navigate('/paginaDoctores');//cambiar a la página de ver sus citas con los pacientes
           } else {
             toast.error('Inicio de sesión fallido. Verifica tus credenciales.', {
               position: "top-right",
