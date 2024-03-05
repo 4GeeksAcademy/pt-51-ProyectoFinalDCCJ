@@ -1,8 +1,9 @@
 import React from 'react';
+import "../../styles/empresa.css";
 
 const Empresa = () => {
   return (
-    <div className='ms-5 me-5'>
+    <div className='completo ms-5 me-5'>
       <h1 className='text-center mt-5 mb-5'>Barzanitas: Cuidando de tu Salud con Compromiso y Calidad</h1>
 
       <p>
@@ -11,7 +12,7 @@ const Empresa = () => {
 
       <h3>Historia y Valores:</h3>
       <p>
-        Fundada en [año de fundación], Clínica Médica Barzanitas ha crecido y evolucionado con la misión de proporcionar atención médica de calidad a cada individuo que cruza nuestras puertas. Nuestra visión se basa en valores fundamentales como la integridad, la compasión y la innovación. Nos esforzamos por ser líderes en la atención médica al integrar las últimas tecnologías y prácticas médicas, asegurando que cada paciente reciba el más alto nivel de atención posible.
+        Fundada en 1995,la clínica Médica Barzanitas ha crecido y evolucionado con la misión de proporcionar atención médica de calidad a cada individuo que cruza nuestras puertas. Nuestra visión se basa en valores fundamentales como la integridad, la compasión y la innovación. Nos esforzamos por ser líderes en la atención médica al integrar las últimas tecnologías y prácticas médicas, asegurando que cada paciente reciba el más alto nivel de atención posible.
       </p>
 
       <h3>Equipo Profesional:</h3>
@@ -36,7 +37,7 @@ const Empresa = () => {
 
       <h3>Cuidando tu Salud, Inspirando Confianza:</h3>
       <p>
-        En resumen, Clínica Médica Barzanitas se esfuerza por ser mucho más que un proveedor de atención médica; buscamos ser un socio en el viaje hacia la salud y el bienestar. Nuestro compromiso inquebrantable con la calidad, la tecnología, la comunidad y, sobre todo, con nuestros pacientes, nos posiciona como un faro de confianza en el panorama de la atención médica local.
+        En resumen, la clínica Médica Barzanitas se esfuerza por ser mucho más que un proveedor de atención médica; buscamos ser un socio en el viaje hacia la salud y el bienestar. Nuestro compromiso inquebrantable con la calidad, la tecnología, la comunidad y, sobre todo, con nuestros pacientes, nos posiciona como un faro de confianza en el panorama de la atención médica local.
       </p>
 
       <h2 className='text-center'>Barzanitas: donde tu salud es nuestra prioridad.</h2>

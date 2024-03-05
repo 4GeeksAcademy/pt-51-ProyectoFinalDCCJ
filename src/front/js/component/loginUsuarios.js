@@ -49,17 +49,17 @@ const LoginUsuarios = () => {
         <div className="col-md-6">
           <div className="card">
             <div className="card-header text-center">
-              <h5 className="card-title">Iniciar Sesión</h5><i className="fa-solid fa-heart-pulse"></i>
+              <h5 className="card-title text-dark">Iniciar Sesión</h5><i className="fa-solid fa-heart-pulse"></i>
             </div>
             <div className="card-body">
               <form onSubmit={handleLogin}>
                 <div className="form-floating mb-3">
                   <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" required onChange={(event) => { setEmail(event.target.value) }} />
-                  <label htmlFor="floatingInput">Email</label>
+                  <label htmlFor="floatingInput" className="text-dark">Email</label>
                 </div>
                 <div className="form-floating mb-2">
                   <input type="password" className="form-control" id="floatingPassword" placeholder="Password" required onChange={(event) => { setPassword(event.target.value) }} />
-                  <label htmlFor="floatingPassword">Password</label>
+                  <label htmlFor="floatingPassword" className="text-dark">Password</label>
                 </div>
                 <div className="form-check mb-3">
                   <input type="checkbox" className="form-check-input" />
