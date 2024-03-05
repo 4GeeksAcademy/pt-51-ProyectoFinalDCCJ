@@ -249,12 +249,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log("Correo enviado correctamente:", data);
 						return { success: true, message: data.msg };
 					} else {
-						console.log("Error al enviar el correo:", data);
+						console.log("Error al enviar el correo.", data);
 						return { success: false, message: data.msg };
 					}
 				} catch (error) {
 					console.log("Error en sendEmail:", error);
-					return { success: false, message: "Error al enviar el correo." };
+					return { success: false, message: "Debe ingresar el correo" };
 				}
 			}
 

@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 const NewUser = () => {
     const { actions } = useContext(Context);
@@ -34,41 +36,71 @@ const NewUser = () => {
         setUrl_imagen("");
     };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            await actions.CrearDoctor(email, password, nombre, apellido, telefono, dni, Url_imagen);
 
-            toast.success('Inicio de sesión exitoso', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
 
-            Navigate('/login/doctor');
-        } catch (error) {
-            console.error("Error al crear el doctor:", error);
-            toast.error('Inicio de sesión fallido. Verifica tus credenciales.', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
-        }
-    };
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+            nombre: '',
+            apellido: '',
+            telefono: '',
+            dni: '',
+            Url_imagen: '',
+        },
+        validationSchema: Yup.object({
+            email: Yup.string().email('Dirección de correo inválida').required('Requerido'),
+            password: Yup.string()
+                .min(8, 'Debe tener al menos 8 caracteres')
+                .max(15, 'No puede tener más de 15 caracteres')
+                .required('Requerido'),
+            telefono: Yup.string()
+                .matches(/^[0-9]+$/, "Debe ser solo números")
+                .min(9, 'Debe tener exactamente 9 caracteres')
+                .max(9, 'Debe tener exactamente 9 caracteres')
+                .required('Requerido'),
+            dni: Yup.string()
+                .matches(/^[0-9]+$/, "Debe ser solo números")
+                .min(9, 'Debe tener exactamente 9 caracteres')
+                .max(9, 'Debe tener exactamente 9 caracteres')
+                .required('Requerido'),
+            // Validaciones para otros campos como necesites
+        }),
+        onSubmit: async (values) => {
+            try {
+                await actions.CrearDoctor(values.email, values.password, values.nombre, values.apellido, values.telefono, values.dni, values.Url_imagen);
 
+                toast.success('Inicio de sesión exitoso', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+
+                Navigate('/login/doctor');
+            } catch (error) {
+                console.error("Error al crear el doctor:", error);
+                toast.error('Inicio de sesión fallido. Verifica tus credenciales.', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+            }
+        },
+    })
     return (
-        <div className="w-75 mx-auto p-2">
-            <div className="mb-3">
+        <>
+            <div className="w-75 mx-auto p-2" >
+                <div className="mb-3">
                     <label htmlFor="fileInput" className="btn btn-primary">
                         Seleccionar Archivo
                         <input
@@ -87,71 +119,73 @@ const NewUser = () => {
                         </div>
                     )}
                 </div>
-                
+
                 {Url_imagen && (
                     <div>
                         <img src={Url_imagen} alt="Subida" className="mb-3" style={{ maxWidth: '200px', maxHeight: '200px' }} />
                     </div>
                 )}
-             
-            <form onSubmit={handleSubmit}>
-                <div className="form-floating mb-5">
-                    <div className="row">
-                        <div className="col-md-6">
-                            <input type="email" className="form-control" id="floatingEmail" placeholder="name@example.com" onChange={(event) => { setEmail(event.target.value) }} />
-                            <label htmlFor="floatingEmail">Email</label>
-                        </div>
-                        <div className="col-md-6">
-                            <input type="password" className="form-control" id="floatingPassword" placeholder="Password" onChange={(event) => { setPassword(event.target.value) }} />
-                            <label htmlFor="floatingPassword">Password</label>
-                        </div>
-                    </div>
-                </div>
-                <div className="form-floating mb-5">
-                    <div className="row">
-                        <div className="col-md-6">
-                            <input type="text" className="form-control" id="floatingName" placeholder="Nombre" onChange={(event) => { setNombre(event.target.value) }} />
-                            <label htmlFor="floatingName">Nombre</label>
-                        </div>
-                        <div className="col-md-6">
-                            <input type="text" className="form-control" id="floatingLastName" placeholder="Apellidos" onChange={(event) => { setApellido(event.target.value) }} />
-                            <label htmlFor="floatingLastName">Apellidos</label>
+
+                <form onSubmit={handleSubmit}>
+                    <div className="form-floating mb-5">
+                        <div className="row">
+                            <div className="col-md-6">
+                                <input type="email" className="form-control" id="floatingEmail" placeholder="name@example.com" onChange={(event) => { setEmail(event.target.value) }} />
+                                <label htmlFor="floatingEmail">Email</label>
+                            </div>
+                            <div className="col-md-6">
+                                <input type="password" className="form-control" id="floatingPassword" placeholder="Password" onChange={(event) => { setPassword(event.target.value) }} />
+                                <label htmlFor="floatingPassword">Password</label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="form-floating mb-5">
-                    <div className="row">
-                        <div className="col-md-4">
-                            <input type="tel" className="form-control" id="floatingTelephone" placeholder="Teléfono" onChange={(event) => { setTelefono(event.target.value) }} />
-                            <label htmlFor="floatingTelephone">Teléfono</label>
-                        </div>
-                        <div className="col-md-4">
-                            <input type="tel" className="form-control" id="floatingDireccion" placeholder="Dirección" onChange={(event) => { setDireccion(event.target.value) }} />
-                            <label htmlFor="floatingDireccion">Dirección</label>
-                        </div>
-                        <div className="col-md-4">
-                            <input type="text" className="form-control" id="floatingDni" placeholder="DNI" onChange={(event) => { setDni(event.target.value) }} />
-                            <label htmlFor="floatingDni">DNI</label>
+                    <div className="form-floating mb-5">
+                        <div className="row">
+                            <div className="col-md-6">
+                                <input type="text" className="form-control" id="floatingName" placeholder="Nombre" onChange={(event) => { setNombre(event.target.value) }} />
+                                <label htmlFor="floatingName">Nombre</label>
+                            </div>
+                            <div className="col-md-6">
+                                <input type="text" className="form-control" id="floatingLastName" placeholder="Apellidos" onChange={(event) => { setApellido(event.target.value) }} />
+                                <label htmlFor="floatingLastName">Apellidos</label>
+                            </div>
                         </div>
                     </div>
-                </div>
-              
-                <button type="submit" className="btn btn-primary">Registrarse</button>
-            </form>
-            <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="colored"
-            />
-        </div>
+                    <div className="form-floating mb-5">
+                        <div className="row">
+                            <div className="col-md-4">
+                                <input type="tel" className="form-control" id="floatingTelephone" placeholder="Teléfono" onChange={(event) => { setTelefono(event.target.value) }} />
+                                <label htmlFor="floatingTelephone">Teléfono</label>
+                            </div>
+                            <div className="col-md-4">
+                                <input type="tel" className="form-control" id="floatingDireccion" placeholder="Dirección" onChange={(event) => { setDireccion(event.target.value) }} />
+                                <label htmlFor="floatingDireccion">Dirección</label>
+                            </div>
+                            <div className="col-md-4">
+                                <input type="text" className="form-control" id="floatingDni" placeholder="DNI" onChange={(event) => { setDni(event.target.value) }} />
+                                <label htmlFor="floatingDni">DNI</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" className="btn btn-primary">Registrarse</button>
+                </form>
+                <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="colored"
+                />
+            </div >
+        </>
     );
 };
+
 
 export default NewUser;

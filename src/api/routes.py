@@ -9,6 +9,7 @@ from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_requir
 from flask_mail import Message #importamos Message() de flask_mail
 import random #importamos ramdom y string para generar una clave aleatoria nueva
 import string
+import os
 
 api = Blueprint('api', __name__)
 
@@ -227,6 +228,7 @@ def forgotpassword():
     db.session.commit()
 	#luego se la envio al usuario por correo para que pueda ingresar
     msg = Message("Hi", recipients=[recover_email])
-    msg.html = f"""<h1>Su nueva contraseña es: {recover_password}</h1>"""
+    msg.html = f"""<h1>Su nueva contraseña es: {recover_password}</h1>
+    <a href="{os.getenv('BACKEND_URL')}/vistanuevaclave"> Si deseas cambiar tu clave generada automaticamente, has clik aca.</a>"""
     current_app.mail.send(msg)
     return jsonify({"msg": "Su nueva clave ha sido enviada al correo electrónico ingresado"}), 200
