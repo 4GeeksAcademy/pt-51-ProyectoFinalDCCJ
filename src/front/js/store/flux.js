@@ -10,7 +10,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			Doctores: [],
 			Especialidades:[],
 			HomeDoctores:[],
-			HomeEspecialidades:[]
+			HomeEspecialidades:[],
+			auth:false
 
 
 		},
@@ -64,6 +65,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (response.ok) {
 						// Do something with the profile data if needed
 						localStorage.setItem("token", data.access_token);
+						setStore({auth:true})
 						
 						toast.success('Usuario autenticado correctamente', {
 							position: "top-right",
@@ -113,6 +115,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						let data = await response.json();
 						// Do something with the profile data if needed
 						localStorage.setItem("token", data.access_token);
+						setStore({auth:true})
 						
 						toast.success('Doctor autenticado correctamente', {
 							position: "top-right",
@@ -146,62 +149,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false;
 				}
 			},
-			// CrearUsuario: async (email, password, nombre, apellido, direccion, telefono, dni, Url_imagen) => {
-			// 	console.log(Url_imagen);
-			// 	try {
-			// 		let response = await fetch(process.env.BACKEND_URL + "/api/usuario", {
-			// 			method: "POST",
-			// 			headers: {
-			// 				"Content-Type": "application/json",
-			// 			},
-			// 			body: JSON.stringify({
-			// 				email,
-			// 				password,
-			// 				nombre,
-			// 				apellido,
-			// 				direccion,
-			// 				telefono,
-			// 				dni,
-			// 				Url_imagen
-			// 			}),
-			// 		});
-
-			// 		if (response.ok) {
-			// 			let data = await response.json();
-			// 			console.log("Usuario creado correctamente:", data);
-			// 			toast.success('Registro exitoso', {
-			// 				position: "top-right",
-			// 				autoClose: 5000,
-			// 				hideProgressBar: false,
-			// 				closeOnClick: true,
-			// 				pauseOnHover: true,
-			// 				draggable: true,
-			// 				progress: undefined,
-			// 				theme: "colored",
-			// 			});
-			// 			return true;
-			// 		} else {
-			// 			console.error("Error al crear usuario:", response.statusText);
-			// 			console.log(`Error: ${response.status}`);
-			// 			toast.error('Creación de usuario errónea. Verifica tus credenciales.', {
-			// 				position: "top-right",
-			// 				autoClose: 5000,
-			// 				hideProgressBar: false,
-			// 				closeOnClick: true,
-			// 				pauseOnHover: true,
-			// 				draggable: true,
-			// 				progress: undefined,
-			// 				theme: "colored",
-			// 			});
-			// 			return false;
-			// 		}
-			// 	} catch (error) {
-			// 		console.error("Error de red:", error);
-				
-			// 		return false;
-			// 	}
-			// },
-
+			
 			CrearUsuario: async (email, password, nombre, apellido, telefono, direccion, dni, Url_imagen) => {
 			
 				try {
@@ -428,9 +376,38 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 		
-
-
-
+			validate_token: async () => {
+                let token = localStorage.getItem("token")
+                if (token) {
+                    try {
+                        let response = await fetch(process.env.BACKEND_URL + "/api/validate_token", {
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            }
+                        });
+                        if (response.status >= 200 && response.status < 300) {
+                            await setStore({ auth: true })
+                            // await getActions().obtenerInfoUsuario()
+                        }
+                        else {
+                            setStore({ auth: false });
+                            localStorage.removeItem("token");
+                        //    localStorage.removeItem("user");
+                        //     localStorage.removeItem("email" );
+                        //     localStorage.removeItem("id");
+                        }
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
+            },
+			logout: () => {
+				
+				localStorage.removeItem("token");
+				setStore({auth:false});
+				return false;
+			},
 
 
 
