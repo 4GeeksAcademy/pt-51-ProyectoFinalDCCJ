@@ -49,9 +49,6 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              {/* <Link to="/login/doctores" className="btn btn-success me-3">
-                Soy Doctor
-              </Link>            */}
               {store.authDoctor ?
               <Link to="/datos/doctores" className="btn btn-primary me-3">
                 Mi Cuenta
