@@ -49,10 +49,10 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <Link to="/login/doctores" className="btn btn-success me-3">
+              {/* <Link to="/login/doctores" className="btn btn-success me-3">
                 Soy Doctor
-              </Link>           
-              {/* { validacionDoctor ?
+              </Link>            */}
+              {store.authDoctor ?
               <Link to="/datos/doctores" className="btn btn-primary me-3">
                 Mi Cuenta
               </Link>
@@ -60,25 +60,25 @@ export const Navbar = () => {
               <Link to="/login/doctores" className="btn btn-primary me-3">
                 Soy Doctor
               </Link>
-                } */}
+                }
               
             </li>
             <li className="nav-item">
               {/* <Link to="/login/usuarios" className="btn btn-success me-3">
                 Soy Cliente
               </Link> */}
-              {/* { validacionDoctor() ?
+              { store.authUsuario ?
               <Link to="/datos/usuarios" className="btn btn-primary me-3">
                 Mi Cuenta
               </Link>
-              : */}
+              :
               <Link to="/login/usuarios" className="btn btn-success me-3">
                 Soy Cliente
               </Link>
-                {/* } */}
+              }
             </li>
             <li className="nav-item">
-              {store.auth? (<button onClick={handleLogout} className="btn btn-danger me-5">
+              {store.authUsuario || store.authDoctor? (<button onClick={handleLogout} className="btn btn-danger me-5">
                 Cerrar Sesión
               </button>  ): null}
               
