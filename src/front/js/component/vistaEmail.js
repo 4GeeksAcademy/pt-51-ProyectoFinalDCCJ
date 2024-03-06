@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import "../../styles/color.css";
+import { ToastContainer, toast } from 'react-toastify';
 
 const VistaEmail = () => {
     const { actions } = useContext(Context);
@@ -20,7 +21,17 @@ const VistaEmail = () => {
 
         }),
         onSubmit: values => {
-            actions.sendEmail(values.email)
+            actions.sendEmail(values.email).then(response => {
+                if (response.success) {
+                    toast.success(response.message, {
+                        // Configuración del toast
+                    });
+                } else {
+                    toast.error(response.message, {
+                        // Configuración del toast
+                    });
+                }
+            });
             formik.resetForm();
         },
     });
@@ -59,6 +70,18 @@ const VistaEmail = () => {
                                     </button>
                                 </div>
                             </form>
+                            <ToastContainer
+                                position="top-right"
+                                autoClose={5000}
+                                hideProgressBar={false}
+                                newestOnTop={false}
+                                closeOnClick
+                                rtl={false}
+                                pauseOnFocusLoss
+                                draggable
+                                pauseOnHover
+                                theme="colored"
+                            />
                         </div>
                     </div>
                 </div>
