@@ -3,6 +3,7 @@ import { Link, useParams, useSearchParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 import "../../styles/infoDoctores.css";
+import "../../styles/color.css";
 
 const DatosDoctores = (props) => {
     return (

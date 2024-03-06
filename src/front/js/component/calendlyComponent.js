@@ -2,6 +2,7 @@ import React from "react";
 import { InlineWidget } from "react-calendly";
 import PropTypes from "prop-types";
 import { useParams, useSearchParams } from "react-router-dom";
+import "../../styles/color.css";
 
 const CalendlyComponent = () => {
   console.log(searchParams.set(url));

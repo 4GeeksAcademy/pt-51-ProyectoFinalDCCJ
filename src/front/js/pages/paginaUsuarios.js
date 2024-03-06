@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import InfoUsuarios from "../component/infoUsuarios";
 import { Context } from "../store/appContext";
 import { jwtDecode } from "jwt-decode";
+import "../../styles/color.css";
 
 const PaginaUsuarios = () => {
     const { store, actions } = useContext(Context);

@@ -5,6 +5,7 @@ import { Context } from "../store/appContext";
 import { jwtDecode as jwt_decode }  from "jwt-decode";
 import barzanitas from "../../img/barzanitas.png";
 import "../../styles/navbar.css";
+import "../../styles/color.css";
 
 
 export const Navbar = () => {
@@ -24,16 +25,11 @@ export const Navbar = () => {
 
  
   return (
-    <nav className="navbar navbar-expand-lg">
-
-
-      <div className="container" >
-     
+    <nav className="navbar navbar-expand-lg color2">
+      <div className="container-fluid" >     
         <Link to="/" className="navbar-brand">
-          <img src={barzanitas} alt="Logo de Barzanitas" className="logo"  />
-          
+          <img src={barzanitas} alt="Logo de Barzanitas" className="d-inline-block align-text-top p-4"  />          
         </Link>
-
         <button
           className="navbar-toggler"
           type="button"

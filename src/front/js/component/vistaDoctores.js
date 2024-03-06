@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 import { PopupButton } from "react-calendly";
+import "../../styles/color.css";
 
 const VistaDoctores = (props) => {
     const { store } = useContext(Context);

@@ -27,8 +27,8 @@
 }
 .card {
   max-width: 1000px;
-  background-color: #B4D4FF; /* Cambia el color según tus preferencias */
-  border: 1px solid black; /* Añade un borde opcional */
+  background-color: #F1FADA; /* Cambia el color según tus preferencias */
+  border: 1px solid #265073; /* Añade un borde opcional */
   border-radius: 10px; /* Añade esquinas redondeadas opcionalmente */
 }
 .card-container {

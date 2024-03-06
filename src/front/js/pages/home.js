@@ -9,6 +9,7 @@ import clinica3 from "../../img/clinica3.jpg";
 import clinica7 from "../../img/clinica7.jpg";
 import clinica5 from "../../img/clinica5.jpg";
 import "../../styles/home.css";
+import "../../styles/color.css";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);

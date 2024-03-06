@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
+import "../../styles/color.css";
 
 
 const DatosUsuarios = (props) => {

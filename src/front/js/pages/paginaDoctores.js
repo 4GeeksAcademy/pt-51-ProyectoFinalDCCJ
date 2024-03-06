@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import InfoDoctores from "../component/infoDoctores";
 import { Context } from "../store/appContext";
 import { jwtDecode } from "jwt-decode";
+import "../../styles/color.css";
 
 const PaginaDoctores = () => {
     const { store, actions } = useContext(Context);
