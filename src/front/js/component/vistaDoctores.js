@@ -7,13 +7,14 @@ import { createPortal } from 'react-dom';
 
 const VistaDoctores = (props) => {
 
-    const [searchParams] = useSearchParams()
+    // const [searchParams] = useSearchParams()
 
-    console.log(searchParams.get(""));
+    // console.log(searchParams.get(""));
 
 
    
     return (
+        
         <div className="w-100 p-2">
             <div className="card mb-3">
                 <div className="row g-0">
@@ -41,6 +42,7 @@ const VistaDoctores = (props) => {
                             rootElement={document.getElementById("root")}
                              text="Click here to schedule!"
                             />)} */}
+                            
                         </div>
                     </div>
                 </div>
@@ -52,11 +54,11 @@ VistaDoctores.propTypes = {
     nombre: PropTypes.string,
     email: PropTypes.string,
     apellido: PropTypes.string,
-    especialidad: PropTypes.string,
+    especialidad: PropTypes.number,
     telefono: PropTypes.number,
     dni: PropTypes.string,
     Url_imagen: PropTypes.string,
     url_Calendly: PropTypes.string
 
 };
-export default VistaDoctores
+export default VistaDoctores;

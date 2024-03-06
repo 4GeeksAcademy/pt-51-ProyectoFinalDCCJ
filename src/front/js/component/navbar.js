@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import LogoBarzanitas from "../../img/LogoBarzanitas.png";
 import { Context } from "../store/appContext";
 import { jwtDecode as jwt_decode }  from "jwt-decode";
+import barzanitas from "../../img/barzanitas.png";
+import "../../styles/navbar.css";
 
 
 export const Navbar = () => {
@@ -22,11 +24,14 @@ export const Navbar = () => {
 
  
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container">
+    <nav className="navbar navbar-expand-lg">
+
+
+      <div className="container" >
+     
         <Link to="/" className="navbar-brand">
-          <img src={LogoBarzanitas} alt="Logo de Barzanitas" className="logo-img" />
-          <span className="navbar-text ms-2">Barzanitas</span>
+          <img src={barzanitas} alt="Logo de Barzanitas" className="logo"  />
+          
         </Link>
 
         <button
@@ -44,10 +49,7 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <Link to="/login/doctores" className="btn btn-primary me-3">
-                Soy Doctor
-              </Link>           
-              {/* { validacionDoctor ?
+              {store.authDoctor ?
               <Link to="/datos/doctores" className="btn btn-primary me-3">
                 Mi Cuenta
               </Link>
@@ -55,25 +57,25 @@ export const Navbar = () => {
               <Link to="/login/doctores" className="btn btn-primary me-3">
                 Soy Doctor
               </Link>
-                } */}
+                }
               
             </li>
             <li className="nav-item">
               {/* <Link to="/login/usuarios" className="btn btn-success me-3">
                 Soy Cliente
               </Link> */}
-              {/* { validacionDoctor() ?
+              { store.authUsuario ?
               <Link to="/datos/usuarios" className="btn btn-primary me-3">
                 Mi Cuenta
               </Link>
-              : */}
-              <Link to="/login/usuarios" className="btn btn-primary me-3">
+              :
+              <Link to="/login/usuarios" className="btn btn-success me-3">
                 Soy Cliente
               </Link>
-                {/* } */}
+              }
             </li>
             <li className="nav-item">
-              {store.auth? (<button onClick={handleLogout} className="btn btn-danger me-5">
+              {store.authUsuario || store.authDoctor? (<button onClick={handleLogout} className="btn btn-danger me-5">
                 Cerrar Sesión
               </button>  ): null}
               
@@ -112,7 +114,8 @@ export const Navbar = () => {
             </li>
           </ul>
         </div>
-      </div>
+        </div> 
+      
     </nav>
   );
 };

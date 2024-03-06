@@ -228,7 +228,8 @@ def forgotpassword():
         return jsonify({"msg": "Debe ingresar el correo"}), 401
 	#busco si el correo existe en mi base de datos
     user = Usuarios.query.filter_by(email=recover_email).first()
-    if user is None:
+    doctor = Doctores.query.filter_by(email=recover_email).first()
+    if user & doctor is None:
         return jsonify({"msg": "El correo ingresado no existe en nuestros registros"}), 400
     #si existe guardo la nueva contraseña aleatoria
     user.password = recover_password
