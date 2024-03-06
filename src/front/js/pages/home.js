@@ -76,7 +76,7 @@ export const Home = () => {
           ))}
         </ul>
       </div>
-    </div>
+    </div> 
   </div> 
   );
 };

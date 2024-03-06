@@ -49,7 +49,7 @@ VistaDoctores.propTypes = {
     nombre: PropTypes.string,
     email: PropTypes.string,
     apellido: PropTypes.string,
-    especialidad: PropTypes.string,
+    especialidad: PropTypes.number,
     telefono: PropTypes.number,
     dni: PropTypes.string,
     Url_imagen: PropTypes.string,

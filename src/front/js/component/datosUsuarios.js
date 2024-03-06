@@ -47,10 +47,10 @@ const DatosUsuarios = (props) => {
                             </tr>
                             
                             
-                                <th className="table-primary" scope="row">Pinche en el enlace para seleccionar su cita</th>
+                                {/* <th className="table-primary" scope="row">Pinche en el enlace para seleccionar su cita</th>
                                 <Link to = "/ficha">
                                 <td colSpan="2">{props.url_Calendly}</td>
-                                </Link>
+                                </Link> */}
                            
                                 
                         </tbody>

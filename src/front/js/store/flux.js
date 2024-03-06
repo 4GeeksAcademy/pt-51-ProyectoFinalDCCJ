@@ -7,12 +7,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 		
 			Usuario: [],
-			Doctor: [],
 			Doctores: [],
 			Especialidades:[],
 			HomeDoctores:[],
 			HomeEspecialidades:[],
-			auth:false
+			authDoctor:false,
+			authUsuario:false
 
 
 		},
@@ -49,7 +49,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ demo: demo });
 			},
 			LoginUser: async (email, password) => {
-				console.log(email,password);
 				try {
 					let response = await fetch(process.env.BACKEND_URL + "/api/login/user", {
 						method: "POST",
@@ -66,7 +65,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (response.ok) {
 						// Do something with the profile data if needed
 						localStorage.setItem("token", data.access_token);
-						setStore({auth:true})
+						setStore({authUsuario:true})
 						
 						toast.success('Usuario autenticado correctamente', {
 							position: "top-right",
@@ -116,7 +115,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						let data = await response.json();
 						// Do something with the profile data if needed
 						localStorage.setItem("token", data.access_token);
-						setStore({auth:true})
+						setStore({authDoctor:true})
 						
 						toast.success('Doctor autenticado correctamente', {
 							position: "top-right",
@@ -284,8 +283,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					let response = await fetch(process.env.BACKEND_URL + "/api/usuarios")
 					const data = await response.json()
-					setStore({ Usuarios: data.usuarios })
+					console.log("Data from backend:", data);
+					setStore({ Usuario: data.usuarios });
 					// don't forget to return something, that is how the async resolves
+					
 					return data;
 				} catch (error) {
 					//console.log("Error loading message from backend", error)
@@ -388,11 +389,13 @@ const getState = ({ getStore, getActions, setStore }) => {
                             }
                         });
                         if (response.status >= 200 && response.status < 300) {
-                            await setStore({ auth: true })
+                            await setStore({ authDoctor: true })
+							await setStore({ authUsuario: true })
                             // await getActions().obtenerInfoUsuario()
                         }
                         else {
-                            setStore({ auth: false });
+                            setStore({ authDoctor: false });
+							setStore({ authUsuario: false });
                             localStorage.removeItem("token");
                         //    localStorage.removeItem("user");
                         //     localStorage.removeItem("email" );
@@ -406,7 +409,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			logout: () => {
 				
 				localStorage.removeItem("token");
-				setStore({auth:false});
+				setStore({authDoctor:false});
+				setStore({authUsuario:false});
 				return false;
 			},
 			handleVerificar: () => {
