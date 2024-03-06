@@ -243,8 +243,7 @@ def forgotpassword():
     db.session.commit()
 	#luego se la envio al usuario por correo para que pueda ingresar
     msg = Message("Hi", recipients=[recover_email])
-    msg.html = f"""<h1>Su nueva contraseña es: {recover_password}</h1>
-    <a href="{os.getenv('BACKEND_URL')}/vistanuevaclave"> Si deseas cambiar tu clave generada automaticamente, has clik aca.</a>"""
+    msg.html = f"""<h1>Su nueva contraseña es: {recover_password}</h1>"""
     current_app.mail.send(msg)
     return jsonify({"msg": "Su nueva clave ha sido enviada al correo electrónico ingresado"}), 200
 

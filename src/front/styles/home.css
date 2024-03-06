@@ -5,12 +5,6 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages). 
 */
-.completo{
-    
-    margin-bottom: -100px;
-    margin-top: -57px;
-  
-}
 .carousel-inner img,
 .img-fluid {
   max-width: 75%; /* Establece el ancho máximo en 100% */
