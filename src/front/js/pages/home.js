@@ -23,7 +23,7 @@ export const Home = () => {
   const showEspecialidades = store.Especialidades ? store.Especialidades.slice(0, 3) : [];
 
   return (
-   <div className="completo"> 
+   <div > 
     <div className="container">
       <div className="text-center mt-5">
         <div id="carouselExampleInterval" className="carousel slide" data-bs-ride="carousel">
