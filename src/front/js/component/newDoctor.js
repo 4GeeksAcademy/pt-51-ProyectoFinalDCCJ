@@ -70,7 +70,7 @@ const NewDoctor = () => {
         }),
         onSubmit: async (values) => {
 
-            console.log(values, nombre, apellido, direccion, Url_imagen)
+            // console.log(values, nombre, apellido, direccion, Url_imagen)
 
             try {
                 await actions.CrearUsuario(values.email, values.password, nombre, apellido, values.telefono, values.dni, Url_imagen);
