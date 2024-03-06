@@ -221,18 +221,25 @@ def get_home_data():
 #RECUPERACION CONTRASEÑA OLVIDADA 
 @api.route("/forgotpassword", methods=["POST"])
 def forgotpassword():
+    
     recover_email = request.json['email']
+    print(recover_email)
     recover_password = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(8)) #clave aleatoria nueva
-   
+    
     if not recover_email:
         return jsonify({"msg": "Debe ingresar el correo"}), 401
 	#busco si el correo existe en mi base de datos
     user = Usuarios.query.filter_by(email=recover_email).first()
     doctor = Doctores.query.filter_by(email=recover_email).first()
-    if user & doctor is None:
+    
+    if user is None and doctor is None:
         return jsonify({"msg": "El correo ingresado no existe en nuestros registros"}), 400
+    if user: 
+        user.password = recover_password
+    if doctor:
+        doctor.password = recover_password
     #si existe guardo la nueva contraseña aleatoria
-    user.password = recover_password
+    
     db.session.commit()
 	#luego se la envio al usuario por correo para que pueda ingresar
     msg = Message("Hi", recipients=[recover_email])
