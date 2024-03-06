@@ -73,8 +73,8 @@ const NewDoctor = () => {
             // console.log(values, nombre, apellido, direccion, Url_imagen)
 
             try {
-                await actions.CrearUsuario(values.email, values.password, nombre, apellido, values.telefono, values.dni, Url_imagen);
-
+                await actions.CrearDoctor(values.email, values.password, nombre, apellido, values.telefono, values.dni, Url_imagen, url_Calendly);
+                
                 toast.success('Inicio de sesión exitoso', {
                     position: "top-right",
                     autoClose: 5000,
@@ -86,9 +86,9 @@ const NewDoctor = () => {
                     theme: "colored",
                 });
 
-                Navigate('/login/usuarios');
+                Navigate('/login/doctores');
             } catch (error) {
-                console.error("Error al crear el usuario:", error);
+                console.error("Error al crear el usuario doctor:", error);
                 toast.error('Inicio de sesión fallido. Verifica tus credenciales.', {
                     position: "top-right",
                     autoClose: 5000,
