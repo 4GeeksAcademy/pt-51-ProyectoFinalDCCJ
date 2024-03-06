@@ -11,9 +11,12 @@ const CardEspecialidades = props => {
                 <h1 className="postcard__title blue">{props.nombre}</h1>
                 <div className="postcard__bar"></div>
                 <div className="postcard__preview-txt">{props.descripcion}</div>
-                <div >
-                    <Link to={`/${props.id}/doctores`} type="button" className="btn btn-outline-secondary rounded-pill px-4 mt-3"><strong>Ver Profesionales</strong></Link>
-                </div>
+                
+                <Link to={`/${props.id}/doctores`} type="button">
+                        <button className="btn btn-outline-secondary rounded-pill px-4 mt-3">
+                            <strong>Ver Profesionales</strong>
+                        </button>
+                </Link>
             </div>
         </article>
 
@@ -21,27 +24,12 @@ const CardEspecialidades = props => {
     );
 };
 CardEspecialidades.propTypes = {
-    id: PropTypes.number,
     nombre: PropTypes.string,
     url: PropTypes.string,
     descripcion: PropTypes.string,
+    id: PropTypes.number
 };
 export default CardEspecialidades
 
 
-{/* <div className="w-75 mx-auto p-2">
-<div className="card mb-3" style={{"maxWidth" : "540px"}}>
-    <div className="row g-0">
-        <div className="col-md-4">
-            <img src={props.url} className="img-fluid rounded-start" alt="..."/>
-        </div>
-        <div className="col-md-8">
-            <div className="card-body">
-                <h5 className="card-title">{props.titulo}</h5>
-                <p className="card-text">{props.descripcion}</p>
-                <p className="card-text"><small className="text-body-secondary">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
-    </div>
-</div>
-</div> */}
+

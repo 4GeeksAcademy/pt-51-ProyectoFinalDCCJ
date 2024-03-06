@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext} from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import VistaDoctores from "../component/vistaDoctores";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
@@ -7,16 +7,36 @@ import { jwtDecode } from "jwt-decode";
 
 const DoctoresEspecialidad = () => {
     const params = useParams();
-    console.log(params)
     const { store, actions } = useContext(Context);
-    
+    const navigate = useNavigate();
+
     useEffect(() => {
-        actions.ObtenerDoctores()
-    }, []);
-    
-    // const token = localStorage.getItem("token");
-    // const decodedToken = jwtDecode(token);
-    console.log(params);
+        const fetchData = async () => {
+            try {
+                actions.ObtenerDoctores();
+                const token = localStorage.getItem("token");
+
+                if (!token) {
+                    // Si no hay token, redirige a la página de inicio de sesión
+                    navigate("/login/usuarios");
+                  
+                    
+                }
+
+                const decodedToken = jwtDecode(token);
+
+                // Resto del código para procesar los doctores
+            } catch (error) {
+                navigate("/login/usuarios");
+            
+                
+                // Si hay algún error al decodificar el token, también redirige a la página de inicio de sesión
+                
+            }
+        };
+
+        fetchData();
+    }, [params, actions, navigate]);
     return (
         
             <div className="col-12">
