@@ -350,7 +350,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			sendEmail: async (email) => {
-				
 				try {
 					let response = await fetch(process.env.BACKEND_URL + "/api/forgotpassword", {
 						method: "POST",
@@ -363,18 +362,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 					let data = await response.json();
 					if (response.status === 200) {
-						
-						// Do something with the profile data if needed
-						console.log("Usuario autenticado correctamente:", data);
-
-						return true;
+						console.log("Correo enviado correctamente:", data);
+						return { success: true, message: data.msg };
 					} else {
-						console.log(data);
-						return false;
+						console.log("Error al enviar el correo.", data);
+						return { success: false, message: data.msg };
 					}
 				} catch (error) {
-					console.log(error);
-					return false;
+					console.log("Error en sendEmail:", error);
+					return { success: false, message: "Debe ingresar el correo" };
 				}
 			},
 		
