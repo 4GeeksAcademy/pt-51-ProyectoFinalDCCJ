@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import "../../styles/color.css";
 import { ToastContainer, toast } from 'react-toastify';
 
 const VistaEmail = () => {

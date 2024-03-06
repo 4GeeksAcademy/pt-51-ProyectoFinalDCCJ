@@ -4,6 +4,7 @@ import DatosUsuarios from "../component/datosUsuarios";
 import DatosDoctores from "../component/datosDoctores";
 import { Context } from "../store/appContext";
 import { jwtDecode } from "jwt-decode";
+import "../../styles/color.css";
 
 const Datos = () => {
     const params = useParams();

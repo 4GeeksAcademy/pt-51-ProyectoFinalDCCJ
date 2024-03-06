@@ -2,9 +2,9 @@ import React, { useState, useEffect, useContext} from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import { InlineWidget } from "react-calendly";
-
 import { Context } from "../store/appContext";
 import CalendlyComponent from "../component/calendlyComponent";
+import "../../styles/color.css";
 
 const VistaFichaDoctor = () => {
     //console.log(URLSearchParams.toString());

@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import VistaDoctores from "../component/vistaDoctores";
 import { Context } from "../store/appContext";
 import VistaHomeDoctores from "../component/vistaHomeDoctores";
+import "../../styles/color.css";
 
 const Doctores = () => {
     const { store, actions } = useContext(Context);

@@ -4,6 +4,7 @@ import { useFormspark } from '@formspark/use-formspark';
 import { ToastContainer, toast, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "../../styles/contactanos.css";
+import "../../styles/color.css";
 
 const Contactanos = () => {
   const FORMSPARK_FORM_ID = 'K70oKA4lE';

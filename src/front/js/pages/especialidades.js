@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import CardEspecialidades from "../component/cardEspecialidades";
 import { Context } from "../store/appContext";
+import "../../styles/color.css";
 
 const VistaEspecialidades = () => {
     const { store, actions } = useContext(Context);

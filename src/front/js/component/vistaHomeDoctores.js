@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "../../styles/home.css";
+import "../../styles/color.css";
 
 const VistaHomeDoctores = (props) => {
   return (

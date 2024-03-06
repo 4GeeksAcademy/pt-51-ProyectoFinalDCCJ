@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import "../../styles/cardEspecialidades.scss"
 import PropTypes from "prop-types";
+import "../../styles/color.css";
 
 const CardEspecialidades = props => {
     return (

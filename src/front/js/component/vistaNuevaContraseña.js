@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import "../../styles/color.css";
 
 const NuevaContraseña = () => {
   const { actions } = useContext(Context);

@@ -4,6 +4,7 @@ import VistaDoctores from "../component/vistaDoctores";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 import { jwtDecode } from "jwt-decode";
+import "../../styles/color.css";
 
 const DoctoresEspecialidad = () => {
     const params = useParams();

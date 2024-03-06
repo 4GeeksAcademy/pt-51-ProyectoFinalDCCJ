@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import "../../styles/color.css";
 
 const NewDoctor = () => {
     const { store, actions } = useContext(Context);

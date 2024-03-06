@@ -1,5 +1,6 @@
 import React from 'react';
 import "../../styles/empresa.css";
+import "../../styles/color.css";
 
 const Empresa = () => {
   return (

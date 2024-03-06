@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import envFile from "../../../../docs/assets/env-file.png"
+import "../../styles/color.css";
 
 const Dark = ({children}) => <span className="bg-dark text-white px-1 rounded">{children}</span>;
 export const BackendURL = () => (

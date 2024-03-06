@@ -1,20 +1,19 @@
 .navbar>.container{
-    background-color:#40A2E3;
+    background-color:#2D9596;
     
-    height: 150px;
+    height: 90px;
     max-width: 2000px;
     
 }
 .logo{
-    margin-top: 20px;
-    width:200px;
-    height: 150px;
+    
+    width:auto;
+    height: 90px;
 } 
 
-@media (max-width: 768px) {
+@media (max-width: 200px) {
     /* Adjust logo styles for smaller screens */
     .logo {
-        margin-top: 20px;
-        width: 200px;
+        width: 90px;
     }    
 }    
