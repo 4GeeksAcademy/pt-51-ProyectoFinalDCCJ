@@ -21,7 +21,7 @@ const LoginDoctores = () => {
         const success = await actions.LoginDoctor(email, password);
 
         if (success) {
-            toast.success('Inicio de sesión exitoso', {
+              toast.error('Inicio de sesión fallido. Verifica tus credenciales.', {
               position: "top-right",
               autoClose: 5000,
               hideProgressBar: false,

@@ -36,20 +36,14 @@ const InfoDoctores = (props) => {
                                 <th scope="row">Teléfono</th>
                                 <td colSpan="2">{props.telefono}</td>
                             </tr>
-                            <tr>
-
-                                <th scope="row">url_Calendly</th>
-                                 
-                                <td colSpan="2">{props.url_Calendly}</td>
-                                
-
-                            </tr>
+                           
                             
                             
-                                <th className="table-primary" scope="row">Pinche en el enlace para ver sus citas</th>
-                                <Link to = {`/fichadoctor/${props.url_Calendly}`}>calendly
+                                <th className="table-primary p-5" scope="row">Pinche en el enlace para ver sus citas
+                                <Link className="ms-3"to = {`/fichadoctor/${props.url_Calendly}`}> Calendly
                                 {/* <td colSpan="2">{props.url_Calendly}</td> */}
                                 </Link>
+                                </th>
                            
                                 
                         </tbody>

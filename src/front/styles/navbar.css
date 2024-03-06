@@ -6,9 +6,9 @@
     
 }
 .logo{
-    margin-top: 50px;
-    width:300px;
-    height: auto;
+    margin-top: 20px;
+    width:200px;
+    height: 150px;
 } 
 
 @media (max-width: 768px) {

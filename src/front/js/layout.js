@@ -19,7 +19,7 @@ import Especialidades from "./pages/especialidades";
 import Registrarse from "./pages/registrarse";
 import Doctores from "./pages/doctores";
 import Empresa from "./pages/empresa";
-
+import PaginaUsuarios from "./pages/paginaUsuarios";
 import VistaNuevaClave from "./pages/nuevaClave";
 import VistaEnviarCorreo from "./pages/enviarCorreo";
 import VistaFichaDoctor from "./pages/vistaFichaDoctor";
@@ -52,6 +52,7 @@ const Layout = () => {
                         <Route element={<VistaEnviarCorreo />} path="/enviarcorreo" />
                         <Route element={<VistaFichaDoctor />} path="/fichadoctor/:username_calendly" />
                         <Route element={<PaginaDoctores />} path="/paginaDoctores" />
+                        <Route element={<PaginaUsuarios />} path="/paginaUsuarios" />
                         <Route element={<DoctoresEspecialidad />} path="/:especialidad/doctores" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>

@@ -5,6 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 
+		
 			Usuario: [],
 			Doctor: [],
 			Doctores: [],
@@ -408,8 +409,39 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({auth:false});
 				return false;
 			},
-
-
+			handleVerificar: () => {
+				const token = localStorage.getItem("token");
+			  
+				if (token) {
+				  // Si hay un token almacenado, establecer auth en true
+				  setStore({ auth:true });
+				  toast.success('Puede seleccionar una cita', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                  });
+				  return true;
+				} else {
+					toast.error('Debe loguearse para acceder a esta opción', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                      });
+                   
+				  // Si no hay un token almacenado, hacer algo diferente o simplemente devolver false
+				  return false;
+				}
+			  }
 
 
 
