@@ -46,11 +46,11 @@ export const Navbar = () => {
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
               {store.authDoctor ?
-              <Link to="/datos/doctores" className="btn btn-primary me-3">
+              <Link to="/datos/doctores" className="btn btn-info me-3">
                 Mi Cuenta
               </Link>
               :
-              <Link to="/login/doctores" className="btn btn-primary me-3">
+              <Link to="/login/doctores" className="btn btn-outline-info me-3">
                 Soy Doctor
               </Link>
                 }
@@ -61,11 +61,11 @@ export const Navbar = () => {
                 Soy Cliente
               </Link> */}
               { store.authUsuario ?
-              <Link to="/datos/usuarios" className="btn btn-primary me-3">
+              <Link to="/datos/usuarios" className="btn btn-light me-3">
                 Mi Cuenta
               </Link>
               :
-              <Link to="/login/usuarios" className="btn btn-success me-3">
+              <Link to="/login/usuarios" className="btn btn-outline-light me-3">
                 Soy Cliente
               </Link>
               }
@@ -81,7 +81,7 @@ export const Navbar = () => {
                 Cerrar Sesión
               </Link> */}
             </li>
-            <li className="nav-item dropdown">
+            <li className="nav-item dropdown ">
               <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i className="fa fa-bars fa-2x"></i>
               </a>
