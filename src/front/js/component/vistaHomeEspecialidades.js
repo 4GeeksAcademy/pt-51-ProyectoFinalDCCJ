@@ -5,8 +5,8 @@ import "../../styles/color.css";
 const VistaHomeEspecialidades = (props) => {
   return (
         <div className=" p-2">
-          <div className="card text-center mb-3 rounded-3" style={{width: "26rem" , height: "200px"}}>
-            <div className="card-body color3 rounded-3">
+          <div class="card text-center mb-3 ms-5 rounded-3" style={{width: "300px" , height: "250px"}}>
+            <div class="card-body color3 d-flex flex-column justify-content-center align-items-center rounded-3">
               <h5 className="card-title color-text1">{props.nombre}</h5>
               <p className="card-text text-center color-text1">{props.descripcion}</p>
               {/* <a href="#" class="btn btn-primary">Go somewhere</a> */}

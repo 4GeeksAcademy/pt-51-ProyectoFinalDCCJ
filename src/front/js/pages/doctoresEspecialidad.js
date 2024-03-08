@@ -41,11 +41,11 @@ const DoctoresEspecialidad = () => {
     return (
         
             <div className="col-12">
-				<ul className=" d-flex justify-content-center list-unstyled gap-1 px-0">
+				<ul className=" d-flex justify-content-center list-unstyled gap-1 px-0 row">
 					{store.Doctores.map(item => 
                         (item.especialidad == params.especialidad) &&
                         
-						<li key={item.id} className="col-4 px-0 w-auto my-2">
+						<li key={item.id} className="col-md-6 col-lg-4 px-0 w-auto my-2">
 							<VistaDoctores especialidad={item.especialidad} id={item.id} nombre={item.nombre} imagen={item.Url_imagen} apellido={item.apellido} email={item.email} telefono={item.telefono} url_Calendly={item.url_Calendly}/>
 						</li>
 					)}
