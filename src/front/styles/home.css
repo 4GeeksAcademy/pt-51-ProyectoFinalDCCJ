@@ -18,24 +18,38 @@
   margin-left: auto;
   margin-right: auto;
 }
-.card {
-  max-width: 1000px;
+ .card {
+ 
   background-color: #ffffff; /* Cambia el color según tus preferencias */
   border: 1px solid #265073; /* Añade un borde opcional */
   border-radius: 10px; /* Añade esquinas redondeadas opcionalmente */
 }
+.card img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+  
+@media (max-width: 576px) {
+  /* Estilos específicos para pantallas pequeñas (menos de 576px de ancho) */
+   .card {
+    max-width: 100%;
+  }
+}
+
+/*
 .card-container {
   margin-left: 300px; /* Ajusta el valor según sea necesario */
-}
+/*}/*
 
 .card img {
   width: 100%;
   max-width: 100%;
   height: auto;
 }
-@media (max-width: 576px) {
+/* @media (max-width: 576px) {
   /* Estilos específicos para pantallas pequeñas (menos de 576px de ancho) */
-  .card {
+  /* .card {
     max-width: 100%;
-  }
-}
+  } */
+/*} */
