@@ -7,7 +7,7 @@ const VistaHomeDoctores = (props) => {
   return (
     <div className=" p-2">
       <div className="col-md-12">
-          <div class="card text-center color3 mb-3 rounded-3" style={{width: "26rem" , height: "300px"}}>
+          <div className="card text-center color3 mb-3 rounded-3" style={{width: "26rem" , height: "300px"}}>
           <div className="row h-100">
                <div className="col-md-6">
                  {props.imagen ? (

@@ -25,67 +25,37 @@ export const Navbar = () => {
 
  
   return (
-    <nav className="navbar navbar-expand-lg color2">
+    <nav className="navbar sticky-top  color2">
       <div className="container-fluid" >     
         <Link to="/" className="navbar-brand">
-          <img src={barzanitas} alt="Logo de Barzanitas" className="d-inline-block align-text-top p-4"  />          
+          <img src={barzanitas} alt="Logo de Barzanitas" className="d-inline-block align-text-top img-fluid"  />          
         </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              {store.authDoctor ?
-              <Link to="/datos/doctores" className="btn btn-info me-3">
+        <div className="d-flex justify-content-end">
+          {store.authDoctor ?
+              <Link to="/datos/doctores" className="btn btn-info m-3 h-75">
                 Mi Cuenta
               </Link>
               :
-              <Link to="/login/doctores" className="btn btn-outline-info me-3">
+              <Link to="/login/doctores" className="btn btn-outline-info m-3 h-75">
                 Soy Doctor
               </Link>
                 }
-              
-            </li>
-            <li className="nav-item">
-              {/* <Link to="/login/usuarios" className="btn btn-success me-3">
-                Soy Cliente
-              </Link> */}
-              { store.authUsuario ?
-              <Link to="/datos/usuarios" className="btn btn-light me-3">
+                { store.authUsuario ?
+              <Link to="/datos/usuarios" className="btn btn-light m-3 h-75">
                 Mi Cuenta
               </Link>
               :
-              <Link to="/login/usuarios" className="btn btn-outline-light me-3">
+              <Link to="/login/usuarios" className="btn btn-outline-light m-3 h-75">
                 Soy Cliente
               </Link>
               }
-            </li>
-            <li className="nav-item">
-              {store.authUsuario || store.authDoctor? (<button onClick={handleLogout} className="btn btn-danger me-5">
+              {store.authUsuario || store.authDoctor? (<button onClick={handleLogout} className="btn btn-danger m-3 h-75">
                 Cerrar Sesión
               </button>  ): null}
-              
-              
-
-              {/* <Link to="/" onClick={handleLogout} className="btn btn-danger me-5">
-                Cerrar Sesión
-              </Link> */}
-            </li>
-            <li className="nav-item dropdown ">
-              <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a className=" dropdown-toggle m-3 color-text1" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{hover: "color-text1"}}>
                 <i className="fa fa-bars fa-2x"></i>
               </a>
-              <ul className="dropdown-menu dropdown-menu-end p-3 fs-5">
+              <ul className="dropdown-menu dropdown-menu-end fs-5">
                 <li>
                   <Link to="/especialidades" className="dropdown-item fs-5 py-3" href="#">
                     Especialidades
@@ -107,11 +77,8 @@ export const Navbar = () => {
                     </Link>
                 </li>
               </ul>
-            </li>
-          </ul>
         </div>
-        </div> 
-      
+      </div>      
     </nav>
   );
 };
