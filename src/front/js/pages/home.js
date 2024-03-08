@@ -58,8 +58,8 @@ export const Home = () => {
             <div className="carousel-item">
               <img src={clinica5} className="d-block w-100 img-fluid mx-auto" alt="Clinica 3" />
               <div className="carousel-caption d-none d-md-block">
-                <h5>Su salud, nuestra prioridad</h5>
-                <p>Some representative placeholder content for the third slide.</p>
+                <h5>Cuidando tu Salud, Inspirando Confianza</h5>
+                <p>Buscamos ser un socio en el viaje hacia la salud y el bienestar</p>
               </div>
             </div>
           </div>
@@ -103,10 +103,10 @@ export const Home = () => {
         </div> */}
       </div>
 
-      <div className="col-12">
-        <ul className="flex-nowrap d-flex justify-content-evenly list-unstyled gap-1 px-0">
+      <div className="col-12 text-center">
+        <ul className="row list-unstyled">
           {showDoctores.map(item => (
-            <li key={item.id} className=" col-3 px-0 w-auto my-2">
+            <li key={item.id} className="col-lg-4 col-md-6 mb-2">
               <VistaHomeDoctores nombre={item.nombre} apellido={item.apellido} imagen={item.Url_imagen} />
             </li>
           ))}
@@ -118,10 +118,10 @@ export const Home = () => {
         <img src={clinica1} className="img-fluid w-80 mx-auto" alt="clinica" />
       </div> */}
 
-      <div className="col-12 ">
-        <ul className="flex-nowrap d-flex justify-content-evenly list-unstyled gap-1 px-0">
+      <div className="col-12">
+        <ul className="row list-unstyled">
           {showEspecialidades.map(item => (
-            <li key={item.id} className="col-4px-0 w-auto my-2">
+            <li key={item.id} className="col-lg-4 col-md-6 mb-2">
               <VistaHomeEspecialidades nombre={item.nombre} descripcion={item.descripcion} imagen={item.Url_imagen} />
             </li>
           ))}
