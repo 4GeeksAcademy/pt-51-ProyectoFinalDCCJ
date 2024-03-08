@@ -128,7 +128,7 @@ const NewDoctor = () => {
         <div className="w-75 mx-auto p-2">
             <form onSubmit={formik.handleSubmit}>
                 <div className="mb-3">
-                    <label htmlFor="fileInput" className="btn btn-primary">
+                    <label htmlFor="fileInput" className="btn btn-outline-secondary">
                         Seleccionar Archivo
                         <input
                             type="file"
@@ -140,7 +140,7 @@ const NewDoctor = () => {
                     </label>
                     {Url_imagen && (
                         <div className="ml-2">
-                            <button className="btn btn-danger" type="button" onClick={FuncionDeleteImage}>
+                            <button className="btn btn-outline-danger" type="button" onClick={FuncionDeleteImage}>
                                 Eliminar Imagen
                             </button>
                         </div>
@@ -234,7 +234,7 @@ const NewDoctor = () => {
                     </div>
                 </div>
 
-                <button type="submit" className="btn btn-primary">Registrarse</button>
+                <button type="submit" className="btn btn-outline-secondary">Registrarse</button>
             </form>
             <ToastContainer
                 position="top-right"

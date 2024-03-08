@@ -37,18 +37,18 @@ const VistaEmail = () => {
     });
 
     return (
-        <div className="container mt-5">
+        <div className="container m-5">
             <div className="row justify-content-center">
                 <div className="col-md-6">
                     <div className="card">
-                        <div className="card-header text-center">
-                            <h5 className="card-title">Escriba Su Correo Electronico</h5><i className="fa-solid fa-file-waveform"></i>
+                        <div className="card-header text-center color2">
+                            <h5 className="card-title color-text1">Escriba Su Correo Electronico</h5><i className="fa-solid fa-file-waveform color-text1"></i>
                         </div>
-                        <div className="card-body">
+                        <div className="card-body color3">
                             <form onSubmit={formik.handleSubmit} >
                                 <div className="form-floating mb-3">
                                     <input type="email" className="form-control" id="floatingInput" name="email" placeholder="name@example.com" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.email} />
-                                    <label htmlFor="floatingInput">Email</label>
+                                    <label htmlFor="floatingInput" >Email</label>
                                 </div>
 
                                 {formik.touched.email && formik.errors.email ? (
@@ -65,7 +65,7 @@ const VistaEmail = () => {
                                 ) : null} */}
 
                                 <div className="d-flex justify-content-center">
-                                    <button type="submit" className="btn btn-outline-success rounded-pill px-4">
+                                    <button type="submit" className="btn btn-outline-light rounded-pill px-4">
                                         Enviar
                                     </button>
                                 </div>

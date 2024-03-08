@@ -12,13 +12,13 @@ const VistaDoctores = (props) => {
     const isUserAuthenticated = !!localStorage.getItem("token");
 
     return (
-        <div className="w-100 p-2">
-            <div className="card mb-3">
-                <div className="row g-0">
-                    <div className="col-6 col-md-4">
-                        <img src={props.imagen} className="img-fluid rounded-start" alt="..." />
+        <div className="col-12 p-2">
+            <div className="card mb-3 " style={{width: "42rem" , height: "20rem"}}>
+                <div className="row h-100 mw-100">
+                    <div className="col-5">
+                        <img src={props.imagen} className="img-fluid rounded-3 p-1" alt="..." />
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-7">
                         <div className="card-body">
                             <h5 className="card-title">{props.nombre}</h5>
                             <p className="card-text">{props.apellido}</p>
@@ -32,7 +32,7 @@ const VistaDoctores = (props) => {
                                 <Link to={`/fichadoctor/${props.url_Calendly}`}>Pedir Cita</Link>
                             ) : (
                                 <>
-                                <span><strong>INICIA SESIÓN PARA PEDIR CITA</strong></span>
+                                <p><span><strong>INICIA SESIÓN PARA PEDIR CITA</strong></span></p>
                                 <Link to="/login/usuarios">
                                         <button className="btn btn-primary ms-3">Iniciar Sesión</button>
                                 </Link>

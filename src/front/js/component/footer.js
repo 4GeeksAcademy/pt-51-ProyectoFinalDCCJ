@@ -10,8 +10,8 @@ export const Footer = () => (
           <h5 className="color-text1"><strong>Oficinas centrales</strong></h5>
           <a href="#" className="color-text1">+34 935 351 260</a>
           <h5 className="color-text1"><strong>Atención al paciente</strong></h5>
-          <a href="#" className="color-text1">+34 935 351 260</a>
-          <a href="#" className="color-text1">barzanitas@outlook.com</a>
+          <p><a href="#" className="color-text1">+34 935 351 260</a></p>
+          <p><a href="#" className="color-text1">barzanitas@outlook.com</a></p>
         </div>
         <div className="col-md-4 mb-4 text-center">
         <h5 className="color-text1"><strong>Horarios</strong></h5>

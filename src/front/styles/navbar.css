@@ -10,7 +10,12 @@
     width:auto;
     height: 90px;
 } 
-
+.nav-link{
+    color: #F1FADA;
+}
+.nav-link:focus, .nav-link:hover {
+    color: #F1FADA;
+}
 @media (max-width: 200px) {
     /* Adjust logo styles for smaller screens */
     .logo {

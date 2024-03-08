@@ -45,14 +45,14 @@ const LoginUsuarios = () => {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 vh-100">
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card">
-            <div className="card-header text-center">
+            <div className="card-header text-center color2">
               <h5 className="card-title text-dark">Iniciar Sesión</h5><i className="fa-solid fa-heart-pulse"></i>
             </div>
-            <div className="card-body">
+            <div className="card-body color3">
               <form onSubmit={handleLogin}>
                 <div className="form-floating mb-3">
                   <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" required onChange={(event) => { setEmail(event.target.value) }} />

@@ -59,11 +59,14 @@ const Contactanos = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <h2>Contacto</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="nombre" className="form-label">Nombre:</label>
+    <div className="container justify-content-center m-5">
+      
+      <form onSubmit={handleSubmit}className="color2 rounded-3">
+        <div className="color1 text-center rounded-3">
+          <h5 className='color-text1'>Contacto</h5>
+          </div>
+          <div className="m-3">
+          <label htmlFor="nombre" className="form-label color-text1">Nombre:</label>
           <input
             type="text"
             className="form-control"
@@ -75,8 +78,8 @@ const Contactanos = () => {
           />
         </div>
 
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">Correo electrónico:</label>
+        <div className="m-3">
+          <label htmlFor="email" className="form-label color-text1">Correo electrónico:</label>
           <input
             type="email"
             className="form-control"
@@ -88,8 +91,8 @@ const Contactanos = () => {
           />
         </div>
 
-        <div className="mb-3">
-          <label htmlFor="mensaje" className="form-label">Mensaje:</label>
+        <div className="m-3">
+          <label htmlFor="mensaje" className="form-label color-text1">Mensaje:</label>
           <textarea
             className="form-control"
             id="mensaje"
@@ -100,10 +103,11 @@ const Contactanos = () => {
             required
           ></textarea>
         </div>
-
-        <button type="submit" className="btn btn-primary">
+        <div class="d-grid gap-2 col-6 mx-auto">
+        <button type="submit" className="btn btn-outline-light m-3">
           Enviar
         </button>
+        </div>
       </form>
 
       <ToastContainer

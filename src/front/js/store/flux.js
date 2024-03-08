@@ -297,7 +297,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					let response = await fetch(process.env.BACKEND_URL + "/api/info/doctores/especialidades")
 					const data = await response.json()
 					console.log("Data from backend:", data);
-					setStore({ Doctores: data.doctores });
+					setStore({ HomeDoctores: data.doctores });
 					// don't forget to return something, that is how the async resolves
 					return data;
 				} catch (error) {

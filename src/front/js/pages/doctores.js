@@ -13,8 +13,8 @@ const Doctores = () => {
     }, []);
     console.log(store.Doctores);
     return (
-        <div className="col-12">
-				<ul className=" d-flex justify-content-center list-unstyled gap-1 px-0 overflow-auto">
+        <div className="col-12 container-fluid ">
+				<ul className="d-flex list-unstyled justify-content-center gap-1 px-0 overflow-auto row">
 					{store.Doctores.map(item => (
 						<li key={item.id} className="col-4 px-0 w-auto my-2">
 							<VistaDoctores id={item.id} nombre={item.nombre} imagen={item.Url_imagen} apellido={item.apellido} email={item.email} telefono={item.telefono} url_Calendly={item.url_Calendly}/>
