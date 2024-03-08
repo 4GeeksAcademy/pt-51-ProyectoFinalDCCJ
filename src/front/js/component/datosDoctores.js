@@ -7,14 +7,14 @@ import "../../styles/color.css";
 
 const DatosDoctores = (props) => {
     return (
-        <div>
-            <img src={props.imagen} className="img-fluid rounded-start ps-5" alt="..." />
+        <div className="m-3">
+            <img src={props.imagen} className="img-fluid rounded-start" alt="..." />
     
 
         <div className="container">
             <div className="row">
                 <div className="col">
-                    <table className="mt-3 pe-5  table table-stripe table-hover table-primary border-dark table-bordere align-center">
+                    <table className="mt-3 pe-5  table table-stripe table-hover color3 border-dark table-bordere align-center">
                         <thead>
                             <tr className="">
                                 <th>Nombre</th>
